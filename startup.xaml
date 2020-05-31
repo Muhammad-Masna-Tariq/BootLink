@@ -1,0 +1,160 @@
+﻿<Window x:Class="Fyp.startup"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Fyp"
+        mc:Ignorable="d"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        Title="BootLink" Height="600" Width="1000">
+    <Grid Background="#1b1c20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Button Content="X" Background="#1b1c20" FontSize="20" FontWeight="ExtraBold" Foreground="#ffffff" Grid.Row="0" HorizontalAlignment="Right" BorderThickness="0"  Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Close_Click" Width="32">
+        </Button>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30"></ColumnDefinition>
+                <ColumnDefinition Width="200"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"></RowDefinition>
+                    <RowDefinition Height="26*"></RowDefinition>
+                    <RowDefinition Height="10"></RowDefinition>
+                    <RowDefinition Height="55*"></RowDefinition>
+                    <RowDefinition Height="40"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Image Source="image/logo.png"  Grid.Row="1"/>
+                <Button Grid.Row="3" FontSize="20" VerticalAlignment="Top" Background="#1b1c20" Foreground="#ffffff" BorderThickness="0" HorizontalAlignment="Right" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Width="200">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"></ColumnDefinition>
+                            <ColumnDefinition Width="30"></ColumnDefinition>
+                            <ColumnDefinition Width="100"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <Image  Source="image/frontadd.png" Width="25" Grid.Column="1"/>
+                        <TextBlock DockPanel.Dock="Right" Grid.Column="2" Margin="4,0,40,0">New</TextBlock>
+
+                    </Grid>
+                </Button>
+                <Button Grid.Row="3" FontSize="20" Margin="0,33,0,0" VerticalAlignment="Top" Background="#1b1c20" Foreground="#ffffff" BorderThickness="0" HorizontalAlignment="Right" Width="200" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"></ColumnDefinition>
+                            <ColumnDefinition Width="30"></ColumnDefinition>
+                            <ColumnDefinition Width="100"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Image  Source="image/frontopen.png" Width="25" Grid.Column="1"/>
+                        <TextBlock DockPanel.Dock="Right" Grid.Column="2" Margin="4,0,40,0">Open</TextBlock>
+                    </Grid>
+                </Button>
+                <Button Grid.Row="3" FontSize="20" Margin="0,184,0,0" VerticalAlignment="Bottom" Background="#1b1c20" Foreground="#ffffff" BorderThickness="0" HorizontalAlignment="Right" Width="200" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Close_Click">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"></ColumnDefinition>
+                            <ColumnDefinition Width="30"></ColumnDefinition>
+                            <ColumnDefinition Width="100"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Image  Source="image/frontlogout.png" Width="25" Grid.Column="1"/>
+                        <TextBlock DockPanel.Dock="Right" Grid.Column="2" Margin="4,0,40,0">Exit</TextBlock>
+                    </Grid>
+                </Button>
+            </Grid>
+            <Grid Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"></RowDefinition>
+                    <RowDefinition Height="15*"></RowDefinition>
+                    <RowDefinition Height="10"></RowDefinition>
+                    <RowDefinition Height="55*"></RowDefinition>
+                    <RowDefinition Height="25"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition Width="40"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <Button Grid.Column="0" FontSize="13" FontWeight="Light" VerticalAlignment="Top" Background="#1b1c20" Foreground="#ffffff" BorderThickness="0">
+                                <StackPanel>
+                                    <Image Source="image/startupimages/item8.jpg" Stretch="Uniform" Height="142"/>
+                                    <TextBlock HorizontalAlignment="Center">Blank Document</TextBlock>
+                                </StackPanel>
+                            </Button>
+                            <Button Grid.Column="1" FontSize="13" FontWeight="Light" VerticalAlignment="Top" Background="#1b1c20" Foreground="#ffffff" BorderThickness="0">
+                                <StackPanel>
+                                    <Image Source="image/startupimages/item7.jpg" Stretch="Uniform" Height="144"/>
+                                    <TextBlock HorizontalAlignment="Center">Album</TextBlock>
+                                </StackPanel>
+                            </Button>
+                            <Button Grid.Column="2" FontSize="13" FontWeight="Light" VerticalAlignment="Top" Background="#1b1c20" Foreground="#ffffff" BorderThickness="0">
+                                <StackPanel>
+                                    <Image Source="image/startupimages/item6.jpg" Stretch="Uniform" Height="146"/>
+                                    <TextBlock HorizontalAlignment="Center">Pricing</TextBlock>
+                                </StackPanel>
+                            </Button>
+                            <Button Grid.Column="3" FontSize="13" FontWeight="Light" VerticalAlignment="Top" Background="#1b1c20" Foreground="#ffffff" BorderThickness="0">
+                                <StackPanel>
+                                    <Image Source="image/startupimages/item5.jpg" Stretch="Uniform" Height="146"/>
+                                    <TextBlock HorizontalAlignment="Center">Shipping</TextBlock>
+                                </StackPanel>
+                            </Button>
+                        </Grid>
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <Button Grid.Column="0" FontSize="13" FontWeight="Light" VerticalAlignment="Top" Background="#1b1c20" Foreground="#ffffff" BorderThickness="0">
+                                <StackPanel>
+                                    <Image Source="image/startupimages/item4.jpg" Stretch="Uniform" Height="149"/>
+                                    <TextBlock HorizontalAlignment="Center">Product</TextBlock>
+                                </StackPanel>
+                            </Button>
+                            <Button Grid.Column="1" FontSize="13" FontWeight="Light" VerticalAlignment="Top" Background="#1b1c20" Foreground="#ffffff" BorderThickness="0">
+                                <StackPanel>
+                                    <Image Source="image/startupimages/item3.jpg" Stretch="Uniform" Height="150"/>
+                                    <TextBlock HorizontalAlignment="Center">Landing</TextBlock>
+                                </StackPanel>
+                            </Button>
+                            <Button Grid.Column="2" FontSize="13" FontWeight="Light" VerticalAlignment="Top" Background="#1b1c20" Foreground="#ffffff" BorderThickness="0">
+                                <StackPanel>
+                                    <Image Source="image/startupimages/item2.jpg" Stretch="Uniform" Height="150"/>
+                                    <TextBlock HorizontalAlignment="Center">Carousel</TextBlock>
+                                </StackPanel>
+                            </Button>
+                            <Button Grid.Column="3" FontSize="13" FontWeight="Light" VerticalAlignment="Top" Background="#1b1c20" Foreground="#ffffff" BorderThickness="0">
+                                <StackPanel>
+                                    <Image Source="image/startupimages/item1.jpg" Stretch="Uniform" Height="153"/>
+                                    <TextBlock HorizontalAlignment="Center">Login</TextBlock>
+                                </StackPanel>
+                            </Button>
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+
+</Window>

@@ -1,0 +1,402 @@
+﻿<Controls:MetroWindow x:Class="Fyp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:y="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit/extended"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Fyp"
+        KeyDown="WindowKeyDown"
+        xmlns:cefsharpwpf="clr-namespace:CefSharp.Wpf;assembly=CefSharp.Wpf"
+        mc:Ignorable="d"
+        xmlns:wf="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
+        xmlns:WindowsFormsIntegration="clr-namespace:System.Windows.Forms.Integration;assembly=WindowsFormsIntegration"
+        GlowBrush="{DynamicResource AccentColorBrush}"
+        PreviewKeyDown="WindowKeyDown"
+        WindowStartupLocation="CenterScreen"
+        WindowState="Maximized"
+        Title="BootLink" Height="723" Width="1280" Icon="image/bootlinklogo.ico" Loaded="Window_Loaded" TitleCaps="False">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="167*"/>
+            <ColumnDefinition Width="541*"/>
+            <ColumnDefinition Width="564*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="28"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.Background>
+            <SolidColorBrush Color="#393e46">
+            </SolidColorBrush>
+        </Grid.Background>
+        <!-- Grid Row 0 - Menu Here -->
+        <Grid Grid.Row="0" Grid.ColumnSpan="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="200" MaxWidth="250"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Menu Background="#2d2e33" FontFamily="Tahoma" FontSize="13" HorizontalAlignment="Stretch" Grid.Column="0" Margin="0,0,0,1">
+                <MenuItem Background="#2d2e33" Foreground="#ffffff" Header="_File" >
+                    <MenuItem Header="_New Project" x:Name="NewProject" Click="NewProject_Click" Background="#eeeeee"  Foreground="#393e46" InputGestureText="Ctrl+N">
+                        <MenuItem.Icon>
+                            <Image Source="image/New.png"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="_Open Project" InputGestureText="Ctrl+O" x:Name="OpenProject" Click="OpenProject_Click" Foreground="#393e46">
+                        <MenuItem.Icon>
+                            <Image Source="image/Open.png"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="_Save Project" InputGestureText="Ctrl+S" x:Name="SaveProject" Click="SaveProject_Click" Foreground="#393e46">
+                        <MenuItem.Icon>
+                            <Image Source="image/Save.png"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <Separator />
+                    <MenuItem Header="_Exit Application" InputGestureText="Alt+F4" x:Name="ExitApplication" Click="ExitApplication_Click" Foreground="#393e46">
+                        <MenuItem.Icon>
+                            <Image Source="./image/Exit.png"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                </MenuItem>
+                <MenuItem Background="#2d2e33" Foreground="#ffffff" Header="_Edit">
+                    <MenuItem Header="Copy Element" InputGestureText="Ctrl+C" x:Name="copy" Click="copy_Click" Background="#eeeeee" Foreground="#393e46">
+                        <MenuItem.Icon>
+                            <Image Source="image/copy.png" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="Paste Element" InputGestureText="Ctrl+V" x:Name="paste" Click="paste_Click" Background="#eeeeee" Foreground="#393e46">
+                        <MenuItem.Icon>
+                            <Image Source="image/paste.png" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="Select All Elements" InputGestureText="Ctrl+A" x:Name="selectAll" Click="selectAll_Click" Background="#eeeeee" Foreground="#393e46">
+                        <MenuItem.Icon>
+                            <Image Source="image/select.png" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="Delete Element(s)" x:Name="delete" Click="delete_Click" Background="#eeeeee" Foreground="#393e46">
+                        <MenuItem.Icon>
+                            <Image Source="image/delete.png" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <Separator />
+                    <MenuItem Header="Change Font" x:Name="ChangeFontSize" Click="ChangeFontSize_Click" Background="#eeeeee" Foreground="#393e46">
+                        <MenuItem.Icon>
+                            <Image Source="image/Change Font.png" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                </MenuItem>
+                <MenuItem Background="#2d2e33" Foreground="#ffffff" Header="_Find">
+                    <MenuItem Header="Find and Replace" InputGestureText="Ctrl+F" x:Name="findAndReplace" Click="findAndReplace_Click" Background="#eeeeee" Foreground="#393e46">
+                        <MenuItem.Icon>
+                            <Image Source="image/find.png" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                </MenuItem>
+                <MenuItem Background="#2d2e33" Foreground="#ffffff" Header="_Window">
+                    <MenuItem Header="Mobile View" x:Name="mobileView" Click="mobileView_Click" Background="#eeeeee" Foreground="#393e46">
+                        <MenuItem.Icon>
+                            <Image Source="image/mobile.png" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="Tablet View" x:Name="tabletView" Click="tabletView_Click" Background="#eeeeee" Foreground="#393e46">
+                        <MenuItem.Icon>
+                            <Image Source="image/tablet.png" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="Laptop/Desktop View" x:Name="laptopView" Click="laptopView_Click" Background="#eeeeee" Foreground="#393e46">
+                        <MenuItem.Icon>
+                            <Image Source="image/laptop.png" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <Separator />
+                    <MenuItem Header="Custom View" x:Name="customView" Click="customView_Click" Background="#eeeeee" Foreground="#393e46">
+                        <MenuItem.Icon>
+                            <Image Source="image/custom.png" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                </MenuItem>
+                <MenuItem Background="#2d2e33" Foreground="#ffffff" Header="_Help">
+                    <MenuItem Header="View Manual" x:Name="manual" Click="manual_Click" Background="#eeeeee" Foreground="#393e46">
+                        <MenuItem.Icon>
+                            <Image Source="image/help.png" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="View Video Demo" x:Name="demo" Click="demo_Click" Background="#eeeeee" Foreground="#393e46">
+                        <MenuItem.Icon>
+                            <Image Source="image/demo.png" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                </MenuItem>
+            </Menu>
+            <Menu Background="#2d2e33" Foreground="#ffffff" FontFamily="Tahoma" FontSize="13" HorizontalAlignment="Stretch" Grid.Column="1" >
+                <MenuItem Background="#2d2e33" Foreground="#ffffff"  Header="Live Preview"  x:Name="Preview" Click="Preview_Click" HorizontalAlignment="Stretch">
+                    <MenuItem.Icon>
+                        <Image Source="image/preview.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
+            </Menu>
+        </Grid>
+
+        <!-- Main Columns Here -->
+        <Grid Grid.Row="1" Grid.ColumnSpan="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="250" MinWidth="250" MaxWidth="300"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <!-- For Spacing -->
+                    <RowDefinition MaxHeight="15"></RowDefinition>
+                    <RowDefinition  MinHeight="230" Height="230"></RowDefinition>
+                </Grid.RowDefinitions>
+                <!-- Cef Sharp Here -->
+                <Grid Grid.Row="0" >
+                    <cefsharpwpf:ChromiumWebBrowser x:Name="MainWindowBrowser" Address="www.google.com" BorderThickness="0" />
+                </Grid>
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" MaxWidth="300" ></ColumnDefinition>
+                        <ColumnDefinition MaxWidth="15"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition MaxWidth="15"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+
+                    <!-- Tree Here -->
+                    <WindowsFormsHost Grid.Column="0" ScrollViewer.VerticalScrollBarVisibility="Auto" Background="#1e2128" Foreground="#ffffff">
+                        <wf:TreeView x:Name="DomHierarchyTree"  AllowDrop="False" BackColor="#1e2128" ForeColor="#ffffff" BorderStyle="None" AfterSelect="DomHierarchyTree_AfterSelect" AfterCollapse="DomHierarchyTree_AfterCollapse"/>
+                    </WindowsFormsHost>
+
+                    <!-- HTML Box Here -->
+                    <WindowsFormsHost  HorizontalAlignment="Left" Background="#1e2128" Foreground="#eeeeee"  MaxWidth="30" MinWidth="30" Width="29" Grid.Column="2" RenderTransformOrigin="0.705,0.499">
+                        <wf:RichTextBox BackColor="#1e2128" ForeColor="DarkGray" x:Name="htmlTextBoxLine" AcceptsTab="False" AllowDrop="False" ReadOnly="True" ScrollBars="None" BorderStyle="None"/>
+                    </WindowsFormsHost>
+                    <WindowsFormsHost  HorizontalAlignment="Stretch" Background="White" Grid.Column="2" Margin="30,0,0,0">
+                        <wf:RichTextBox BackColor="#eeeeee" x:Name="htmlTextBox" BorderStyle="None" AllowDrop="True" AcceptsTab="True" KeyUp="htmlTextBox_KeyUp" TextChanged="htmlTextBox_TextChanged" KeyPress="htmlTextBox_KeyPress" KeyDown="htmlTextBox_KeyDown" SelectionChanged="htmlTextBox_SelectionChanged" VScroll="htmlTextBox_VScroll" FontChanged="htmlTextBox_FontChanged" MouseDown="htmlTextBox_MouseDown" ScrollBars="Vertical" />
+                    </WindowsFormsHost>
+
+                    <!--- CSS Box Here -->
+                    <WindowsFormsHost  HorizontalAlignment="Left" Background="#1e2128" Foreground="#eeeeee"  MaxWidth="30" MinWidth="30" Width="29" Grid.Column="4" RenderTransformOrigin="0.705,0.499">
+                        <wf:RichTextBox x:Name="csstextBoxLine" BackColor="#1e2128" BorderStyle="None" ScrollBars="None" ReadOnly="True" Dock="Left" MouseDown="CsstextBoxLine_MouseDown" ForeColor="White"/>
+                    </WindowsFormsHost>
+                    <WindowsFormsHost  HorizontalAlignment="Stretch" Grid.Column="4" Margin="30,0,0,0">
+                        <wf:RichTextBox x:Name="csstextBox" BackColor="#eeeeee" KeyUp="cssTextBox_KeyUp" AcceptsTab="True" TextChanged="cssTextBox_TextChanged" SelectionChanged="CsstextBox_SelectionChanged" SelectionBackColor="White" VScroll="CsstextBox_VScroll" FontChanged="CsstextBox_FontChanged" BorderStyle="None"/>
+                    </WindowsFormsHost>
+                </Grid>
+            </Grid>
+
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Label Grid.Row="0" Content="Column" Foreground="White" FontWeight="ExtraBold" />
+
+                <WrapPanel Grid.Row="1">
+                    <Label Margin="13,0,0,0" Content="XS" Foreground="White" />
+                    <TextBox Margin="10,0,0,0" Width="65" x:Name="ColumnXS" BorderThickness="0" AcceptsReturn="False" AcceptsTab="False" AllowDrop="False" Background="#1e2128" Foreground="#3d4047" Text="1-12" TextAlignment="Center" />
+                    <Label Width="30" Margin="13,0,5,0" Content="SM" Foreground="White" />
+                    <TextBox Width="65" Margin="3,0,0,0" x:Name="ColumnSM" BorderThickness="0" AcceptsReturn="False" AcceptsTab="False" AllowDrop="False" Background="#1e2128" Foreground="#50535c" Text="1-12" TextAlignment="Center" />
+                </WrapPanel>
+
+                <WrapPanel Grid.Row="2">
+                    <Label Margin="8,5,0,0" Content="MD" Foreground="White" />
+                    <TextBox Width="65" Margin="10,5,0,0" x:Name="ColumnMD" BorderThickness="0" AcceptsReturn="False" AcceptsTab="False" AllowDrop="False" Background="#1e2128" Foreground="#50535c" Text="1-12" TextAlignment="Center" />
+                    <Label Width="30" Margin="13,0,5,0" Content="LG" Foreground="White" />
+                    <TextBox Width="65" Margin="3,5,0,0" x:Name="ColumnLG" BorderThickness="0" AcceptsReturn="False" AcceptsTab="False" AllowDrop="False" Background="#1e2128" Foreground="#50535c" Text="1-12" TextAlignment="Center" />
+                </WrapPanel>
+
+                <Label Margin="0,5,0,0" Grid.Row="3" Content="Box Model" FontWeight="ExtraBold" Foreground="White" />
+
+                <WrapPanel Grid.Row="4">
+                    <Label Margin="13,0,0,0" Content="Width" Foreground="White" />
+                    <TextBox Width="65" x:Name="WidthProperty" BorderThickness="0" AcceptsReturn="False" AcceptsTab="False" AllowDrop="False" Background="#1e2128" Foreground="#50535c" Text="px" TextAlignment="Center" />
+                    <Label Width="45" Margin="3,0,0,0" Content="Height" Foreground="White" />
+                    <TextBox Width="65" Margin="3,0,0,0" x:Name="HeightProperty" BorderThickness="0" AcceptsReturn="False" AcceptsTab="False" AllowDrop="False" Background="#1e2128" Foreground="#50535c" Text="px" TextAlignment="Center" />
+                </WrapPanel>
+
+                <WrapPanel Margin="0,5,0,0" Grid.Row="5">
+                    <Label Margin="8,5,0,0" Content="Margin" Foreground="White" />
+                    <TextBox x:Name="TopMargin" Width="40" TextAlignment="Center" BorderThickness="0" Text="Top" Foreground="#50535c" Background="#1e2128" AcceptsReturn="False" AcceptsTab="False" AllowDrop="False" />
+                    <TextBox x:Name="RightMargin" Margin="3,0,0,0" Width="41" BorderThickness="0" TextAlignment="Center" Text="Right" Foreground="#50535c" Background="#1e2128" AcceptsReturn="False" AcceptsTab="False" AllowDrop="False" />
+                    <TextBox x:Name="BottomMargin" Margin="3,0,0,0" Width="49" BorderThickness="0" Text="Bottom" TextAlignment="Center" Foreground="#50535c" Background="#1e2128" AcceptsReturn="False" AcceptsTab="False" AllowDrop="False" />
+                    <TextBox x:Name="LeftMargin" Width="41" Margin="3,0,0,0"  BorderThickness="0" Text="Left" Foreground="#50535c" TextAlignment="Center" Background="#1e2128" AcceptsReturn="False" AcceptsTab="False" AllowDrop="False" />
+                </WrapPanel>
+
+                <WrapPanel Margin="0,5,0,0" Grid.Row="6">
+                    <Label Margin="4,5,0,0" Content="Padding" Foreground="White" />
+                    <TextBox x:Name="TopPadding" Width="40" BorderThickness="0" TextAlignment="Center" Text="Top" Foreground="#50535c" Background="#1e2128" AcceptsReturn="False" AcceptsTab="False" AllowDrop="False" />
+                    <TextBox x:Name="RightPadding" Margin="3,0,0,0" Width="41" BorderThickness="0" TextAlignment="Center" Text="Right" Foreground="#50535c" Background="#1e2128" AcceptsReturn="False" AcceptsTab="False" AllowDrop="False" />
+                    <TextBox x:Name="BottomPadding" Margin="3,0,0,0" Width="49" BorderThickness="0" Text="Bottom" TextAlignment="Center" Foreground="#50535c" Background="#1e2128" AcceptsReturn="False" AcceptsTab="False" AllowDrop="False" />
+                    <TextBox x:Name="LeftPadding" Width="41" Margin="3,0,0,0" BorderThickness="0" Text="Left" Foreground="#50535c" TextAlignment="Center" Background="#1e2128" AcceptsReturn="False" AcceptsTab="False" AllowDrop="False" />
+                </WrapPanel>
+
+                <WrapPanel Margin="0,5,0,0" Grid.Row="7">
+                    <Label Margin="8,5,0,0" Content="Float" Foreground="White" />
+                    <ComboBox Width="67" x:Name="FloatProperty" BorderThickness="0" Background="#1e2128" Foreground="#50535c" AllowDrop="False" SelectedIndex="2" HorizontalContentAlignment="Center">
+                        <ComboBoxItem Content="Left" Name="FloatLeft" HorizontalAlignment="Center" AllowDrop="False" />
+                        <ComboBoxItem Content="Right" Name="FloatRight" HorizontalAlignment="Center" AllowDrop="False" />
+                        <ComboBoxItem Content="None" Name="FloatNone" HorizontalAlignment="Center" AllowDrop="False" />
+                    </ComboBox>
+                    <Label Margin="7,5,0,0" Content="Display" Foreground="White" />
+                    <ComboBox Width="81" x:Name="DisplayProperty" BorderThickness="0" Background="#1e2128" Foreground="#50535c" AllowDrop="False" SelectedIndex="0" HorizontalContentAlignment="Center">
+                        <ComboBoxItem Content="Block" Name="BlockDisplay" HorizontalAlignment="Center" AllowDrop="False" />
+                        <ComboBoxItem Content="Inline" Name="InlineDisplay" HorizontalAlignment="Center" AllowDrop="False" />
+                        <ComboBoxItem Content="Inline-Block" Name="InlineBlockDisplay" HorizontalAlignment="Center" AllowDrop="False" />
+                    </ComboBox>
+                </WrapPanel>
+
+                <Label Margin="0,5,0,0" Grid.Row="8" Content="Border" FontWeight="ExtraBold" Foreground="White" />
+                <WrapPanel Margin="0,5,0,0" Grid.Row="9">
+                    <Label Margin="13,0,0,0" Content="Size" Foreground="White" />
+                    <TextBox Margin="3,0,0,0" Width="65" BorderThickness="0" x:Name="BorderSize" AcceptsReturn="False" AcceptsTab="False" AllowDrop="False" Background="#1e2128" Foreground="#50535c" Text="px" TextAlignment="Center" />
+                    <Label Margin="13,0,0,0" Content="Type" Foreground="White" />
+                    <ComboBox Margin="7.5,0,0,0" Width="81" BorderThickness="0" x:Name="BorderType" Background="#1e2128" Foreground="#50535c" AllowDrop="False" SelectedIndex="0" HorizontalContentAlignment="Center">
+                        <ComboBoxItem Content="Dotted" Name="BorderDotted" HorizontalAlignment="Center" AllowDrop="False" />
+                        <ComboBoxItem Content="Dashed" Name="BorderDashed" HorizontalAlignment="Center" AllowDrop="False" />
+                        <ComboBoxItem Content="Solid" Name="BorderSolid" HorizontalAlignment="Center" AllowDrop="False" />
+                        <ComboBoxItem Content="Double" Name="BorderDouble" HorizontalAlignment="Center" AllowDrop="False" />
+                        <ComboBoxItem Content="Groove" Name="BorderGroove" HorizontalAlignment="Center" AllowDrop="False" />
+                        <ComboBoxItem Content="Ridge" Name="BorderRidge" HorizontalAlignment="Center" AllowDrop="False" />
+                        <ComboBoxItem Content="Inset" Name="BorderInset" HorizontalAlignment="Center" AllowDrop="False" />
+                        <ComboBoxItem Content="Outset" Name="BorderOutset" HorizontalAlignment="Center" AllowDrop="False" />
+                        <ComboBoxItem Content="None" Name="BorderNone" HorizontalAlignment="Center" AllowDrop="False" />
+                        <ComboBoxItem Content="Hidden" Name="BorderHidden" HorizontalAlignment="Center" AllowDrop="False" />
+                    </ComboBox>
+                </WrapPanel>
+                <WrapPanel Margin="0,5,0,0" Grid.Row="10">
+                    <Label Margin="6,0,0,0" Content="Color" Foreground="White" />
+                    <y:ColorPicker Margin="2,0,0,0"  BorderThickness="0" Width="84" x:Name="BorderColor" DisplayColorAndName="False" Foreground="#50535c" Background="#1e2128" AllowDrop="False" />
+                </WrapPanel>
+
+                <Label Margin="0,5,0,0" Grid.Row="11" Content="Font" FontWeight="ExtraBold" Foreground="White" />
+                <WrapPanel Margin="0,5,0,0" Grid.Row="12">
+                    <Label Margin="13,0,0,0" Content="Size" Foreground="White" />
+                    <TextBox Margin="3,0,0,0" Width="65" BorderThickness="0" x:Name="FontSize" AcceptsReturn="False" AcceptsTab="False" AllowDrop="False" Background="#1e2128" Foreground="#50535c" Text="px" TextAlignment="Center" />
+                    <Label Margin="8,0,0,0" Content="Family" Foreground="White" />
+                    <ComboBox x:Name="FontFamily" BorderThickness="0" Width="77" Margin="7.5,0,0,0" ItemsSource="{Binding Source={x:Static Fonts.SystemFontFamilies}}" Background="#1e2128" Foreground="#50535c" AllowDrop="False" SelectedIndex="0" HorizontalContentAlignment="Center" />
+                </WrapPanel>
+                <WrapPanel Margin="0,5,0,0" Grid.Row="13">
+                    <Label Margin="8,0,0,0" Content="Color" Foreground="White" />
+                    <y:ColorPicker Width="70" BorderThickness="0" x:Name="FontColor" DisplayColorAndName="False" Foreground="#50535c" Background="#1e2128" AllowDrop="False" />
+                    <Label Content="Weight" Width="48" Foreground="White" Margin="3,0,0,0" />
+                    <ComboBox Width="77" BorderThickness="0" Margin="4,0,0,0" x:Name="FontWeights" Background="#1e2128" Foreground="#50535c" AllowDrop="False" SelectedIndex="1" HorizontalContentAlignment="Center">
+                        <x:Static Member="FontWeights.Black"/>
+                        <x:Static Member="FontWeights.Bold"/>
+                        <x:Static Member="FontWeights.DemiBold"/>
+                        <x:Static Member="FontWeights.ExtraBlack"/>
+                        <x:Static Member="FontWeights.ExtraBold"/>
+                        <x:Static Member="FontWeights.ExtraLight"/>
+                        <x:Static Member="FontWeights.Heavy"/>
+                        <x:Static Member="FontWeights.Light"/>
+                        <x:Static Member="FontWeights.Medium"/>
+                        <x:Static Member="FontWeights.Normal"/>
+                        <x:Static Member="FontWeights.Regular"/>
+                        <x:Static Member="FontWeights.SemiBold"/>
+                        <x:Static Member="FontWeights.Thin"/>
+                        <x:Static Member="FontWeights.UltraBlack"/>
+                        <x:Static Member="FontWeights.UltraBold"/>
+                        <x:Static Member="FontWeights.UltraLight"/>
+                    </ComboBox>
+                </WrapPanel>
+                <WrapPanel Margin="0,5,0,0" Grid.Row="14">
+                    <Label Margin="9,0,0,0" Content="Align" Foreground="White" />
+                    <ComboBox Width="65" BorderThickness="0" HorizontalContentAlignment="Center" x:Name="FontAlign" Margin="2,0,0,0" Background="#1e2128" Foreground="#50535c">
+                        <ComboBoxItem Name="LeftAlign" Content="Left" HorizontalAlignment="Center" AllowDrop="False" IsSelected="True" />
+                        <ComboBoxItem Content="Right" Name="RightAlign" HorizontalAlignment="Center" AllowDrop="False" />
+                        <ComboBoxItem Content="Center" Name="CenterAlign" HorizontalAlignment="Center" AllowDrop="False" />
+                        <ComboBoxItem Content="Justify" Name="JustifyAlign" HorizontalAlignment="Center" AllowDrop="False" />
+                    </ComboBox>
+                    <Label Margin="12,0,0,0" Content="Style" Foreground="White" />
+                    <ComboBox BorderThickness="0" Width="77" Margin="12,0,0,0" x:Name="FontStyle" Background="#1e2128" Foreground="#50535c" AllowDrop="False" SelectedIndex="1" HorizontalContentAlignment="Center">
+                        <x:Static Member="FontStyles.Normal"/>
+                        <x:Static Member="FontStyles.Italic"/>
+                        <x:Static Member="FontStyles.Oblique"/>
+                    </ComboBox>
+                </WrapPanel>
+                <WrapPanel Margin="0,5,0,0" Grid.Row="15">
+                    <Label Margin="3,0,0,0" Content="Decoration" Foreground="White" />
+                    <ComboBox BorderThickness="0" Width="110" HorizontalContentAlignment="Center" x:Name="FontDecoration" Margin="10,0,0,0" Background="#1e2128" Foreground="#50535c">
+                        <ComboBoxItem Name="UnderlineDecoration" Content="Underline" HorizontalAlignment="Center" AllowDrop="False" IsSelected="True" />
+                        <ComboBoxItem Content="Baseline" Name="BaselineDecoration" HorizontalAlignment="Center" AllowDrop="False" />
+                        <ComboBoxItem Content="StrikeThrough" Name="StrikeThroughDecoration" HorizontalAlignment="Center" AllowDrop="False" />
+                        <ComboBoxItem Content="Overline" Name="Overline" HorizontalAlignment="Center" AllowDrop="False" />
+                    </ComboBox>
+                </WrapPanel>
+
+                <Label Margin="0,5,0,0" Grid.Row="16" Content="Background" FontWeight="ExtraBold" Foreground="White" />
+                <WrapPanel Margin="0,5,0,0" Grid.Row="17">
+                    <Label Margin="12,0,0,0" Content="URL" Foreground="White" />
+                    <TextBox BorderThickness="0" x:Name="BackgroundUrl" Width="201" Margin="5,0,0,0" Text="url" Foreground="#50535c" TextAlignment="Center" Background="#1e2128" AcceptsReturn="False" AcceptsTab="False" AllowDrop="False" />
+                </WrapPanel>
+                <WrapPanel Margin="0,5,0,0" Grid.Row="18">
+                    <Label Margin="8,0,0,0" Content="Color" Foreground="White" />
+                    <y:ColorPicker BorderThickness="0" Width="70" x:Name="BackgroundColor" DisplayColorAndName="False" Foreground="#50535c" Background="#1e2128" AllowDrop="False" />
+                    <Label Content="Position" Width="51" Foreground="White" Margin="2,0,0,0" />
+                    <ComboBox BorderThickness="0" Width="72" HorizontalContentAlignment="Center" x:Name="BackgroundPosition" Margin="7,0,0,0" Background="#1e2128" Foreground="#50535c">
+                        <ComboBoxItem Name="LeftPosition" Content="Left" HorizontalAlignment="Center" AllowDrop="False" IsSelected="True" />
+                        <ComboBoxItem Content="Right" Name="RightPosition" HorizontalAlignment="Center" AllowDrop="False" />
+                        <ComboBoxItem Content="Center" Name="CenterPosition" HorizontalAlignment="Center" AllowDrop="False" />
+                        <ComboBoxItem Content="Top" Name="TopPosition" HorizontalAlignment="Center" AllowDrop="False" />
+                        <ComboBoxItem Content="Bottom" Name="BottomPosition" HorizontalAlignment="Center" AllowDrop="False" />
+                    </ComboBox>
+                </WrapPanel>
+                <WrapPanel Margin="0,5,0,0" Grid.Row="19">
+                    <Label Content="Repeat" Width="51" Foreground="White" Margin="10,0,0,0" />
+                    <ComboBox BorderThickness="0" Width="110" HorizontalContentAlignment="Center" x:Name="BackgroundRepeat" Margin="20,0,0,0" Background="#1e2128" Foreground="#50535c">
+                        <ComboBoxItem Name="BRepeat" Content="Repeat" HorizontalAlignment="Center" AllowDrop="False" IsSelected="True" />
+                        <ComboBoxItem Content="Repeat-x" Name="BRepeatX" HorizontalAlignment="Center" AllowDrop="False" />
+                        <ComboBoxItem Content="Repeat-y" Name="BRepeatY" HorizontalAlignment="Center" AllowDrop="False" />
+                        <ComboBoxItem Content="No-Repeat" Name="BRepeatN" HorizontalAlignment="Center" AllowDrop="False" />
+                        <ComboBoxItem Content="Space" Name="BRepeatS" HorizontalAlignment="Center" AllowDrop="False" />
+                        <ComboBoxItem Content="Round" Name="BRepeatR" HorizontalAlignment="Center" AllowDrop="False" />
+                    </ComboBox>
+                </WrapPanel>
+            </Grid>
+        </Grid>
+
+
+        <!-- Bottom Menu Here -->
+        <Grid Grid.Row="2" Grid.ColumnSpan="3" Background="#007acc" VerticalAlignment="Bottom" Height="28">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Image HorizontalAlignment="Left" Height="16"  VerticalAlignment="Center" Width="20" Source="image/error.png" Margin="11,6,0,6"/>
+
+            <Label Content="CSS" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,1,90,1" TextBlock.FontWeight="Bold" Foreground="White" TextBlock.FontSize="12" Width="32"/>
+            <Label Content="0 Lines" x:Name="htmllineslabel" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,1,122,1" TextBlock.FontWeight="Bold" Foreground="White" TextBlock.FontSize="12" Width="89"/>
+
+            <Label Content="HTML" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,1,211,1" TextBlock.FontWeight="Bold" Foreground="White" TextBlock.FontSize="12" Width="48"/>
+            <Label Content="0 Lines" x:Name="csslineslabel" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,1,1,1" TextBlock.FontWeight="Bold" Foreground="White" TextBlock.FontSize="12" Width="89"/>
+            <Label Content="No Errors Found" x:Name="totalerrorslabel" VerticalAlignment="Center" Margin="31,0,0,0" TextBlock.FontWeight="Bold" Foreground="White" TextBlock.FontSize="12"/>
+
+
+        </Grid>
+    </Grid>
+</Controls:MetroWindow>
