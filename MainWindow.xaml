@@ -25,7 +25,7 @@
             <ColumnDefinition Width="564*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="28"></RowDefinition>
         </Grid.RowDefinitions>
@@ -37,9 +37,9 @@
         <Grid Grid.Row="0" Grid.ColumnSpan="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="200" MaxWidth="250"></ColumnDefinition>
+                <ColumnDefinition Width="253" MaxWidth="253"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Menu Background="#2d2e33" FontFamily="Tahoma" FontSize="13" HorizontalAlignment="Stretch" Grid.Column="0" Margin="0,0,0,1">
+            <Menu Background="#2d2e33" FontFamily="Tahoma" FontSize="13" HorizontalAlignment="Stretch" Grid.Column="0" Padding="5 5 0 0">
                 <MenuItem Background="#2d2e33" Foreground="#ffffff" Header="_File" >
                     <MenuItem Header="_New Project" x:Name="NewProject" Click="NewProject_Click"  Foreground="#393e46" InputGestureText="Ctrl+N" Margin="0 5 0 0" Padding="0 5 0 5">
                         <MenuItem.Icon>
@@ -140,9 +140,9 @@
                 </MenuItem>
             </Menu>
             <Menu Background="#2d2e33" Foreground="#ffffff" FontFamily="Tahoma" FontSize="13" HorizontalAlignment="Stretch" Grid.Column="1" >
-                <MenuItem Background="#2ecc71" Foreground="#2c3e50"  FontWeight="ExtraBold" Header="Live Preview"  x:Name="Preview" Click="Preview_Click" HorizontalAlignment="Stretch" Padding=" 0 7 10 5">
+                <MenuItem Background="#2ecc71" Foreground="#2c3e50"  FontWeight="ExtraBold" Header="Live Preview"  x:Name="Preview" Click="Preview_Click" HorizontalAlignment="Stretch" Padding=" 0 12 10 5" Width="253" Height="40">
                     <MenuItem.Icon>
-                        <Image Source="image/play.png" Width="25" Margin="0 5 0 5"/>
+                        <Image Source="image/play.png" Width="20" Margin="25 5 35 5"/>
                     </MenuItem.Icon>
                 </MenuItem>
             </Menu>
@@ -185,16 +185,16 @@
                     <WindowsFormsHost  HorizontalAlignment="Left" Background="#1e2128" Foreground="#eeeeee"  MaxWidth="30" MinWidth="30" Width="29" Grid.Column="2" RenderTransformOrigin="0.705,0.499">
                         <wf:RichTextBox BackColor="#1e2128" ForeColor="DarkGray" x:Name="htmlTextBoxLine" AcceptsTab="False" AllowDrop="False" ReadOnly="True" ScrollBars="None" BorderStyle="None"/>
                     </WindowsFormsHost>
-                    <WindowsFormsHost  HorizontalAlignment="Stretch" Background="White" Grid.Column="2" Margin="30,0,0,0">
-                        <wf:RichTextBox BackColor="#eeeeee" x:Name="htmlTextBox" BorderStyle="None" AllowDrop="True" AcceptsTab="True" KeyUp="htmlTextBox_KeyUp" TextChanged="htmlTextBox_TextChanged" KeyPress="htmlTextBox_KeyPress" KeyDown="htmlTextBox_KeyDown" SelectionChanged="htmlTextBox_SelectionChanged" VScroll="htmlTextBox_VScroll" FontChanged="htmlTextBox_FontChanged" MouseDown="htmlTextBox_MouseDown" ScrollBars="Vertical" />
+                    <WindowsFormsHost  Background="White" Grid.Column="2" Margin="30,0,0,0">
+                        <wf:RichTextBox Multiline="True" WordWrap="False" BackColor="#eeeeee" x:Name="htmlTextBox" BorderStyle="None" AllowDrop="True" AcceptsTab="True" KeyUp="htmlTextBox_KeyUp" TextChanged="htmlTextBox_TextChanged" KeyPress="htmlTextBox_KeyPress" KeyDown="htmlTextBox_KeyDown" SelectionChanged="htmlTextBox_SelectionChanged" VScroll="htmlTextBox_VScroll" FontChanged="htmlTextBox_FontChanged" MouseDown="htmlTextBox_MouseDown" ScrollBars="Both" />
                     </WindowsFormsHost>
 
                     <!--- CSS Box Here -->
                     <WindowsFormsHost  HorizontalAlignment="Left" Background="#1e2128" Foreground="#eeeeee"  MaxWidth="30" MinWidth="30" Width="29" Grid.Column="4" RenderTransformOrigin="0.705,0.499">
                         <wf:RichTextBox x:Name="csstextBoxLine" BackColor="#1e2128" BorderStyle="None" ScrollBars="None" ReadOnly="True" Dock="Left" MouseDown="CsstextBoxLine_MouseDown" ForeColor="White"/>
                     </WindowsFormsHost>
-                    <WindowsFormsHost  HorizontalAlignment="Stretch" Grid.Column="4" Margin="30,0,0,0">
-                        <wf:RichTextBox x:Name="csstextBox" BackColor="#eeeeee" KeyUp="cssTextBox_KeyUp" AcceptsTab="True" TextChanged="cssTextBox_TextChanged" SelectionChanged="CsstextBox_SelectionChanged" SelectionBackColor="White" VScroll="CsstextBox_VScroll" FontChanged="CsstextBox_FontChanged" BorderStyle="None"/>
+                    <WindowsFormsHost  Grid.Column="4" Margin="30,0,0,0">
+                        <wf:RichTextBox x:Name="csstextBox" Multiline="True" WordWrap="False" ScrollBars="Both" BackColor="#eeeeee" KeyUp="cssTextBox_KeyUp" AcceptsTab="True" TextChanged="cssTextBox_TextChanged" SelectionChanged="CsstextBox_SelectionChanged" SelectionBackColor="White" VScroll="CsstextBox_VScroll" FontChanged="CsstextBox_FontChanged" BorderStyle="None"/>
                     </WindowsFormsHost>
                 </Grid>
             </Grid>
@@ -391,15 +391,13 @@
             <Grid.RowDefinitions>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <Image HorizontalAlignment="Left" Height="16"  VerticalAlignment="Center" Width="20" Source="image/error.png" Margin="11,6,0,6"/>
 
             <Label Content="CSS" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,1,90,1" TextBlock.FontWeight="Bold" Foreground="White" TextBlock.FontSize="12" Width="32"/>
             <Label Content="0 Lines" x:Name="htmllineslabel" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,1,122,1" TextBlock.FontWeight="Bold" Foreground="White" TextBlock.FontSize="12" Width="89"/>
 
             <Label Content="HTML" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,1,211,1" TextBlock.FontWeight="Bold" Foreground="White" TextBlock.FontSize="12" Width="48"/>
             <Label Content="0 Lines" x:Name="csslineslabel" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,1,1,1" TextBlock.FontWeight="Bold" Foreground="White" TextBlock.FontSize="12" Width="89"/>
-            <Label Content="No Errors Found" x:Name="totalerrorslabel" VerticalAlignment="Center" Margin="31,0,0,0" TextBlock.FontWeight="Bold" Foreground="White" TextBlock.FontSize="12"/>
-
+            
 
         </Grid>
     </Grid>

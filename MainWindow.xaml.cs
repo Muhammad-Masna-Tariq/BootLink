@@ -600,7 +600,7 @@ namespace Fyp
             }
 
             //Updating the GUI Values
-            totalerrorslabel.Content = ctb.errors + " Errors Found";
+            //totalerrorslabel.Content = ctb.errors + " Errors Found";
             csslineslabel.Content = ctb.totallines + " Lines";
 
 
@@ -719,10 +719,10 @@ namespace Fyp
             htmllineslabel.Content = htb.totallines + " Lines";
 
             // for html tags validation
-            if (htmlfire)
-            {
-                htb.currentValidateTags(htmlTextBox);
-            }
+            //if (htmlfire)
+            //{
+            //    htb.currentValidateTags(htmlTextBox);
+            //}
         }
 
         private void htmlTextBox_KeyPress(object sender, System.Windows.Forms.KeyPressEventArgs e)

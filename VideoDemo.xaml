@@ -5,21 +5,55 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Fyp"
         mc:Ignorable="d"
-        Title="VideoDemo" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+        Background="#393e46"
+        Foreground="#ffffff"
+        Title="VideoDemo" Height="450" Width="600" WindowStartupLocation="CenterScreen">
     <Grid Margin="10" >
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <MediaElement LoadedBehavior="Manual" Name="demoPlayer" Stretch="Fill"/>
+
+
+
+        <MediaElement LoadedBehavior="Manual" Name="demoPlayer" Stretch="Uniform"/>
+
+
 
         <StackPanel Grid.Row="1">
-            <Label Name="lblStatus" Content="Not Playing..." HorizontalContentAlignment="Center" Margin="5"/>
+            <Label Name="lblStatus" Content="Not Playing..." HorizontalContentAlignment="Center" Margin="5" Foreground="#ffffff"/>
             <WrapPanel HorizontalAlignment="Center">
-                <Button Name="btnPlay" Click="btnPlay_Click">Play</Button>
-                <Button Name="btnPause" Click="btnPause_Click" Margin="5,0">Pause</Button>
-                <Button Name="btnStop" Click="btnStop_Click">Stop</Button>
+                <Button FontSize="20" VerticalAlignment="Bottom" Background="#1b1c20" Foreground="#ffffff" BorderThickness="0" HorizontalAlignment="Right"  Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="btnPlay_Click">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="10"></ColumnDefinition>
+                            <ColumnDefinition Width="30"></ColumnDefinition>
+                            <ColumnDefinition Width="10"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Image  Source="image/playbutton.png" Width="25" Grid.Column="1"/>
+                    </Grid>
+                </Button>
+                <Button FontSize="20" VerticalAlignment="Bottom" Background="#1b1c20" Foreground="#ffffff" BorderThickness="0" HorizontalAlignment="Right"  Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="btnPause_Click">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="10"></ColumnDefinition>
+                            <ColumnDefinition Width="30"></ColumnDefinition>
+                            <ColumnDefinition Width="10"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Image  Source="image/pausebutton.png" Width="25" Grid.Column="1"/>
+                    </Grid>
+                </Button>
+                <Button FontSize="20" VerticalAlignment="Bottom" Background="#1b1c20" Foreground="#ffffff" BorderThickness="0" HorizontalAlignment="Right"  Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="btnStop_Click">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="10"></ColumnDefinition>
+                            <ColumnDefinition Width="30"></ColumnDefinition>
+                            <ColumnDefinition Width="10"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Image  Source="image/stopbutton.png" Width="25" Grid.Column="1"/>
+                    </Grid>
+                </Button>
             </WrapPanel>
         </StackPanel>
     </Grid>

@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Fyp"
         mc:Ignorable="d"
-        Title="Find and Replace Dialog" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen" ContentRendered="Window_ContentRendered">
+        Background="#1b1c20"
+        Foreground="White"
+        Title="Find and Replace" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen" Closed="Window_Closed" ContentRendered="Window_ContentRendered">
     <Grid Margin="15">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
@@ -20,25 +22,79 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <Image Source="image/questionmark.png" Width="32" Height="32" Grid.RowSpan="2" Margin="20,0" />
 
-        <Label Name="findLabel" Grid.Column="1">FindQuestion:</Label>
+
+
+        <Label Name="findLabel" Grid.Column="1" Foreground="White">FindQuestion:</Label>
         <TextBox Name="findTextbox" Grid.Column="1" Grid.Row="1" MinWidth="250">FindAnswer</TextBox>
-        <Button Name="findWord" Click="findWord_Click" Grid.Column="2" Grid.Row="1" MinWidth="60" Margin="10,0,0,0">_Find</Button>
 
-        <Image Source="image/questionmark.png" Width="32" Height="32" Grid.RowSpan="5" Margin="20,60,20,40" />
 
-        <Label Name="replaceLabel" Grid.Column="1" Grid.Row="2" Margin="0,10,0,0">ReplaceQuestion:</Label>
+
+        <Button Name="findWord" Background="#313236"  Grid.Column="2" Grid.Row="1" Width="200" FontSize="20"  VerticalAlignment="Bottom"  Foreground="#ffffff" BorderThickness="0" HorizontalAlignment="Right"  Click="findWord_Click">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30"></ColumnDefinition>
+                    <ColumnDefinition Width="5"></ColumnDefinition>
+                    <ColumnDefinition Width="80"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Image  Source="image/searchbutton.png" Width="25" Grid.Column="0"/>
+                <TextBlock DockPanel.Dock="Right" Grid.Column="2" FontSize="12" VerticalAlignment="Center" Margin="0 0 10 0">Find Text</TextBlock>
+            </Grid>
+        </Button>
+
+
+
+
+        <Label Name="replaceLabel" Grid.Column="1" Grid.Row="2" Margin="0,10,0,0" Foreground="White">ReplaceQuestion:</Label>
         <TextBox Name="replaceTextbox" Grid.Column="1" Grid.Row="3" MinWidth="250">ReplaceAnswer</TextBox>
-        <Button Name="replaceWord" Click="replaceWord_Click" Grid.Column="2" Grid.Row="3" MinWidth="60" Margin="10,0,0,0">_Replace</Button>
+        <Button Name="replaceWord" Background="#313236" Grid.Column="2" Grid.Row="3" Width="200"  VerticalAlignment="Bottom" Foreground="#ffffff" BorderThickness="0" HorizontalAlignment="Right" Click="replaceWord_Click">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30"></ColumnDefinition>
+                    <ColumnDefinition Width="5"></ColumnDefinition>
+                    <ColumnDefinition Width="80"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Image  Source="image/replacebutton.png" Width="25" Grid.Column="0"/>
+                <TextBlock DockPanel.Dock="Right" Grid.Column="2" FontSize="12" VerticalAlignment="Center" Margin="0 0 10 0">Replace Text</TextBlock>
+            </Grid>
+        </Button>
 
-        <WrapPanel Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Right" Margin="0,15,0,0">
-            <ComboBox MinWidth="60" Margin="0,0,10,0" Name="FindCombobox" DropDownClosed="FindCombobox_DropDownClosed" >
+
+
+        <Grid Grid.Row="4" Grid.ColumnSpan="3" Margin="0 30 0 0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="80"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <ComboBox Grid.Column="1" MinWidth="60" Margin="0,0,10,0" Name="FindCombobox" DropDownClosed="FindCombobox_DropDownClosed">
                 <ComboBoxItem Content="Find in HTML" IsSelected="True" />
                 <ComboBoxItem Content="Find in CSS" />
             </ComboBox>
-            <Button MinWidth="60" Content="Clear" Name="Clear" Click="Clear_Click" Margin="0,0,10,0" />
-            <Button IsCancel="True" MinWidth="60" Content="_Cancel" Click="Button_Click"/>
-        </WrapPanel>
+            <Button  Grid.Column="2" Name="Clear" Width="100" FontSize="20" Margin="0 0 10 0" VerticalAlignment="Top" Background="#313236" Foreground="#ffffff" BorderThickness="0" HorizontalAlignment="Right" Click="Clear_Click">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="30"></ColumnDefinition>
+                        <ColumnDefinition Width="5"></ColumnDefinition>
+                        <ColumnDefinition Width="65"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Image  Source="image/clearbutton.png" Width="28" Grid.Column="0"/>
+                    <TextBlock DockPanel.Dock="Right" Grid.Column="2" FontSize="13" VerticalAlignment="Center" Margin="0 0 10 0">Clear</TextBlock>
+                </Grid>
+            </Button>
+            <Button Grid.Column="3" Name="Cancel" Width="100" IsCancel="True" FontSize="20" Margin="0 0 10 0" VerticalAlignment="Top" Background="#313236" Foreground="#ffffff" BorderThickness="0" HorizontalAlignment="Right" Click="Button_Click" Height="40">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="30"></ColumnDefinition>
+                        <ColumnDefinition Width="5"></ColumnDefinition>
+                        <ColumnDefinition Width="65"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Image  Source="image/cancelbutton.png" Width="21" Grid.Column="0"/>
+                    <TextBlock DockPanel.Dock="Right" Grid.Column="2" FontSize="13" VerticalAlignment="Center" Margin="0 0 10 0">Cancel</TextBlock>
+                </Grid>
+            </Button>
+        </Grid>
     </Grid>
 </Window>

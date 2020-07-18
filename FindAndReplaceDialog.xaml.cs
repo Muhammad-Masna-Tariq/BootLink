@@ -52,6 +52,10 @@ namespace Fyp
 
         private void findWord_Click(object sender, RoutedEventArgs e)
         {
+            this.htmlTextBox.SelectionStart = 0;
+            this.htmlTextBox.SelectAll();
+            this.htmlTextBox.SelectionBackColor = System.Drawing.Color.WhiteSmoke;
+
             int length = richTextBox.Text.Length;
             int index = 0;
             int lastIndex = richTextBox.Text.LastIndexOf(findTextbox.Text);
@@ -74,6 +78,8 @@ namespace Fyp
                 replaceWord.IsEnabled = true;
                 replaceTextbox.IsEnabled = true;
             }
+
+            this.Focus();
         }
 
         private void replaceWord_Click(object sender, RoutedEventArgs e)
@@ -109,7 +115,19 @@ namespace Fyp
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            this.htmlTextBox.SelectionStart = 0;
+            this.htmlTextBox.SelectAll();
+            this.htmlTextBox.SelectionBackColor = System.Drawing.Color.WhiteSmoke;
+            this.htmlTextBox.DeselectAll();
             this.Close();
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            this.htmlTextBox.SelectionStart = 0;
+            this.htmlTextBox.SelectAll();
+            this.htmlTextBox.SelectionBackColor = System.Drawing.Color.WhiteSmoke;
+            this.htmlTextBox.DeselectAll();
         }
     }
 }
