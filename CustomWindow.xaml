@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Fyp"
         mc:Ignorable="d"
-        Title="Custom Window Dialog" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen" ContentRendered="Window_ContentRendered">
+        Background="#1b1c20"
+        Title="Change Custom Window" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen" ContentRendered="Window_ContentRendered">
     <Grid Margin="15">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
@@ -18,14 +19,36 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <Image Source="image/questionmark.png" Grid.RowSpan="3" Margin="10,0,10,36" />
 
-        <Label Name="CustomWidthLabel" Grid.Row="1" Grid.Column="1">Width:</Label>
+
+        <Label Name="CustomWidthLabel" Grid.Row="1" Grid.Column="1" Foreground="White">Width:</Label>
         <TextBox Name="WidthTextbox" Grid.Row="1" Grid.Column="2" MinWidth="250" PreviewTextInput="WidthTextbox_PreviewTextInput">Enter Width</TextBox>
 
+
+
         <WrapPanel Grid.Row="2" Grid.ColumnSpan="3" HorizontalAlignment="Right" Margin="0,15,0,0">
-            <Button Name="ChangeWindowSize" Content="Change Window Size" Click="ChangeWindowSize_Click" MinWidth="60" Margin="0,0,10,0"></Button>
-            <Button IsCancel="True" MinWidth="60">_Cancel</Button>
+            <Button Name="ChangeWindowSize" Background="#313236"  Grid.Column="2" Grid.Row="1" Width="120" FontSize="20"  VerticalAlignment="Bottom"  Foreground="#ffffff" BorderThickness="0" HorizontalAlignment="Right"  Click="ChangeWindowSize_Click">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="30"></ColumnDefinition>
+                        <ColumnDefinition Width="5"></ColumnDefinition>
+                        <ColumnDefinition Width="80"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Image  Source="image/changewindow.png" Width="25" Grid.Column="0"/>
+                    <TextBlock DockPanel.Dock="Right" Grid.Column="2" FontSize="12" VerticalAlignment="Center" Margin="0 0 10 0">Change Size</TextBlock>
+                </Grid>
+            </Button>
+            <Button Margin="10 0 0 0"  Name="Cancel" Background="#313236" IsCancel="True" Grid.Column="2" Grid.Row="1" Width="100" FontSize="20"  VerticalAlignment="Bottom"  Foreground="#ffffff" BorderThickness="0" HorizontalAlignment="Right">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="30"></ColumnDefinition>
+                        <ColumnDefinition Width="5"></ColumnDefinition>
+                        <ColumnDefinition Width="80"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Image  Source="image/cancelbutton.png" Width="21" Grid.Column="0"/>
+                    <TextBlock DockPanel.Dock="Right" Grid.Column="2" FontSize="12" VerticalAlignment="Center" Margin="0 0 10 0">Cancel</TextBlock>
+                </Grid>
+            </Button>
         </WrapPanel>
     </Grid>
 </Window>
