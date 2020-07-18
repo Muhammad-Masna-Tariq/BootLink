@@ -11,9 +11,9 @@ body {
   margin-left: 0;
   padding-right: 0;
   padding-left: 0;
-  
+
   height: 100%;
-  width: 320px;
+  width: 308px;
   position: fixed;
   z-index: 1;
   top: 0;
@@ -22,7 +22,6 @@ body {
   padding-top: 20px;
 }
 
-}
 .search {
   padding: 10px 10px;
 }
@@ -70,14 +69,15 @@ body {
   color: #000000;
   margin: 5px 0 5px 30px;
   font-weight: normal;
+  text-shadow: 1px 1px 1px #a1a1a1;
 }
 .main-screen {
   background-color: #1b1c20;
   margin-right: 0;
-  margin-left: 320px; /* Same as the width of the sidenav */
+  margin-left: 308px; /* Same as the width of the sidenav */
   padding-right: 0;
   padding-left: 0;
-  width:100vw;
+  width: 100vw;
 }
 #right-copy {
   background-color: #ffffff;
