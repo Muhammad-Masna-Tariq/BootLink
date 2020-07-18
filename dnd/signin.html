@@ -1,0 +1,286 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Drag and Drop</title>
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
+    <link href="dragula/dragula.css" rel="stylesheet" type="text/css" />
+    <!-- Medium Core -->
+    <link rel="stylesheet" href="medium/css/medium-editor.css" />
+    <!-- or any other theme -->
+    <link rel="stylesheet" href="medium/css/themes/default.css" />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/main.css" />
+    <!--- Font Awesome -->
+    <link rel="stylesheet" href="fontawesome/css/all.css" />
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="list-items scrollbar" id="style-3">
+          <div class="search-div">
+            <div class="search">
+              <input
+                type="text"
+                class="searchTerm"
+                id="searchTerm"
+                placeholder="What are you looking for?"
+                onkeyup="searchFilter()"
+              />
+              <button type="submit" class="searchButton">
+                <i class="fa fa-search"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Item Group -->
+          <div id="left-copy" class="drakecontainer item-screen">
+            <p class="unitem">
+              <i class="fas fa-sort-down" style="font-size: 20px;"></i> &nbsp;
+              <span> Framework</span>
+            </p>
+            <div id="container-item">
+              <i class="far fa-file"></i> &nbsp; <span> Container</span>
+            </div>
+            <div id="row-item">
+              <i class="fas fa-border-all"></i> &nbsp; <span> Row</span>
+            </div>
+            <div id="one-column-item">
+              <i class="fas fa-columns"></i> &nbsp; <span>One Column</span>
+            </div>
+            <div id="two-column-item">
+              <i class="fas fa-columns"></i> &nbsp; <span> Two Columns</span>
+            </div>
+            <div id="three-column-item">
+              <i class="fas fa-columns"></i> &nbsp; <span> Three Columns</span>
+            </div>
+            <div id="three-by-seven-column-item">
+              <i class="fas fa-columns"></i> &nbsp; <span> 3/7 Columns</span>
+            </div>
+
+            <p class="unitem">
+              <i class="fas fa-sort-down" style="font-size: 20px;"></i> &nbsp;
+              <span>Basic</span>
+            </p>
+            <div id="heading-item">
+              <i class="fas fa-heading"></i> &nbsp; <span> Heading</span>
+            </div>
+            <div id="paragraph-item">
+              <i class="fas fa-terminal"></i> &nbsp; <span> Paragraph</span>
+            </div>
+            <div id="link-item">
+              <i class="fas fa-link"></i> &nbsp; <span> Link</span>
+            </div>
+            <div id="button-item">
+              <i class="far fa-file"></i> &nbsp; <span> Button</span>
+            </div>
+            <div id="image-item">
+              <i class="far fa-image"></i> &nbsp; <span> Image</span>
+            </div>
+            <div id="custom-code-item">
+              <i class="fas fa-code"></i> &nbsp; <span> Custom Code</span>
+            </div>
+            <div id="navbar-item">
+              <i class="far fa-compass"></i> &nbsp; <span> Navbar</span>
+            </div>
+            <div id="navbar-item">
+              <i class="fas fa-paperclip"></i> &nbsp; <span> Footer</span>
+            </div>
+
+            <p class="unitem">
+              <i class="fas fa-sort-down" style="font-size: 20px;"></i> &nbsp;
+              <span>Media</span>
+            </p>
+            <div id="video-item">
+              <i class="fas fa-video"></i> &nbsp; <span> Video</span>
+            </div>
+            <div id="map-item">
+              <i class="fas fa-map-marked-alt"></i> &nbsp; <span> Map</span>
+            </div>
+            <div id="quote-item">
+              <i class="fas fa-quote-left"></i> &nbsp; <span> Quote</span>
+            </div>
+            <div id="text-section-item">
+              <i class="fas fa-text-height"></i> &nbsp;
+              <span> Text Section</span>
+            </div>
+
+            <div id="carousel-item">
+              <i class="far fa-images"></i> &nbsp; <span> Carousel</span>
+            </div>
+            <div id="tab-item">
+              <i class="fas fa-scroll"></i> &nbsp; <span> Tab</span>
+            </div>
+
+            <p class="unitem">
+              <i class="fas fa-sort-down" style="font-size: 20px;"></i> &nbsp;
+              <span> Form</span>
+            </p>
+            <div id="form-item">
+              <i class="fab fa-wpforms"></i> &nbsp; <span> Form</span>
+            </div>
+            <div id="input-group-item">
+              <i class="far fa-keyboard"></i> &nbsp; <span> Input Group</span>
+            </div>
+
+            <p class="unitem">
+              <i class="fas fa-sort-down" style="font-size: 20px;"></i> &nbsp;
+              <span>Bootstrap</span>
+            </p>
+            <div id="badge-item">
+              <i class="fas fa-globe"></i> &nbsp; <span> Badge</span>
+            </div>
+            <div id="alert-item">
+              <i class="far fa-bell"></i> &nbsp; <span> Alert</span>
+            </div>
+            <div id="breadcrumbs-item">
+              <i class="fas fa-shoe-prints"></i> &nbsp;
+              <span> Breadcrumbs</span>
+            </div>
+            <div id="card-item">
+              <i class="far fa-credit-card"></i> &nbsp; <span> Card</span>
+            </div>
+            <div id="dropdown-item">
+              <i class="fas fa-sort-down"></i> &nbsp; <span> Dropdown</span>
+            </div>
+            <div id="jumbotron-item">
+              <i class="fas fa-expand"></i> &nbsp; <span> Jumbotron</span>
+            </div>
+            <div id="list-group-item">
+              <i class="fas fa-list"></i> &nbsp; <span> List Group</span>
+            </div>
+            <div id="pagination-item">
+              <i class="fas fa-sort-numeric-down"></i> &nbsp;
+              <span> Pagination</span>
+            </div>
+            <div id="popover-item">
+              <i class="fas fa-id-card"></i> &nbsp; <span> Popover</span>
+            </div>
+            <div id="progress-bar-item">
+              <i class="fas fa-spinner"></i> &nbsp; <span> Progress Bar</span>
+            </div>
+            <div id="tooltip-item">
+              <i class="far fa-question-circle"></i> &nbsp;
+              <span> ToolTip</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="row main-screen">
+          <div class="col-sm-2 offset-sm-10 size-settings">
+            <div class="btn-group special" role="group">
+              <button type="button" class="btn btn-secondary mobileview">
+                <i class="fas fa-mobile-alt"></i>
+              </button>
+              <button type="button" class="btn btn-secondary tabletview">
+                <i class="fas fa-tablet-alt"></i>
+              </button>
+              <button type="button" class="btn btn-secondary laptopview">
+                <i class="fas fa-laptop"></i>
+              </button>
+              <button type="button" class="btn btn-secondary customview">
+                <i class="fas fa-cog"></i>
+              </button>
+              <button type="button" class="btn btn-secondary resetview">
+                <i class="fas fa-eraser"></i>
+              </button>
+            </div>
+          </div>
+          <div
+            id="right-copy"
+            class="col-12 p-5 mx-auto drakecontainer"
+            dragula="right-copy"
+          >
+            <div id="JUMB123" class="row">
+              <div id="ROWEW14" class="col-md-3"></div>
+              <form id="OFS2RX" class="form-signin col-md-6">
+                <img
+                  id="IELJC3"
+                  class="mb-4 highlight"
+                  src="/docs/4.5/assets/brand/bootstrap-solid.svg"
+                  alt=""
+                  width="72"
+                  height="72"
+                />
+                <h1
+                  id="BIJKPF"
+                  class="h3 mb-3 font-weight-normal editable highlight"
+                >
+                  Please sign in
+                </h1>
+                <label id="EJSTVI" for="inputEmail" class="sr-only"
+                  >Email address</label
+                >
+                <input
+                  type="email"
+                  id="inputEmail"
+                  class="form-control editable highlight my-3"
+                  placeholder="Email address"
+                  required
+                  autofocus
+                />
+                <label id="4WQMGR" for="inputPassword" class="sr-only"
+                  >Password</label
+                >
+                <input
+                  type="password"
+                  id="inputPassword"
+                  class="form-control editable highlight my-3"
+                  placeholder="Password"
+                  required
+                />
+                <div id="90QS4Q" class="checkbox mb-3">
+                  <label id="IOC09F" class="editable highlight mt-5 mb-2">
+                    <input id="I2YUAM" type="checkbox" value="remember-me" />
+                    Remember me
+                  </label>
+                </div>
+                <button
+                  id="E0ZG86"
+                  class="btn btn-lg btn-primary btn-block highlight editable"
+                  type="submit"
+                >
+                  Sign in
+                </button>
+                <p id="G5D0DD" class="mt-5 mb-3 text-muted highlight editable">
+                  &copy; 2017-2020
+                </p>
+              </form>
+              <div id="DMNS121" class="col-md-3"></div>
+            </div>
+          </div>
+          <div
+            class="myhtml"
+            id="myhtml"
+            style="background-color: #1b1c20; color: #1b1c20;"
+          ></div>
+          <div
+            class="pastehtml"
+            id="pastehtml"
+            style="background-color: #1b1c20; color: #1b1c20;"
+          ></div>
+        </div>
+      </div>
+    </div>
+    <script src="js/jquery-3.4.1.slim.min.js"></script>
+    <script src="js/bootstrap/popper.js"></script>
+    <script src="js/bootstrap/bootstrap.min.js"></script>
+    <!-- HTML5 Tidy -->
+    <script src="js/tidyhtml5.js"></script>
+
+    <script src="dragula/dragula.js"></script>
+    <!--- Medium JS -->
+    <script src="medium/js/medium-editor.js"></script>
+    <!--- Main JS -->
+    <script src="js/main.js"></script>
+    <script src="js/dragndrop.js"></script>
+    <script src="js/elementManipulation.js"></script>
+    <script src="js/popup.js"></script>
+    <script src="js/searchfilter.js"></script>
+    <script src="js/views.js"></script>
+    <!--- Drag 'n Drop JS -->
+    <script src="js/dragndrop.js"></script>
+  </body>
+</html>

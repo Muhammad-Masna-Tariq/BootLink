@@ -1,0 +1,446 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Drag and Drop</title>
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
+    <link href="dragula/dragula.css" rel="stylesheet" type="text/css" />
+    <!-- Medium Core -->
+    <link rel="stylesheet" href="medium/css/medium-editor.css" />
+    <!-- or any other theme -->
+    <link rel="stylesheet" href="medium/css/themes/default.css" />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/main.css" />
+    <!--- Font Awesome -->
+    <link rel="stylesheet" href="fontawesome/css/all.css" />
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="list-items scrollbar" id="style-3">
+          <div class="search-div">
+            <div class="search">
+              <input
+                type="text"
+                class="searchTerm"
+                id="searchTerm"
+                placeholder="What are you looking for?"
+                onkeyup="searchFilter()"
+              />
+              <button type="submit" class="searchButton">
+                <i class="fa fa-search"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Item Group -->
+          <div id="left-copy" class="drakecontainer item-screen">
+            <p class="unitem">
+              <i class="fas fa-sort-down" style="font-size: 20px;"></i> &nbsp;
+              <span> Framework</span>
+            </p>
+            <div id="container-item">
+              <i class="far fa-file"></i> &nbsp; <span> Container</span>
+            </div>
+            <div id="row-item">
+              <i class="fas fa-border-all"></i> &nbsp; <span> Row</span>
+            </div>
+            <div id="one-column-item">
+              <i class="fas fa-columns"></i> &nbsp; <span>One Column</span>
+            </div>
+            <div id="two-column-item">
+              <i class="fas fa-columns"></i> &nbsp; <span> Two Columns</span>
+            </div>
+            <div id="three-column-item">
+              <i class="fas fa-columns"></i> &nbsp; <span> Three Columns</span>
+            </div>
+            <div id="three-by-seven-column-item">
+              <i class="fas fa-columns"></i> &nbsp; <span> 3/7 Columns</span>
+            </div>
+
+            <p class="unitem">
+              <i class="fas fa-sort-down" style="font-size: 20px;"></i> &nbsp;
+              <span>Basic</span>
+            </p>
+            <div id="heading-item">
+              <i class="fas fa-heading"></i> &nbsp; <span> Heading</span>
+            </div>
+            <div id="paragraph-item">
+              <i class="fas fa-terminal"></i> &nbsp; <span> Paragraph</span>
+            </div>
+            <div id="link-item">
+              <i class="fas fa-link"></i> &nbsp; <span> Link</span>
+            </div>
+            <div id="button-item">
+              <i class="far fa-file"></i> &nbsp; <span> Button</span>
+            </div>
+            <div id="image-item">
+              <i class="far fa-image"></i> &nbsp; <span> Image</span>
+            </div>
+            <div id="custom-code-item">
+              <i class="fas fa-code"></i> &nbsp; <span> Custom Code</span>
+            </div>
+            <div id="navbar-item">
+              <i class="far fa-compass"></i> &nbsp; <span> Navbar</span>
+            </div>
+            <div id="navbar-item">
+              <i class="fas fa-paperclip"></i> &nbsp; <span> Footer</span>
+            </div>
+
+            <p class="unitem">
+              <i class="fas fa-sort-down" style="font-size: 20px;"></i> &nbsp;
+              <span>Media</span>
+            </p>
+            <div id="video-item">
+              <i class="fas fa-video"></i> &nbsp; <span> Video</span>
+            </div>
+            <div id="map-item">
+              <i class="fas fa-map-marked-alt"></i> &nbsp; <span> Map</span>
+            </div>
+            <div id="quote-item">
+              <i class="fas fa-quote-left"></i> &nbsp; <span> Quote</span>
+            </div>
+            <div id="text-section-item">
+              <i class="fas fa-text-height"></i> &nbsp;
+              <span> Text Section</span>
+            </div>
+
+            <div id="carousel-item">
+              <i class="far fa-images"></i> &nbsp; <span> Carousel</span>
+            </div>
+            <div id="tab-item">
+              <i class="fas fa-scroll"></i> &nbsp; <span> Tab</span>
+            </div>
+
+            <p class="unitem">
+              <i class="fas fa-sort-down" style="font-size: 20px;"></i> &nbsp;
+              <span> Form</span>
+            </p>
+            <div id="form-item">
+              <i class="fab fa-wpforms"></i> &nbsp; <span> Form</span>
+            </div>
+            <div id="input-group-item">
+              <i class="far fa-keyboard"></i> &nbsp; <span> Input Group</span>
+            </div>
+
+            <p class="unitem">
+              <i class="fas fa-sort-down" style="font-size: 20px;"></i> &nbsp;
+              <span>Bootstrap</span>
+            </p>
+            <div id="badge-item">
+              <i class="fas fa-globe"></i> &nbsp; <span> Badge</span>
+            </div>
+            <div id="alert-item">
+              <i class="far fa-bell"></i> &nbsp; <span> Alert</span>
+            </div>
+            <div id="breadcrumbs-item">
+              <i class="fas fa-shoe-prints"></i> &nbsp;
+              <span> Breadcrumbs</span>
+            </div>
+            <div id="card-item">
+              <i class="far fa-credit-card"></i> &nbsp; <span> Card</span>
+            </div>
+            <div id="dropdown-item">
+              <i class="fas fa-sort-down"></i> &nbsp; <span> Dropdown</span>
+            </div>
+            <div id="jumbotron-item">
+              <i class="fas fa-expand"></i> &nbsp; <span> Jumbotron</span>
+            </div>
+            <div id="list-group-item">
+              <i class="fas fa-list"></i> &nbsp; <span> List Group</span>
+            </div>
+            <div id="pagination-item">
+              <i class="fas fa-sort-numeric-down"></i> &nbsp;
+              <span> Pagination</span>
+            </div>
+            <div id="popover-item">
+              <i class="fas fa-id-card"></i> &nbsp; <span> Popover</span>
+            </div>
+            <div id="progress-bar-item">
+              <i class="fas fa-spinner"></i> &nbsp; <span> Progress Bar</span>
+            </div>
+            <div id="tooltip-item">
+              <i class="far fa-question-circle"></i> &nbsp;
+              <span> ToolTip</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="row main-screen">
+          <div class="col-sm-2 offset-sm-10 size-settings">
+            <div class="btn-group special" role="group">
+              <button type="button" class="btn btn-secondary mobileview">
+                <i class="fas fa-mobile-alt"></i>
+              </button>
+              <button type="button" class="btn btn-secondary tabletview">
+                <i class="fas fa-tablet-alt"></i>
+              </button>
+              <button type="button" class="btn btn-secondary laptopview">
+                <i class="fas fa-laptop"></i>
+              </button>
+              <button type="button" class="btn btn-secondary customview">
+                <i class="fas fa-cog"></i>
+              </button>
+              <button type="button" class="btn btn-secondary resetview">
+                <i class="fas fa-eraser"></i>
+              </button>
+            </div>
+          </div>
+          <div
+            id="right-copy"
+            class="col-12 p-5 mx-auto drakecontainer"
+            dragula="right-copy"
+          >
+            <div
+              id="YLCSVA"
+              class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm"
+            >
+              <h5
+                id="4XEMAK"
+                class="my-0 mr-md-auto font-weight-normal highlight editable"
+              >
+                Company name
+              </h5>
+              <nav id="ZDAJQ9" class="my-2 my-md-0 mr-md-3 highlight editable">
+                <a id="VCC27Z" class="p-2 text-dark" href="#">Features</a>
+                <a id="ETD9QB" class="p-2 text-dark" href="#">Enterprise</a>
+                <a id="P4995Y" class="p-2 text-dark" href="#">Support</a>
+                <a id="BRWFT3" class="p-2 text-dark" href="#">Pricing</a>
+              </nav>
+              <a
+                id="ROW1K9"
+                class="btn btn-outline-primary highlight editable"
+                href="#"
+                >Sign up</a
+              >
+            </div>
+
+            <div
+              id="E3LO4H"
+              class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center"
+            >
+              <h1 id="4BXJVM" class="display-4 highlight editable">Pricing</h1>
+              <p id="2TZUXQ" class="lead highlight editable">
+                Quickly build an effective pricing table for your potential
+                customers with this Bootstrap example. It’s built with default
+                Bootstrap components and utilities with little customization.
+              </p>
+            </div>
+
+            <div id="QCW2VV" class="container">
+              <div id="SQPP2J" class="card-deck mb-3 text-center">
+                <div id="HIWKBF" class="card mb-4 shadow-sm">
+                  <div id="OKZG6X" class="card-header">
+                    <h4
+                      id="E02KZB"
+                      class="my-0 font-weight-normal highlight editable"
+                    >
+                      Free
+                    </h4>
+                  </div>
+                  <div id="G096Z0" class="card-body highlight editable">
+                    <h1 id="2504TX" class="card-title pricing-card-title">
+                      $0 <small id="KSGQXN" class="text-muted">/ mo</small>
+                    </h1>
+                    <ul id="5DYW2C" class="list-unstyled mt-3 mb-4">
+                      <li id="5FUK7R">10 users included</li>
+                      <li id="OGY78T">2 GB of storage</li>
+                      <li id="R4C6C9">Email support</li>
+                      <li id="KE5LF9">Help center access</li>
+                    </ul>
+                    <button
+                      id="7OE2RO"
+                      type="button"
+                      class="btn btn-lg btn-block btn-outline-primary"
+                    >
+                      Sign up for free
+                    </button>
+                  </div>
+                </div>
+                <div id="78OCXQ" class="card mb-4 shadow-sm">
+                  <div id="4ZSI7R" class="card-header">
+                    <h4
+                      id="B14QC0"
+                      class="my-0 font-weight-normal highlight editable"
+                    >
+                      Pro
+                    </h4>
+                  </div>
+                  <div id="9OXBND" class="card-body highlight editable">
+                    <h1 id="FB3LRB" class="card-title pricing-card-title">
+                      $15 <small id="NURTCQ" class="text-muted">/ mo</small>
+                    </h1>
+                    <ul id="04YXFT" class="list-unstyled mt-3 mb-4">
+                      <li id="RZ28OY">20 users included</li>
+                      <li id="CQ87NW">10 GB of storage</li>
+                      <li id="LGJKYA">Priority email support</li>
+                      <li id="FT419Y">Help center access</li>
+                    </ul>
+                    <button
+                      id="W1R6ZT"
+                      type="button"
+                      class="btn btn-lg btn-block btn-primary"
+                    >
+                      Get started
+                    </button>
+                  </div>
+                </div>
+                <div id="LRQ475" class="card mb-4 shadow-sm">
+                  <div id="F1Z5HL" class="card-header">
+                    <h4
+                      id="4QWTE6"
+                      class="my-0 font-weight-normal highlight editable"
+                    >
+                      Enterprise
+                    </h4>
+                  </div>
+                  <div id="IXHKFH" class="card-body highlight editable">
+                    <h1 id="KLEUCK" class="card-title pricing-card-title">
+                      $29 <small id="1123E0" class="text-muted">/ mo</small>
+                    </h1>
+                    <ul id="TKLD6V" class="list-unstyled mt-3 mb-4">
+                      <li id="FU9PTG">30 users included</li>
+                      <li id="YVANKD">15 GB of storage</li>
+                      <li id="7ZNHVD">Phone and email support</li>
+                      <li id="0958R5">Help center access</li>
+                    </ul>
+                    <button
+                      id="CHJSZR"
+                      type="button"
+                      class="btn btn-lg btn-block btn-primary"
+                    >
+                      Contact us
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <footer id="DB8KXX" class="pt-4 my-md-5 pt-md-5 border-top">
+                <div id="SODKH8" class="row">
+                  <div id="GK3GU4" class="col-12 col-md">
+                    <img
+                      id="KOJ2HY"
+                      class="mb-2 highlight"
+                      src="https://getbootstrap.com/docs/4.5/assets/brand/bootstrap-solid.svg"
+                      alt=""
+                      width="24"
+                      height="24"
+                    />
+                    <small
+                      id="61SMR0"
+                      class="d-block mb-3 text-muted editable highlight"
+                      >&copy; 2017-2020</small
+                    >
+                  </div>
+                  <div id="B40V2V" class="col-6 col-md highlight editable">
+                    <h5 id="BOB2GR">Features</h5>
+                    <ul id="9E24F8" class="list-unstyled text-small">
+                      <li id="GXH6ZZ">
+                        <a id="6BWLAN" class="text-muted" href="#"
+                          >Cool stuff</a
+                        >
+                      </li>
+                      <li id="5WJ13V">
+                        <a id="1218SU" class="text-muted" href="#"
+                          >Random feature</a
+                        >
+                      </li>
+                      <li id="198KDL">
+                        <a id="VW5QLH" class="text-muted" href="#"
+                          >Team feature</a
+                        >
+                      </li>
+                      <li id="XN4UNB">
+                        <a id="WLTAGU" class="text-muted" href="#"
+                          >Stuff for developers</a
+                        >
+                      </li>
+                      <li id="59PGT0">
+                        <a id="0UVW2S" class="text-muted" href="#"
+                          >Another one</a
+                        >
+                      </li>
+                      <li id="YI8M9Q">
+                        <a id="H27U2B" class="text-muted" href="#">Last time</a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div id="S41ODD" class="col-6 col-md highlight editable">
+                    <h5 id="BMMHG0">Resources</h5>
+                    <ul id="RELAKC" class="list-unstyled text-small">
+                      <li id="KURXUT">
+                        <a id="WWIRRZ" class="text-muted" href="#">Resource</a>
+                      </li>
+                      <li id="52TXFC">
+                        <a id="NRJT3X" class="text-muted" href="#"
+                          >Resource name</a
+                        >
+                      </li>
+                      <li id="6Y2XB6">
+                        <a id="Y0SV70" class="text-muted" href="#"
+                          >Another resource</a
+                        >
+                      </li>
+                      <li id="MEO6OL">
+                        <a id="C3BJFX" class="text-muted" href="#"
+                          >Final resource</a
+                        >
+                      </li>
+                    </ul>
+                  </div>
+                  <div id="U9YKCO" class="col-6 col-md highlight editable">
+                    <h5 id="KWFMKM">About</h5>
+                    <ul id="P2Q31I" class="list-unstyled text-small">
+                      <li id="24B20D">
+                        <a id="I6IVV7" class="text-muted" href="#">Team</a>
+                      </li>
+                      <li id="O1FHFD">
+                        <a id="V5NBSL" class="text-muted" href="#">Locations</a>
+                      </li>
+                      <li id="J6BWIC">
+                        <a id="KVSARM" class="text-muted" href="#">Privacy</a>
+                      </li>
+                      <li id="JBP2K3">
+                        <a id="G8HIIY" class="text-muted" href="#">Terms</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </footer>
+            </div>
+          </div>
+          <div
+            class="myhtml"
+            id="myhtml"
+            style="background-color: #1b1c20; color: #1b1c20;"
+          ></div>
+          <div
+            class="pastehtml"
+            id="pastehtml"
+            style="background-color: #1b1c20; color: #1b1c20;"
+          ></div>
+        </div>
+      </div>
+    </div>
+    <script src="js/jquery-3.4.1.slim.min.js"></script>
+    <script src="js/bootstrap/popper.js"></script>
+    <script src="js/bootstrap/bootstrap.min.js"></script>
+    <!-- HTML5 Tidy -->
+    <script src="js/tidyhtml5.js"></script>
+
+    <script src="dragula/dragula.js"></script>
+    <!--- Medium JS -->
+    <script src="medium/js/medium-editor.js"></script>
+    <!--- Main JS -->
+    <script src="js/main.js"></script>
+    <script src="js/dragndrop.js"></script>
+    <script src="js/elementManipulation.js"></script>
+    <script src="js/popup.js"></script>
+    <script src="js/searchfilter.js"></script>
+    <script src="js/views.js"></script>
+    <!--- Drag 'n Drop JS -->
+    <script src="js/dragndrop.js"></script>
+  </body>
+</html>

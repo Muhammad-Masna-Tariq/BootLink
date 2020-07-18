@@ -1,0 +1,404 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Drag and Drop</title>
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
+    <link href="dragula/dragula.css" rel="stylesheet" type="text/css" />
+    <!-- Medium Core -->
+    <link rel="stylesheet" href="medium/css/medium-editor.css" />
+    <!-- or any other theme -->
+    <link rel="stylesheet" href="medium/css/themes/default.css" />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/main.css" />
+    <!--- Font Awesome -->
+    <link rel="stylesheet" href="fontawesome/css/all.css" />
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="list-items scrollbar" id="style-3">
+          <div class="search-div">
+            <div class="search">
+              <input
+                type="text"
+                class="searchTerm"
+                id="searchTerm"
+                placeholder="What are you looking for?"
+                onkeyup="searchFilter()"
+              />
+              <button type="submit" class="searchButton">
+                <i class="fa fa-search"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Item Group -->
+          <div id="left-copy" class="drakecontainer item-screen">
+            <p class="unitem">
+              <i class="fas fa-sort-down" style="font-size: 20px;"></i> &nbsp;
+              <span> Framework</span>
+            </p>
+            <div id="container-item">
+              <i class="far fa-file"></i> &nbsp; <span> Container</span>
+            </div>
+            <div id="row-item">
+              <i class="fas fa-border-all"></i> &nbsp; <span> Row</span>
+            </div>
+            <div id="one-column-item">
+              <i class="fas fa-columns"></i> &nbsp; <span>One Column</span>
+            </div>
+            <div id="two-column-item">
+              <i class="fas fa-columns"></i> &nbsp; <span> Two Columns</span>
+            </div>
+            <div id="three-column-item">
+              <i class="fas fa-columns"></i> &nbsp; <span> Three Columns</span>
+            </div>
+            <div id="three-by-seven-column-item">
+              <i class="fas fa-columns"></i> &nbsp; <span> 3/7 Columns</span>
+            </div>
+
+            <p class="unitem">
+              <i class="fas fa-sort-down" style="font-size: 20px;"></i> &nbsp;
+              <span>Basic</span>
+            </p>
+            <div id="heading-item">
+              <i class="fas fa-heading"></i> &nbsp; <span> Heading</span>
+            </div>
+            <div id="paragraph-item">
+              <i class="fas fa-terminal"></i> &nbsp; <span> Paragraph</span>
+            </div>
+            <div id="link-item">
+              <i class="fas fa-link"></i> &nbsp; <span> Link</span>
+            </div>
+            <div id="button-item">
+              <i class="far fa-file"></i> &nbsp; <span> Button</span>
+            </div>
+            <div id="image-item">
+              <i class="far fa-image"></i> &nbsp; <span> Image</span>
+            </div>
+            <div id="custom-code-item">
+              <i class="fas fa-code"></i> &nbsp; <span> Custom Code</span>
+            </div>
+            <div id="navbar-item">
+              <i class="far fa-compass"></i> &nbsp; <span> Navbar</span>
+            </div>
+            <div id="navbar-item">
+              <i class="fas fa-paperclip"></i> &nbsp; <span> Footer</span>
+            </div>
+
+            <p class="unitem">
+              <i class="fas fa-sort-down" style="font-size: 20px;"></i> &nbsp;
+              <span>Media</span>
+            </p>
+            <div id="video-item">
+              <i class="fas fa-video"></i> &nbsp; <span> Video</span>
+            </div>
+            <div id="map-item">
+              <i class="fas fa-map-marked-alt"></i> &nbsp; <span> Map</span>
+            </div>
+            <div id="quote-item">
+              <i class="fas fa-quote-left"></i> &nbsp; <span> Quote</span>
+            </div>
+            <div id="text-section-item">
+              <i class="fas fa-text-height"></i> &nbsp;
+              <span> Text Section</span>
+            </div>
+
+            <div id="carousel-item">
+              <i class="far fa-images"></i> &nbsp; <span> Carousel</span>
+            </div>
+            <div id="tab-item">
+              <i class="fas fa-scroll"></i> &nbsp; <span> Tab</span>
+            </div>
+
+            <p class="unitem">
+              <i class="fas fa-sort-down" style="font-size: 20px;"></i> &nbsp;
+              <span> Form</span>
+            </p>
+            <div id="form-item">
+              <i class="fab fa-wpforms"></i> &nbsp; <span> Form</span>
+            </div>
+            <div id="input-group-item">
+              <i class="far fa-keyboard"></i> &nbsp; <span> Input Group</span>
+            </div>
+
+            <p class="unitem">
+              <i class="fas fa-sort-down" style="font-size: 20px;"></i> &nbsp;
+              <span>Bootstrap</span>
+            </p>
+            <div id="badge-item">
+              <i class="fas fa-globe"></i> &nbsp; <span> Badge</span>
+            </div>
+            <div id="alert-item">
+              <i class="far fa-bell"></i> &nbsp; <span> Alert</span>
+            </div>
+            <div id="breadcrumbs-item">
+              <i class="fas fa-shoe-prints"></i> &nbsp;
+              <span> Breadcrumbs</span>
+            </div>
+            <div id="card-item">
+              <i class="far fa-credit-card"></i> &nbsp; <span> Card</span>
+            </div>
+            <div id="dropdown-item">
+              <i class="fas fa-sort-down"></i> &nbsp; <span> Dropdown</span>
+            </div>
+            <div id="jumbotron-item">
+              <i class="fas fa-expand"></i> &nbsp; <span> Jumbotron</span>
+            </div>
+            <div id="list-group-item">
+              <i class="fas fa-list"></i> &nbsp; <span> List Group</span>
+            </div>
+            <div id="pagination-item">
+              <i class="fas fa-sort-numeric-down"></i> &nbsp;
+              <span> Pagination</span>
+            </div>
+            <div id="popover-item">
+              <i class="fas fa-id-card"></i> &nbsp; <span> Popover</span>
+            </div>
+            <div id="progress-bar-item">
+              <i class="fas fa-spinner"></i> &nbsp; <span> Progress Bar</span>
+            </div>
+            <div id="tooltip-item">
+              <i class="far fa-question-circle"></i> &nbsp;
+              <span> ToolTip</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="row main-screen">
+          <div class="col-sm-2 offset-sm-10 size-settings">
+            <div class="btn-group special" role="group">
+              <button type="button" class="btn btn-secondary mobileview">
+                <i class="fas fa-mobile-alt"></i>
+              </button>
+              <button type="button" class="btn btn-secondary tabletview">
+                <i class="fas fa-tablet-alt"></i>
+              </button>
+              <button type="button" class="btn btn-secondary laptopview">
+                <i class="fas fa-laptop"></i>
+              </button>
+              <button type="button" class="btn btn-secondary customview">
+                <i class="fas fa-cog"></i>
+              </button>
+              <button type="button" class="btn btn-secondary resetview">
+                <i class="fas fa-eraser"></i>
+              </button>
+            </div>
+          </div>
+          <div
+            id="right-copy"
+            class="col-12 p-5 mx-auto drakecontainer"
+            dragula="right-copy"
+          >
+          <header id="F2WP4Z">
+            <nav id="H3QFNH" class="navbar navbar-expand-md navbar-dark bg-dark">
+              <a id="N2PNN8" class="navbar-brand editable highlight" href="#">Carousel</a>
+              <button id="60KZ6B" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span id="KZNUPQ" class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse editable" id="navbarCollapse">
+                <ul id="JFNZ8I" class="navbar-nav mr-auto">
+                  <li id="KO8L5I" class="nav-item active highlight">
+                    <a id="P8OMK7" class="nav-link" href="#">Home <span id="BDEZ34" class="sr-only">(current)</span></a>
+                  </li>
+                  <li id="G31JHS" class="nav-item highlight">
+                    <a id="MHIEU9" class="nav-link" href="#">Link</a>
+                  </li>
+                  <li id="4RAVHG" class="nav-item highlight">
+                    <a id="GAML3L" class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                  </li>
+                </ul>
+                <form id="IA9U2E" class="form-inline mt-2 mt-md-0">
+                  <input id="GB7Y5Z" class="form-control mr-sm-2 highlight" type="text" placeholder="Search" aria-label="Search">
+                  <button id="7GURYO" class="btn btn-outline-success my-2 my-sm-0 highlight editable" >Search</button>
+                </form>
+              </div>
+            </nav>
+          </header>
+          
+          <main id="SLFC9E" role="main">
+            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+              <ol id="SIGXY3" class="carousel-indicators">
+                <li id="NJUX15" data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                <li id="QS71L4" data-target="#myCarousel" data-slide-to="1"></li>
+                <li id="9P99AR" data-target="#myCarousel" data-slide-to="2"></li>
+              </ol>
+              <div id="3YHT23" class="carousel-inner">
+                <div id="4WRRUK" class="carousel-item active">
+                  <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" id="single-svg-1" width="800" height="400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: First slide"><rect id="single-rect-3" width="100%" height="100%" fill="#777" /></svg>
+                  <div id="ZMWS9T" class="container">
+                    <div id="M7U6GF" class="carousel-caption text-left">
+                      <h1 id="4U8KGG" class="editable highlight">Example headline.</h1>
+                      <p id="W30HX2" class="editable highlight">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                      <p id="U2CRAN" class="editable highlight"><a id="YHC0C5" class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>
+                    </div>
+                  </div>
+                </div>
+                <div id="I4MXG3" class="carousel-item">
+                  <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" id="single-svg-2" width="800" height="400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: First slide"><rect id="single-rect-2" width="100%" height="100%" fill="#777" /></svg>
+                  <div id="RZJV5G" class="container">
+                    <div id="B2FT4W" class="carousel-caption">
+                      <h1 id="DLUP9P" class="editable highlight">Another example headline.</h1>
+                      <p id="2VOZED" class="editable highlight">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                      <p id="S61727" class="editable highlight"><a id="" class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
+                    </div>
+                  </div>
+                </div>
+                <div id="FUMOTS" class="carousel-item">
+                  <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" id="single-svg-3" width="800" height="400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: First slide"><rect id="single-rect-1" width="100%" height="100%" fill="#777" /></svg>
+                  <div id="3Q1XLN" class="container">
+                    <div id="MCDV0S" class="carousel-caption text-right">
+                      <h1 id="J4E6YA" class="editable highlight">One more for good measure.</h1>
+                      <p id="M7VXDO" class="editable highlight">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                      <p id="T4KS1L" class="editable highlight"><a id="7ARJU4" class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <a id="ZFCF7P" class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+                <span id="CSE5GQ" class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span id="MH0XLP" class="sr-only">Previous</span>
+              </a>
+              <a id="544X0J" class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+                <span id="J9CILR" class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span id="TB44ED" class="sr-only">Next</span>
+              </a>
+            </div>
+          
+          
+            <!-- Marketing messaging and featurettes
+            ================================================== -->
+            <!-- Wrap the rest of the page in another container to center all the content. -->
+          
+            <div id="MIRE9J" class="container marketing">
+          
+              <!-- Three columns of text below the carousel -->
+              <div id="1TOFBA" class="row pt-4">
+                <div id="RES056" class="col-lg-4">
+                  <svg id="EC2YWX" class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140"><title id="74968J">Placeholder</title><rect id="2PXBX3" width="100%" height="100%" fill="#777"/><text id="65UNO8" x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
+                  <h2 id="VYS13O" class="editable highlight">Heading</h2>
+                  <p id="QV0N3N" class="editable highlight">Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
+                  <p id="QSE6CE" class="editable highlight"><a id="K9XV9N" class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+                </div><!-- /.col-lg-4 -->
+                <div id="ZWMCB5" class="col-lg-4">
+                  <svg id="4L6ODV" class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140"><title id="DXWKZZ">Placeholder</title><rect id="99RKB3" width="100%" height="100%" fill="#777"/><text id="JTHJV2" x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
+                  <h2 id="FIKA7S" class="editable highlight">Heading</h2>
+                  <p id="QIW7U0" class="editable highlight">Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
+                  <p id="QZF1GI" class="editable highlight"><a id="QHN225" class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+                </div><!-- /.col-lg-4 -->
+                <div id="5ND843" class="col-lg-4">
+                  <svg id="HK120B" class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140"><title id=LHJ62M">Placeholder</title><rect id="SORIPC" width="100%" height="100%" fill="#777"/><text id="U82Q8T" x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
+                  <h2 id="HVR7X2" class="editable highlight">Heading</h2>
+                  <p id="VMH2F8" class="editable highlight">Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+                  <p id="652BTZ" class="editable highlight"><a id="ZY6NLA" class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+                </div><!-- /.col-lg-4 -->
+              </div><!-- /.row -->
+          
+          
+              <!-- START THE FEATURETTES -->
+          
+              <hr id="XARLBY" class="featurette-divider"/>
+          
+              <div id="1YG4OV" class="row featurette">
+                <div id="ZK2QR5" class="col-md-7">
+                  <h2 id="6RIIDJ" class="featurette-heading editable highlight">First featurette heading. <span id="0LHLK8" class="text-muted">It’ll blow your mind.</span></h2>
+                  <p id="UFHSLJ" class="lead editable highlight">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+                </div>
+                <div id="6NIKWQ" class="col-md-5">
+                  <img src="https://picsum.photos/500/500" class="highlight img-fluid" width="500" id="JQ654E"/>
+                </div>
+              </div>
+          
+              <hr id="X0IYE4" class="featurette-divider"/>
+          
+              <div id="0E18N3" class="row featurette">
+                <div id="98RHZA" class="col-md-7 order-md-2">
+                  <h2 id="YKCPRD" class="featurette-heading editable highlight">Oh yeah, it’s that good. <span id="1QH8SB" class="text-muted">See for yourself.</span></h2>
+                  <p id="PJS5LW" class="lead  editable highlight">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+                </div>
+                <div id="G9LQMF" class="col-md-5 order-md-1">
+                  <img src="https://picsum.photos/500/500" id="K654S8" class="img-fluid mx-auto highlight" width="500"/>
+                </div>
+              </div>
+          
+              <hr id="3UF7K3" class="featurette-divider"/>
+          
+              <div id="2YJQ6D" class="row featurette">
+                <div id="FZV3N1" class="col-md-7">
+                  <h2 id="GOUHNE" class="featurette-heading editable highlight">And lastly, this one. <span id="UZGEND" class="text-muted">Checkmate.</span></h2>
+                  <p id="4ANK29" class="lead editable highlight">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+                </div>
+                <div id="YWKAR9" class="col-md-5">
+                  <img src="https://picsum.photos/500/500" class="highlight img-fluid" id="674HG1" width="500"/>
+                </div>
+              </div>
+          
+              <hr id="0BK8Y1" class="featurette-divider">
+          
+              <!-- /END THE FEATURETTES -->
+          
+            </div><!-- /.container -->
+          
+          
+            <!-- FOOTER -->
+            <footer class="text-muted pt-3" id="single-footer-1">
+              <div class="container editable" id="single-div-7">
+                <p class="float-right highlight" id="single-p-7">
+                  <a href="#" id="single-a-7">Back to top</a>
+                </p>
+                <p class="highlight" id="single-p-8">
+                  Album example is &copy; Bootstrap, but please download and
+                  customize it for yourself!
+                </p>
+                <p class="highlight" id="single-p-9">
+                  New to Bootstrap?
+                  <a href="https://getbootstrap.com/" id="single-a-8"
+                    >Visit the homepage</a
+                  >
+                  or read our
+                  <a
+                    href="/docs/4.5/getting-started/introduction/"
+                    id="single-a-9"
+                    >getting started guide</a
+                  >.
+                </p>
+              </div>
+            </footer>
+          </main>
+          </div>
+          <div
+            class="myhtml"
+            id="myhtml"
+            style="background-color: #1b1c20; color: #1b1c20;"
+          ></div>
+          <div
+            class="pastehtml"
+            id="pastehtml"
+            style="background-color: #1b1c20; color: #1b1c20;"
+          ></div>
+        </div>
+        </div>
+    </div>
+    <script src="js/jquery-3.4.1.slim.min.js"></script>
+    <script src="js/bootstrap/popper.js"></script>
+    <script src="js/bootstrap/bootstrap.min.js"></script>
+    <!-- HTML5 Tidy -->
+    <script src="js/tidyhtml5.js"></script>
+
+    <script src="dragula/dragula.js"></script>
+    <!--- Medium JS -->
+    <script src="medium/js/medium-editor.js"></script>
+    <!--- Main JS -->
+    <script src="js/main.js"></script>
+    <script src="js/dragndrop.js"></script>
+    <script src="js/elementManipulation.js"></script>
+    <script src="js/popup.js"></script>
+    <script src="js/searchfilter.js"></script>
+    <script src="js/views.js"></script>
+    <!--- Drag 'n Drop JS -->
+    <script src="js/dragndrop.js"></script>
+  </body>
+</html>

@@ -1,0 +1,513 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Drag and Drop</title>
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
+    <link href="dragula/dragula.css" rel="stylesheet" type="text/css" />
+    <!-- Medium Core -->
+    <link rel="stylesheet" href="medium/css/medium-editor.css" />
+    <!-- or any other theme -->
+    <link rel="stylesheet" href="medium/css/themes/default.css" />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/main.css" />
+    <!--- Font Awesome -->
+    <link rel="stylesheet" href="fontawesome/css/all.css" />
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="list-items scrollbar" id="style-3">
+          <div class="search-div">
+            <div class="search">
+              <input
+                type="text"
+                class="searchTerm"
+                id="searchTerm"
+                placeholder="What are you looking for?"
+                onkeyup="searchFilter()"
+              />
+              <button type="submit" class="searchButton">
+                <i class="fa fa-search"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Item Group -->
+          <div id="left-copy" class="drakecontainer item-screen">
+            <p class="unitem">
+              <i class="fas fa-sort-down" style="font-size: 20px;"></i> &nbsp;
+              <span> Framework</span>
+            </p>
+            <div id="container-item">
+              <i class="far fa-file"></i> &nbsp; <span> Container</span>
+            </div>
+            <div id="row-item">
+              <i class="fas fa-border-all"></i> &nbsp; <span> Row</span>
+            </div>
+            <div id="one-column-item">
+              <i class="fas fa-columns"></i> &nbsp; <span>One Column</span>
+            </div>
+            <div id="two-column-item">
+              <i class="fas fa-columns"></i> &nbsp; <span> Two Columns</span>
+            </div>
+            <div id="three-column-item">
+              <i class="fas fa-columns"></i> &nbsp; <span> Three Columns</span>
+            </div>
+            <div id="three-by-seven-column-item">
+              <i class="fas fa-columns"></i> &nbsp; <span> 3/7 Columns</span>
+            </div>
+
+            <p class="unitem">
+              <i class="fas fa-sort-down" style="font-size: 20px;"></i> &nbsp;
+              <span>Basic</span>
+            </p>
+            <div id="heading-item">
+              <i class="fas fa-heading"></i> &nbsp; <span> Heading</span>
+            </div>
+            <div id="paragraph-item">
+              <i class="fas fa-terminal"></i> &nbsp; <span> Paragraph</span>
+            </div>
+            <div id="link-item">
+              <i class="fas fa-link"></i> &nbsp; <span> Link</span>
+            </div>
+            <div id="button-item">
+              <i class="far fa-file"></i> &nbsp; <span> Button</span>
+            </div>
+            <div id="image-item">
+              <i class="far fa-image"></i> &nbsp; <span> Image</span>
+            </div>
+            <div id="custom-code-item">
+              <i class="fas fa-code"></i> &nbsp; <span> Custom Code</span>
+            </div>
+            <div id="navbar-item">
+              <i class="far fa-compass"></i> &nbsp; <span> Navbar</span>
+            </div>
+            <div id="navbar-item">
+              <i class="fas fa-paperclip"></i> &nbsp; <span> Footer</span>
+            </div>
+
+            <p class="unitem">
+              <i class="fas fa-sort-down" style="font-size: 20px;"></i> &nbsp;
+              <span>Media</span>
+            </p>
+            <div id="video-item">
+              <i class="fas fa-video"></i> &nbsp; <span> Video</span>
+            </div>
+            <div id="map-item">
+              <i class="fas fa-map-marked-alt"></i> &nbsp; <span> Map</span>
+            </div>
+            <div id="quote-item">
+              <i class="fas fa-quote-left"></i> &nbsp; <span> Quote</span>
+            </div>
+            <div id="text-section-item">
+              <i class="fas fa-text-height"></i> &nbsp;
+              <span> Text Section</span>
+            </div>
+
+            <div id="carousel-item">
+              <i class="far fa-images"></i> &nbsp; <span> Carousel</span>
+            </div>
+            <div id="tab-item">
+              <i class="fas fa-scroll"></i> &nbsp; <span> Tab</span>
+            </div>
+
+            <p class="unitem">
+              <i class="fas fa-sort-down" style="font-size: 20px;"></i> &nbsp;
+              <span> Form</span>
+            </p>
+            <div id="form-item">
+              <i class="fab fa-wpforms"></i> &nbsp; <span> Form</span>
+            </div>
+            <div id="input-group-item">
+              <i class="far fa-keyboard"></i> &nbsp; <span> Input Group</span>
+            </div>
+
+            <p class="unitem">
+              <i class="fas fa-sort-down" style="font-size: 20px;"></i> &nbsp;
+              <span>Bootstrap</span>
+            </p>
+            <div id="badge-item">
+              <i class="fas fa-globe"></i> &nbsp; <span> Badge</span>
+            </div>
+            <div id="alert-item">
+              <i class="far fa-bell"></i> &nbsp; <span> Alert</span>
+            </div>
+            <div id="breadcrumbs-item">
+              <i class="fas fa-shoe-prints"></i> &nbsp;
+              <span> Breadcrumbs</span>
+            </div>
+            <div id="card-item">
+              <i class="far fa-credit-card"></i> &nbsp; <span> Card</span>
+            </div>
+            <div id="dropdown-item">
+              <i class="fas fa-sort-down"></i> &nbsp; <span> Dropdown</span>
+            </div>
+            <div id="jumbotron-item">
+              <i class="fas fa-expand"></i> &nbsp; <span> Jumbotron</span>
+            </div>
+            <div id="list-group-item">
+              <i class="fas fa-list"></i> &nbsp; <span> List Group</span>
+            </div>
+            <div id="pagination-item">
+              <i class="fas fa-sort-numeric-down"></i> &nbsp;
+              <span> Pagination</span>
+            </div>
+            <div id="popover-item">
+              <i class="fas fa-id-card"></i> &nbsp; <span> Popover</span>
+            </div>
+            <div id="progress-bar-item">
+              <i class="fas fa-spinner"></i> &nbsp; <span> Progress Bar</span>
+            </div>
+            <div id="tooltip-item">
+              <i class="far fa-question-circle"></i> &nbsp;
+              <span> ToolTip</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="row main-screen">
+          <div class="col-sm-2 offset-sm-10 size-settings">
+            <div class="btn-group special" role="group">
+              <button type="button" class="btn btn-secondary mobileview">
+                <i class="fas fa-mobile-alt"></i>
+              </button>
+              <button type="button" class="btn btn-secondary tabletview">
+                <i class="fas fa-tablet-alt"></i>
+              </button>
+              <button type="button" class="btn btn-secondary laptopview">
+                <i class="fas fa-laptop"></i>
+              </button>
+              <button type="button" class="btn btn-secondary customview">
+                <i class="fas fa-cog"></i>
+              </button>
+              <button type="button" class="btn btn-secondary resetview">
+                <i class="fas fa-eraser"></i>
+              </button>
+            </div>
+          </div>
+          <div
+            id="right-copy"
+            class="col-12 p-5 mx-auto drakecontainer"
+            dragula="right-copy"
+          >
+            <nav id="F5747C" class="site-header sticky-top py-1">
+              <div
+                id="VXB4J6"
+                class="container d-flex flex-column flex-md-row justify-content-between"
+              >
+                <a
+                  id="LPL62A"
+                  class="py-2 highlight editable"
+                  href="#"
+                  aria-label="Product"
+                >
+                  Company
+                </a>
+                <a
+                  id="PYDSLV"
+                  class="py-2 d-none d-md-inline-block highlight editable"
+                  href="#"
+                  >Tour</a
+                >
+                <a
+                  id="BMTQIZ"
+                  class="py-2 d-none d-md-inline-block highlight editable"
+                  href="#"
+                  >Product</a
+                >
+                <a
+                  id="XWZ4OE"
+                  class="py-2 d-none d-md-inline-block highlight editable"
+                  href="#"
+                  >Features</a
+                >
+                <a
+                  id="3K6T1W"
+                  class="py-2 d-none d-md-inline-block highlight editable"
+                  href="#"
+                  >Enterprise</a
+                >
+                <a
+                  id="R5FPUR"
+                  class="py-2 d-none d-md-inline-block highlight editable"
+                  href="#"
+                  >Support</a
+                >
+                <a
+                  id="QE0QIH"
+                  class="py-2 d-none d-md-inline-block highlight editable"
+                  href="#"
+                  >Pricing</a
+                >
+                <a
+                  id="8IQSHJ"
+                  class="py-2 d-none d-md-inline-block highlight editable"
+                  href="#"
+                  >Cart</a
+                >
+              </div>
+            </nav>
+
+            <div
+              id="4CSLJ7"
+              class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light"
+            >
+              <div id="1QUCSB" class="col-md-5 p-lg-5 mx-auto my-5">
+                <h1
+                  id="6OSUZJ"
+                  class="display-4 font-weight-normal editable highlight"
+                >
+                  Punny headline
+                </h1>
+                <p
+                  id="MSMERM"
+                  class="lead font-weight-normal editable highlight"
+                >
+                  And an even wittier subheading to boot. Jumpstart your
+                  marketing efforts with this example based on Apple’s marketing
+                  pages.
+                </p>
+                <a
+                  id="ASD2JN"
+                  class="btn btn-outline-secondary editable highlight"
+                  href="#"
+                  >Coming soon</a
+                >
+              </div>
+            </div>
+
+            <div
+              id="7SJJDM"
+              class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3"
+            >
+              <div
+                id="0P8GOW"
+                class="bg-dark col-md-6 md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden"
+              >
+                <div id="X456SZ" class="my-3 py-3">
+                  <h2 id="50RYRT" class="display-5 highlight editable">
+                    Another headline
+                  </h2>
+                  <p id="6HJ5QK" class="lead highlight editable">
+                    And an even wittier subheading.
+                  </p>
+                </div>
+                <div
+                  id="6FQWAC"
+                  class="bg-light shadow-sm mx-auto"
+                  style="
+                    width: 80%;
+                    height: 300px;
+                    border-radius: 21px 21px 0 0;
+                  "
+                ></div>
+              </div>
+              <div
+                id="GDN6ZP"
+                class="bg-light col-md-6 mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden"
+              >
+                <div id="7VALPS" class="my-3 p-3">
+                  <h2 id="NU9XC1" class="display-5 highlight editable">
+                    Another headline
+                  </h2>
+                  <p id="EF2DW6" class="lead highlight editable">
+                    And an even wittier subheading.
+                  </p>
+                </div>
+                <div
+                  id="LN0WZP"
+                  class="bg-dark shadow-sm mx-auto"
+                  style="
+                    width: 80%;
+                    height: 300px;
+                    border-radius: 21px 21px 0 0;
+                  "
+                ></div>
+              </div>
+            </div>
+
+            <div
+              id="Q5IQLQ"
+              class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3"
+            >
+              <div
+                id="SAQRCP"
+                class="bg-light col-md-6 md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden"
+              >
+                <div id="4YJUM4" class="my-3 p-3">
+                  <h2 id="0VSHK8" class="display-5 highlight editable">
+                    Another headline
+                  </h2>
+                  <p id="IN6RTE" class="lead highlight editable">
+                    And an even wittier subheading.
+                  </p>
+                </div>
+                <div
+                  id="9LHJKH"
+                  class="bg-dark shadow-sm mx-auto"
+                  style="
+                    width: 80%;
+                    height: 300px;
+                    border-radius: 21px 21px 0 0;
+                  "
+                ></div>
+              </div>
+              <div
+                id="01PMUX"
+                class="bg-primary col-md-6 mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden"
+              >
+                <div id="GRFILJ" class="my-3 py-3">
+                  <h2 id="DRVV51" class="display-5 highlight editable">
+                    Another headline
+                  </h2>
+                  <p id="CT4RDA" class="lead highlight editable">
+                    And an even wittier subheading.
+                  </p>
+                </div>
+                <div
+                  id="23X5VP"
+                  class="bg-light shadow-sm mx-auto"
+                  style="
+                    width: 80%;
+                    height: 300px;
+                    border-radius: 21px 21px 0 0;
+                  "
+                ></div>
+              </div>
+            </div>
+
+            <footer id="LTDUAY" class="container py-5">
+              <div id="BV99WG" class="row">
+                <div id="5B5V0T" class="col-12 col-md">
+                  <p id="JKE432" class="editable highlight">Company</p>
+                  <small
+                    id="0QRIAL"
+                    class="d-block mb-3 text-muted editable highlight"
+                    >&copy; 2017-2020</small
+                  >
+                </div>
+                <div id="YTQ91F" class="col-6 col-md editable highlight">
+                  <h5 id="1EDTY2">Features</h5>
+                  <ul id="WC2WA5" class="list-unstyled text-small">
+                    <li id="RQKSS6">
+                      <a id="CRXQW2" class="text-muted" href="#">Cool stuff</a>
+                    </li>
+                    <li id="R2SAS6">
+                      <a id="72HYG5" class="text-muted" href="#"
+                        >Random feature</a
+                      >
+                    </li>
+                    <li id="JWGDDF">
+                      <a id="4UF8DN" class="text-muted" href="#"
+                        >Team feature</a
+                      >
+                    </li>
+                    <li id="RBWHX7">
+                      <a id="7ASHRI" class="text-muted" href="#"
+                        >Stuff for developers</a
+                      >
+                    </li>
+                    <li id="13A8Y9">
+                      <a id="PNHN8L" class="text-muted" href="#">Another one</a>
+                    </li>
+                    <li id="D2Z15G">
+                      <a id="V17RX0" class="text-muted" href="#">Last time</a>
+                    </li>
+                  </ul>
+                </div>
+                <div id="KAYV5W" class="col-6 col-md editable highlight">
+                  <h5 id="MPDXBR">Resources</h5>
+                  <ul id="7P5K5H" class="list-unstyled text-small">
+                    <li id="OOVFJW">
+                      <a id="2C7RAZ" class="text-muted" href="#">Resource</a>
+                    </li>
+                    <li id="EC8VHG">
+                      <a id="ZU2EZA" class="text-muted" href="#"
+                        >Resource name</a
+                      >
+                    </li>
+                    <li id="0N6LP8">
+                      <a id="PXC2CS" class="text-muted" href="#"
+                        >Another resource</a
+                      >
+                    </li>
+                    <li id="QMHIXF">
+                      <a id="D4ESON" class="text-muted" href="#"
+                        >Final resource</a
+                      >
+                    </li>
+                  </ul>
+                </div>
+                <div id="MXG4CB" class="col-6 col-md editable highlight">
+                  <h5 id="7ILD6Z">Resources</h5>
+                  <ul id="72MHLO" class="list-unstyled text-small">
+                    <li id="W4LK8K">
+                      <a id="QOLFSX" class="text-muted" href="#">Business</a>
+                    </li>
+                    <li id="XU0L08">
+                      <a id="4XVEVJ" class="text-muted" href="#">Education</a>
+                    </li>
+                    <li id="5E9NH6">
+                      <a id="MJHXWD" class="text-muted" href="#">Government</a>
+                    </li>
+                    <li id="69QXHD">
+                      <a id="GY8WDO" class="text-muted" href="#">Gaming</a>
+                    </li>
+                  </ul>
+                </div>
+                <div id="FC4OHH" class="col-6 col-md editable highlight">
+                  <h5 id="66KJVA">About</h5>
+                  <ul id="YBD4TF" class="list-unstyled text-small">
+                    <li id="74YX20">
+                      <a id="AJLSKT" class="text-muted" href="#">Team</a>
+                    </li>
+                    <li id="46LKT7">
+                      <a id="BV0OMK" class="text-muted" href="#">Locations</a>
+                    </li>
+                    <li id="YQWIJC">
+                      <a id="VGH4DU" class="text-muted" href="#">Privacy</a>
+                    </li>
+                    <li id="GNE4QV">
+                      <a id="JIFZ8N" class="text-muted" href="#">Terms</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </footer>
+          </div>
+          <div
+            class="myhtml"
+            id="myhtml"
+            style="background-color: #1b1c20; color: #1b1c20;"
+          ></div>
+          <div
+            class="pastehtml"
+            id="pastehtml"
+            style="background-color: #1b1c20; color: #1b1c20;"
+          ></div>
+        </div>
+      </div>
+    </div>
+    <script src="js/jquery-3.4.1.slim.min.js"></script>
+    <script src="js/bootstrap/popper.js"></script>
+    <script src="js/bootstrap/bootstrap.min.js"></script>
+    <!-- HTML5 Tidy -->
+    <script src="js/tidyhtml5.js"></script>
+
+    <script src="dragula/dragula.js"></script>
+    <!--- Medium JS -->
+    <script src="medium/js/medium-editor.js"></script>
+    <!--- Main JS -->
+    <script src="js/main.js"></script>
+    <script src="js/dragndrop.js"></script>
+    <script src="js/elementManipulation.js"></script>
+    <script src="js/popup.js"></script>
+    <script src="js/searchfilter.js"></script>
+    <script src="js/views.js"></script>
+    <!--- Drag 'n Drop JS -->
+    <script src="js/dragndrop.js"></script>
+  </body>
+</html>

@@ -1,0 +1,390 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Drag and Drop</title>
+  <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
+  <link href="dragula/dragula.css" rel="stylesheet" type="text/css" />
+  <!-- Medium Core -->
+  <link rel="stylesheet" href="medium/css/medium-editor.css" />
+  <!-- or any other theme -->
+  <link rel="stylesheet" href="medium/css/themes/default.css" />
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/main.css" />
+  <!--- Font Awesome -->
+  <link rel="stylesheet" href="fontawesome/css/all.css" />
+</head>
+
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="list-items scrollbar" id="style-3">
+        <div class="search-div">
+          <div class="search">
+            <input type="text" class="searchTerm" id="searchTerm" placeholder="What are you looking for?"
+              onkeyup="searchFilter()" />
+            <button type="submit" class="searchButton">
+              <i class="fa fa-search"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Item Group -->
+        <div id="left-copy" class="drakecontainer item-screen">
+          <p class="unitem">
+            <i class="fas fa-sort-down" style="font-size: 20px;"></i> &nbsp;
+            <span> Framework</span>
+          </p>
+          <div id="container-item">
+            <i class="far fa-file"></i> &nbsp; <span> Container</span>
+          </div>
+          <div id="row-item">
+            <i class="fas fa-border-all"></i> &nbsp; <span> Row</span>
+          </div>
+          <div id="one-column-item">
+            <i class="fas fa-columns"></i> &nbsp; <span>One Column</span>
+          </div>
+          <div id="two-column-item">
+            <i class="fas fa-columns"></i> &nbsp; <span> Two Columns</span>
+          </div>
+          <div id="three-column-item">
+            <i class="fas fa-columns"></i> &nbsp; <span> Three Columns</span>
+          </div>
+          <div id="three-by-seven-column-item">
+            <i class="fas fa-columns"></i> &nbsp; <span> 3/7 Columns</span>
+          </div>
+
+          <p class="unitem">
+            <i class="fas fa-sort-down" style="font-size: 20px;"></i> &nbsp;
+            <span>Basic</span>
+          </p>
+          <div id="heading-item">
+            <i class="fas fa-heading"></i> &nbsp; <span> Heading</span>
+          </div>
+          <div id="paragraph-item">
+            <i class="fas fa-terminal"></i> &nbsp; <span> Paragraph</span>
+          </div>
+          <div id="link-item">
+            <i class="fas fa-link"></i> &nbsp; <span> Link</span>
+          </div>
+          <div id="button-item">
+            <i class="far fa-file"></i> &nbsp; <span> Button</span>
+          </div>
+          <div id="image-item">
+            <i class="far fa-image"></i> &nbsp; <span> Image</span>
+          </div>
+          <div id="custom-code-item">
+            <i class="fas fa-code"></i> &nbsp; <span> Custom Code</span>
+          </div>
+          <div id="navbar-item">
+            <i class="far fa-compass"></i> &nbsp; <span> Navbar</span>
+          </div>
+          <div id="navbar-item">
+            <i class="fas fa-paperclip"></i> &nbsp; <span> Footer</span>
+          </div>
+
+          <p class="unitem">
+            <i class="fas fa-sort-down" style="font-size: 20px;"></i> &nbsp;
+            <span>Media</span>
+          </p>
+          <div id="video-item">
+            <i class="fas fa-video"></i> &nbsp; <span> Video</span>
+          </div>
+          <div id="map-item">
+            <i class="fas fa-map-marked-alt"></i> &nbsp; <span> Map</span>
+          </div>
+          <div id="quote-item">
+            <i class="fas fa-quote-left"></i> &nbsp; <span> Quote</span>
+          </div>
+          <div id="text-section-item">
+            <i class="fas fa-text-height"></i> &nbsp;
+            <span> Text Section</span>
+          </div>
+
+          <div id="carousel-item">
+            <i class="far fa-images"></i> &nbsp; <span> Carousel</span>
+          </div>
+          <div id="tab-item">
+            <i class="fas fa-scroll"></i> &nbsp; <span> Tab</span>
+          </div>
+
+          <p class="unitem">
+            <i class="fas fa-sort-down" style="font-size: 20px;"></i> &nbsp;
+            <span> Form</span>
+          </p>
+          <div id="form-item">
+            <i class="fab fa-wpforms"></i> &nbsp; <span> Form</span>
+          </div>
+          <div id="input-group-item">
+            <i class="far fa-keyboard"></i> &nbsp; <span> Input Group</span>
+          </div>
+
+          <p class="unitem">
+            <i class="fas fa-sort-down" style="font-size: 20px;"></i> &nbsp;
+            <span>Bootstrap</span>
+          </p>
+          <div id="badge-item">
+            <i class="fas fa-globe"></i> &nbsp; <span> Badge</span>
+          </div>
+          <div id="alert-item">
+            <i class="far fa-bell"></i> &nbsp; <span> Alert</span>
+          </div>
+          <div id="breadcrumbs-item">
+            <i class="fas fa-shoe-prints"></i> &nbsp;
+            <span> Breadcrumbs</span>
+          </div>
+          <div id="card-item">
+            <i class="far fa-credit-card"></i> &nbsp; <span> Card</span>
+          </div>
+          <div id="dropdown-item">
+            <i class="fas fa-sort-down"></i> &nbsp; <span> Dropdown</span>
+          </div>
+          <div id="jumbotron-item">
+            <i class="fas fa-expand"></i> &nbsp; <span> Jumbotron</span>
+          </div>
+          <div id="list-group-item">
+            <i class="fas fa-list"></i> &nbsp; <span> List Group</span>
+          </div>
+          <div id="pagination-item">
+            <i class="fas fa-sort-numeric-down"></i> &nbsp;
+            <span> Pagination</span>
+          </div>
+          <div id="popover-item">
+            <i class="fas fa-id-card"></i> &nbsp; <span> Popover</span>
+          </div>
+          <div id="progress-bar-item">
+            <i class="fas fa-spinner"></i> &nbsp; <span> Progress Bar</span>
+          </div>
+          <div id="tooltip-item">
+            <i class="far fa-question-circle"></i> &nbsp;
+            <span> ToolTip</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="row main-screen">
+        <div class="col-sm-2 offset-sm-10 size-settings">
+          <div class="btn-group special" role="group">
+            <button type="button" class="btn btn-secondary mobileview">
+              <i class="fas fa-mobile-alt"></i>
+            </button>
+            <button type="button" class="btn btn-secondary tabletview">
+              <i class="fas fa-tablet-alt"></i>
+            </button>
+            <button type="button" class="btn btn-secondary laptopview">
+              <i class="fas fa-laptop"></i>
+            </button>
+            <button type="button" class="btn btn-secondary customview">
+              <i class="fas fa-cog"></i>
+            </button>
+            <button type="button" class="btn btn-secondary resetview">
+              <i class="fas fa-eraser"></i>
+            </button>
+          </div>
+        </div>
+        <div id="right-copy" class="col-12 p-5 mx-auto drakecontainer" dragula="right-copy">
+          <header class="highlight" id="single-header">
+            <div class="collapse bg-dark" id="navbarHeader">
+              <div class="container" id="single-container-1">
+                <div class="row" id="single-row-1">
+                  <div class="col-sm-8 col-md-7 py-4" id="single-div-1">
+                    <h4 class="text-white editable highlight" id="single-heading-1">
+                      About
+                    </h4>
+                    <p class="text-muted editable highlight" id="single-p-1">
+                      Add some information about the album below, the author,
+                      or any other background context. Make it a few sentences
+                      long so folks can pick up some informative tidbits.
+                      Then, link them off to some social networking sites or
+                      contact information.
+                    </p>
+                  </div>
+                  <div class="col-sm-4 offset-md-1 py-4" id="single-div-2">
+                    <h4 class="text-white" class="editable highlight" id="single-heading-2">
+                      Contact
+                    </h4>
+                    <ul class="list-unstyled" id="single-ul-1">
+                      <li class="editable highlight" id="single-li-1">
+                        <a href="#" class="text-white" id="single-a-1">Follow on Twitter</a>
+                      </li>
+                      <li class="editable highlight" id="single-li-2">
+                        <a href="#" class="text-white" id="single-a-2">Like on Facebook</a>
+                      </li>
+                      <li class="editable highlight" id="single-li-3">
+                        <a href="#" class="text-white" id="single-a-3">Email me</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="navbar navbar-dark bg-dark shadow-sm" id="single-navbar-1">
+              <div class="container d-flex justify-content-between" id="single-container-4">
+                <a href="#" class="navbar-brand d-flex align-items-center editable" id="single-a-4">
+                  <strong id="single-strong-1">Album</strong>
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader"
+                  aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation"
+                  id="single-button-1">
+                  <span class="navbar-toggler-icon" id="single-span-1"></span>
+                </button>
+              </div>
+            </div>
+          </header>
+          <main role="main" id="single-main-1">
+            <section class="jumbotron text-center" id="drake-container-1">
+              <div class="container" id="single-container-5">
+                <h1 class="editable highlight" id="single-h1-1">
+                  Album example
+                </h1>
+                <p class="lead text-muted editable highlight" id="single-p-3">
+                  Something short and leading about the collection below—its
+                  contents, the creator, etc. Make it short and sweet, but not
+                  too short so folks don’t simply skip over it entirely.
+                </p>
+                <p id="single-p-4">
+                  <a href="#" class="btn btn-primary my-2 editable highlight" id="single-a-5">Main call to action</a>
+                  <a href="#" class="btn btn-secondary my-2 editable highlight" id="single-a-6">Secondary action</a>
+                </p>
+              </div>
+            </section>
+
+            <div class="album py-5 bg-light" id="single-div-3">
+              <div class="container" id="drake-container-2">
+                <div class="row" id="single-row-2">
+                  <div class="col-md-4 col-sm-12" id="single-col-1">
+                    <div class="card mb-4 shadow-sm" id="drake-container-3">
+                      <img class="bd-placeholder-img card-img-top" width="100%" height="225" placeholder="Thumbnail"
+                        src="https://picsum.photos/225" id="single-img-1" />
+                      <div class="card-body editable" id="single-card-1">
+                        <h4 class="class-head" id="single-heading-3">
+                          Heading
+                        </h4>
+                        <p class="card-text" id="single-p-2">
+                          This is a wider card with supporting text below as a
+                          natural lead-in to additional content. This content
+                          is a little bit longer.
+                        </p>
+                        <div class="d-flex justify-content-between align-items-center" id="single-div-4">
+                          <div class="btn-group" id="single-bgroup-1">
+                            <button type="button" class="btn btn-sm btn-outline-secondary" id="single-button-2">
+                              View
+                            </button>
+                            <button type="button" class="btn btn-sm btn-outline-secondary" id="single-button-3">
+                              Edit
+                            </button>
+                          </div>
+                          <small class="text-muted" id="single-small-1">9 mins</small>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- card ends here -->
+                  <div class="col-md-4 col-sm-12" id="single-col-2">
+                    <div class="card mb-4 shadow-sm" id="drake-container-4">
+                      <img class="bd-placeholder-img card-img-top" width="100%" height="225" placeholder="Thumbnail"
+                        src="https://picsum.photos/225" id="single-img-2" />
+                      <div class="card-body editable" id="single-card-2">
+                        <h4 class="class-head" id="single-heading-4">
+                          Heading
+                        </h4>
+                        <p class="card-text" id="single-p-5">
+                          This is a wider card with supporting text below as a
+                          natural lead-in to additional content. This content
+                          is a little bit longer.
+                        </p>
+                        <div class="d-flex justify-content-between align-items-center" id="single-div-5">
+                          <div class="btn-group" id="single-bgroup-2">
+                            <button type="button" class="btn btn-sm btn-outline-secondary" id="single-button-4">
+                              View
+                            </button>
+                            <button type="button" class="btn btn-sm btn-outline-secondary" id="single-button-5">
+                              Edit
+                            </button>
+                          </div>
+                          <small class="text-muted" id="single-small-2">9 mins</small>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- card ends here -->
+                  <div class="col-md-4 col-sm-12" id="single-col-3">
+                    <div class="card mb-4 shadow-sm" id="drake-container-5">
+                      <img class="bd-placeholder-img card-img-top" width="100%" height="225" placeholder="Thumbnail"
+                        src="https://picsum.photos/225" id="single-img-3" />
+                      <div class="card-body editable" id="single-card-3">
+                        <h4 class="class-head" id="single-heading-5">
+                          Heading
+                        </h4>
+                        <p class="card-text" id="single-p-6">
+                          This is a wider card with supporting text below as a
+                          natural lead-in to additional content. This content
+                          is a little bit longer.
+                        </p>
+                        <div class="d-flex justify-content-between align-items-center" id="single-div-6">
+                          <div class="btn-group" id="single-bgroup-3">
+                            <button type="button" class="btn btn-sm btn-outline-secondary" id="single-button-6">
+                              View
+                            </button>
+                            <button type="button" class="btn btn-sm btn-outline-secondary" id="single-button-7">
+                              Edit
+                            </button>
+                          </div>
+                          <small class="text-muted" id="single-small-3">9 mins</small>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- card ends here -->
+                </div>
+              </div>
+            </div>
+          </main>
+
+          <footer class="text-muted pt-3" id="single-footer-1">
+            <div class="container editable" id="single-div-7">
+              <p class="float-right highlight" id="single-p-7">
+                <a href="#" id="single-a-7">Back to top</a>
+              </p>
+              <p class="highlight" id="single-p-8">
+                Album example is &copy; Bootstrap, but please download and
+                customize it for yourself!
+              </p>
+              <p class="highlight" id="single-p-9">
+                New to Bootstrap?
+                <a href="https://getbootstrap.com/" id="single-a-8">Visit the homepage</a>
+                or read our
+                <a href="/docs/4.5/getting-started/introduction/" id="single-a-9">getting started guide</a>.
+              </p>
+            </div>
+          </footer>
+        </div>
+        <div class="myhtml" id="myhtml" style="background-color: #1b1c20; color: #1b1c20;"></div>
+        <div class="pastehtml" id="pastehtml" style="background-color: #1b1c20; color: #1b1c20;"></div>
+      </div>
+      < </div>
+    </div>
+    <script src="js/jquery-3.4.1.slim.min.js"></script>
+    <script src="js/bootstrap/popper.js"></script>
+    <script src="js/bootstrap/bootstrap.min.js"></script>
+    <!-- HTML5 Tidy -->
+    <script src="js/tidyhtml5.js"></script>
+
+    <script src="dragula/dragula.js"></script>
+    <!--- Medium JS -->
+    <script src="medium/js/medium-editor.js"></script>
+    <!--- Main JS -->
+    <script src="js/main.js"></script>
+    <script src="js/dragndrop.js"></script>
+    <script src="js/elementManipulation.js"></script>
+    <script src="js/popup.js"></script>
+    <script src="js/searchfilter.js"></script>
+    <script src="js/views.js"></script>
+    <!--- Drag 'n Drop JS -->
+    <script src="js/dragndrop.js"></script>
+</body>
+
+</html>
