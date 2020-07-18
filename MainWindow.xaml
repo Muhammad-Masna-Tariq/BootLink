@@ -13,6 +13,7 @@
         xmlns:WindowsFormsIntegration="clr-namespace:System.Windows.Forms.Integration;assembly=WindowsFormsIntegration"
         GlowBrush="{DynamicResource AccentColorBrush}"
         PreviewKeyDown="WindowKeyDown"
+        PreviewKeyUp="WindowKeyUp"
         WindowStartupLocation="CenterScreen"
         WindowState="Maximized"
         Title="BootLink" Height="723" Width="1280" Icon="image/bootlinklogo.ico" Loaded="Window_Loaded" TitleCaps="False">
@@ -39,103 +40,108 @@
             </Grid.ColumnDefinitions>
             <Menu Background="#2d2e33" FontFamily="Tahoma" FontSize="13" HorizontalAlignment="Stretch" Grid.Column="0" Margin="0,0,0,1">
                 <MenuItem Background="#2d2e33" Foreground="#ffffff" Header="_File" >
-                    <MenuItem Header="_New Project" x:Name="NewProject" Click="NewProject_Click" Background="#eeeeee"  Foreground="#393e46" InputGestureText="Ctrl+N">
+                    <MenuItem Header="_New Project" x:Name="NewProject" Click="NewProject_Click"  Foreground="#393e46" InputGestureText="Ctrl+N" Margin="0 5 0 0" Padding="0 5 0 5">
                         <MenuItem.Icon>
-                            <Image Source="image/New.png"/>
+                            <Image Source="image/New.png" Width="25"/>
                         </MenuItem.Icon>
                     </MenuItem>
-                    <MenuItem Header="_Open Project" InputGestureText="Ctrl+O" x:Name="OpenProject" Click="OpenProject_Click" Foreground="#393e46">
+                    <MenuItem Header="_Open Project" InputGestureText="Ctrl+O" x:Name="OpenProject" Click="OpenProject_Click" Foreground="#393e46" Padding="0 5 0 5">
                         <MenuItem.Icon>
-                            <Image Source="image/Open.png"/>
+                            <Image Source="image/Open.png"  Width="25"/>
                         </MenuItem.Icon>
                     </MenuItem>
-                    <MenuItem Header="_Save Project" InputGestureText="Ctrl+S" x:Name="SaveProject" Click="SaveProject_Click" Foreground="#393e46">
+                    <MenuItem Header="_Save Project" InputGestureText="Ctrl+S" x:Name="SaveProject" Click="SaveProject_Click" Foreground="#393e46" Padding="0 5 0 5">
                         <MenuItem.Icon>
-                            <Image Source="image/Save.png"/>
+                            <Image Source="image/Save.png"  Width="25"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="_Generate DOM" InputGestureText="Ctrl+D" x:Name="generateDOM" Click="generateDOM_Click" Foreground="#393e46" Padding="0 5 0 5">
+                        <MenuItem.Icon>
+                            <Image Source="image/dom.png"  Width="25"/>
                         </MenuItem.Icon>
                     </MenuItem>
                     <Separator />
-                    <MenuItem Header="_Exit Application" InputGestureText="Alt+F4" x:Name="ExitApplication" Click="ExitApplication_Click" Foreground="#393e46">
+                    <MenuItem Header="_Exit Application" InputGestureText="Alt+F4" x:Name="ExitApplication" Click="ExitApplication_Click" Foreground="#393e46" Margin="0 0 0 5">
                         <MenuItem.Icon>
-                            <Image Source="./image/Exit.png"/>
+                            <Image Source="./image/Exit.png" Width="25"/>
                         </MenuItem.Icon>
                     </MenuItem>
                 </MenuItem>
                 <MenuItem Background="#2d2e33" Foreground="#ffffff" Header="_Edit">
-                    <MenuItem Header="Copy Element" InputGestureText="Ctrl+C" x:Name="copy" Click="copy_Click" Background="#eeeeee" Foreground="#393e46">
+                    <MenuItem Header="Copy Element" InputGestureText="Ctrl+C" x:Name="copy" Click="copy_Click" Foreground="#393e46" Margin="0 5 0 0" Padding="0 5 0 5">
                         <MenuItem.Icon>
-                            <Image Source="image/copy.png" />
+                            <Image Source="image/copy.png" Width="25"/>
                         </MenuItem.Icon>
                     </MenuItem>
-                    <MenuItem Header="Paste Element" InputGestureText="Ctrl+V" x:Name="paste" Click="paste_Click" Background="#eeeeee" Foreground="#393e46">
+                    <MenuItem Header="Paste Element" InputGestureText="Ctrl+V" x:Name="paste" Click="paste_Click"  Foreground="#393e46" Padding="0 5 0 5">
                         <MenuItem.Icon>
-                            <Image Source="image/paste.png" />
+                            <Image Source="image/paste.png" Width="25"/>
                         </MenuItem.Icon>
                     </MenuItem>
-                    <MenuItem Header="Select All Elements" InputGestureText="Ctrl+A" x:Name="selectAll" Click="selectAll_Click" Background="#eeeeee" Foreground="#393e46">
+                    <MenuItem Header="Select All Elements" InputGestureText="Ctrl+A" x:Name="selectAll" Click="selectAll_Click" Foreground="#393e46" Padding="0 5 0 5">
                         <MenuItem.Icon>
-                            <Image Source="image/select.png" />
+                            <Image Source="image/select.png" Width="25"/>
                         </MenuItem.Icon>
                     </MenuItem>
-                    <MenuItem Header="Delete Element(s)" x:Name="delete" Click="delete_Click" Background="#eeeeee" Foreground="#393e46">
+                    <MenuItem Header="Delete Element(s)" x:Name="delete" Click="delete_Click" Foreground="#393e46" Padding="0 5 0 5">
                         <MenuItem.Icon>
-                            <Image Source="image/delete.png" />
+                            <Image Source="image/delete.png" Width="25"/>
                         </MenuItem.Icon>
                     </MenuItem>
                     <Separator />
-                    <MenuItem Header="Change Font" x:Name="ChangeFontSize" Click="ChangeFontSize_Click" Background="#eeeeee" Foreground="#393e46">
+                    <MenuItem Header="Change Font" x:Name="ChangeFontSize" Click="ChangeFontSize_Click" Foreground="#393e46" Padding="0 5 0 5" Margin="0 0 0 5">
                         <MenuItem.Icon>
-                            <Image Source="image/Change Font.png" />
+                            <Image Source="image/Change Font.png" Width="25"/>
                         </MenuItem.Icon>
                     </MenuItem>
                 </MenuItem>
                 <MenuItem Background="#2d2e33" Foreground="#ffffff" Header="_Find">
-                    <MenuItem Header="Find and Replace" InputGestureText="Ctrl+F" x:Name="findAndReplace" Click="findAndReplace_Click" Background="#eeeeee" Foreground="#393e46">
+                    <MenuItem Header="Find and Replace" InputGestureText="Ctrl+F" x:Name="findAndReplace" Click="findAndReplace_Click" Foreground="#393e46" Margin="0 5 0 5">
                         <MenuItem.Icon>
-                            <Image Source="image/find.png" />
+                            <Image Source="image/find.png" Width="25"/>
                         </MenuItem.Icon>
                     </MenuItem>
                 </MenuItem>
                 <MenuItem Background="#2d2e33" Foreground="#ffffff" Header="_Window">
-                    <MenuItem Header="Mobile View" x:Name="mobileView" Click="mobileView_Click" Background="#eeeeee" Foreground="#393e46">
+                    <MenuItem Header="Mobile View" x:Name="mobileView" Click="mobileView_Click"  Foreground="#393e46" Margin="0 5 0 0" Padding="0 5 0 5">
                         <MenuItem.Icon>
-                            <Image Source="image/mobile.png" />
+                            <Image Source="image/mobile.png" Width="25"/>
                         </MenuItem.Icon>
                     </MenuItem>
-                    <MenuItem Header="Tablet View" x:Name="tabletView" Click="tabletView_Click" Background="#eeeeee" Foreground="#393e46">
+                    <MenuItem Header="Tablet View" x:Name="tabletView" Click="tabletView_Click"  Foreground="#393e46" Padding="0 5 0 5">
                         <MenuItem.Icon>
-                            <Image Source="image/tablet.png" />
+                            <Image Source="image/tablet.png" Width="25"/>
                         </MenuItem.Icon>
                     </MenuItem>
-                    <MenuItem Header="Laptop/Desktop View" x:Name="laptopView" Click="laptopView_Click" Background="#eeeeee" Foreground="#393e46">
+                    <MenuItem Header="Laptop/Desktop View" x:Name="laptopView" Click="laptopView_Click" Foreground="#393e46" Padding="0 5 0 5">
                         <MenuItem.Icon>
-                            <Image Source="image/laptop.png" />
+                            <Image Source="image/laptop.png" Width="25"/>
                         </MenuItem.Icon>
                     </MenuItem>
                     <Separator />
-                    <MenuItem Header="Custom View" x:Name="customView" Click="customView_Click" Background="#eeeeee" Foreground="#393e46">
+                    <MenuItem Header="Custom View" x:Name="customView" Click="customView_Click" Foreground="#393e46" Padding="0 5 0 5" Margin="0 0 0 5">
                         <MenuItem.Icon>
-                            <Image Source="image/custom.png" />
+                            <Image Source="image/custom.png" Width="25"/>
                         </MenuItem.Icon>
                     </MenuItem>
                 </MenuItem>
                 <MenuItem Background="#2d2e33" Foreground="#ffffff" Header="_Help">
-                    <MenuItem Header="View Manual" x:Name="manual" Click="manual_Click" Background="#eeeeee" Foreground="#393e46">
+                    <MenuItem Header="View Manual" x:Name="manual" Click="manual_Click" Foreground="#393e46" Margin="0 5 0 0" Padding="0 5 0 5">
                         <MenuItem.Icon>
-                            <Image Source="image/help.png" />
+                            <Image Source="image/help.png" Width="25"/>
                         </MenuItem.Icon>
                     </MenuItem>
-                    <MenuItem Header="View Video Demo" x:Name="demo" Click="demo_Click" Background="#eeeeee" Foreground="#393e46">
+                    <MenuItem Header="View Video Demo" x:Name="demo" Click="demo_Click" Foreground="#393e46" Margin="0 0 0 5" Padding="0 5 0 5">
                         <MenuItem.Icon>
-                            <Image Source="image/demo.png" />
+                            <Image Source="image/demo.png" Width="25"/>
                         </MenuItem.Icon>
                     </MenuItem>
                 </MenuItem>
             </Menu>
             <Menu Background="#2d2e33" Foreground="#ffffff" FontFamily="Tahoma" FontSize="13" HorizontalAlignment="Stretch" Grid.Column="1" >
-                <MenuItem Background="#2d2e33" Foreground="#ffffff"  Header="Live Preview"  x:Name="Preview" Click="Preview_Click" HorizontalAlignment="Stretch">
+                <MenuItem Background="#2ecc71" Foreground="#2c3e50"  FontWeight="ExtraBold" Header="Live Preview"  x:Name="Preview" Click="Preview_Click" HorizontalAlignment="Stretch" Padding=" 0 7 10 5">
                     <MenuItem.Icon>
-                        <Image Source="image/preview.png" />
+                        <Image Source="image/play.png" Width="25" Margin="0 5 0 5"/>
                     </MenuItem.Icon>
                 </MenuItem>
             </Menu>
@@ -171,7 +177,7 @@
 
                     <!-- Tree Here -->
                     <WindowsFormsHost Grid.Column="0" ScrollViewer.VerticalScrollBarVisibility="Auto" Background="#1e2128" Foreground="#ffffff">
-                        <wf:TreeView x:Name="DomHierarchyTree"  AllowDrop="False" BackColor="#1e2128" ForeColor="#ffffff" BorderStyle="None" AfterSelect="DomHierarchyTree_AfterSelect" AfterCollapse="DomHierarchyTree_AfterCollapse"/>
+                        <wf:TreeView x:Name="DomHierarchyTree"  AllowDrop="False" BackColor="#1e2128" ForeColor="#ffffff" BorderStyle="None" AfterSelect="DomHierarchyTree_AfterSelect" AfterCollapse="DomHierarchyTree_AfterCollapse" BeforeSelect="DomHierarchyTree_BeforeSelect"/>
                     </WindowsFormsHost>
 
                     <!-- HTML Box Here -->
@@ -292,7 +298,7 @@
                 </WrapPanel>
                 <WrapPanel Margin="0,5,0,0" Grid.Row="10">
                     <Label Margin="6,0,0,0" Content="Color" Foreground="White" />
-                    <y:ColorPicker Margin="2,0,0,0"  BorderThickness="0" Width="84" x:Name="BorderColor" DisplayColorAndName="False" Foreground="#50535c" Background="#1e2128" AllowDrop="False" />
+                    <y:ColorPicker Margin="2,0,0,0"  BorderThickness="0" Width="84" x:Name="BorderColor" DisplayColorAndName="False" Foreground="#50535c" Background="#1e2128" AllowDrop="False" SelectedColorChanged="BorderColor_SelectedColorChanged"/>
                 </WrapPanel>
 
                 <Label Margin="0,5,0,0" Grid.Row="11" Content="Font" FontWeight="ExtraBold" Foreground="White" />
@@ -304,25 +310,22 @@
                 </WrapPanel>
                 <WrapPanel Margin="0,5,0,0" Grid.Row="13">
                     <Label Margin="8,0,0,0" Content="Color" Foreground="White" />
-                    <y:ColorPicker Width="70" BorderThickness="0" x:Name="FontColor" DisplayColorAndName="False" Foreground="#50535c" Background="#1e2128" AllowDrop="False" />
+                    <y:ColorPicker Width="70" BorderThickness="0" x:Name="FontColor" DisplayColorAndName="False" Foreground="#50535c" Background="#1e2128" AllowDrop="False" SelectedColorChanged="FontColor_SelectedColorChanged"/>
                     <Label Content="Weight" Width="48" Foreground="White" Margin="3,0,0,0" />
                     <ComboBox Width="77" BorderThickness="0" Margin="4,0,0,0" x:Name="FontWeights" Background="#1e2128" Foreground="#50535c" AllowDrop="False" SelectedIndex="1" HorizontalContentAlignment="Center">
-                        <x:Static Member="FontWeights.Black"/>
-                        <x:Static Member="FontWeights.Bold"/>
-                        <x:Static Member="FontWeights.DemiBold"/>
-                        <x:Static Member="FontWeights.ExtraBlack"/>
-                        <x:Static Member="FontWeights.ExtraBold"/>
-                        <x:Static Member="FontWeights.ExtraLight"/>
-                        <x:Static Member="FontWeights.Heavy"/>
-                        <x:Static Member="FontWeights.Light"/>
-                        <x:Static Member="FontWeights.Medium"/>
-                        <x:Static Member="FontWeights.Normal"/>
-                        <x:Static Member="FontWeights.Regular"/>
-                        <x:Static Member="FontWeights.SemiBold"/>
-                        <x:Static Member="FontWeights.Thin"/>
-                        <x:Static Member="FontWeights.UltraBlack"/>
-                        <x:Static Member="FontWeights.UltraBold"/>
-                        <x:Static Member="FontWeights.UltraLight"/>
+                        <ComboBoxItem Content="Normal" Name="Normal"></ComboBoxItem>
+                        <ComboBoxItem Content="Bold" Name="Bold"></ComboBoxItem>
+                        <ComboBoxItem Content="Bolder" Name="Bolder"></ComboBoxItem>
+                        <ComboBoxItem Content="Lighter" Name="Lighter"></ComboBoxItem>
+                        <ComboBoxItem Content="100" Name="a"></ComboBoxItem>
+                        <ComboBoxItem Content="200" Name="b"></ComboBoxItem>
+                        <ComboBoxItem Content="300" Name="c"></ComboBoxItem>
+                        <ComboBoxItem Content="400" Name="d"></ComboBoxItem>
+                        <ComboBoxItem Content="500" Name="e"></ComboBoxItem>
+                        <ComboBoxItem Content="600" Name="f"></ComboBoxItem>
+                        <ComboBoxItem Content="700" Name="g"></ComboBoxItem>
+                        <ComboBoxItem Content="800" Name="h"></ComboBoxItem>
+                        <ComboBoxItem Content="900" Name="i"></ComboBoxItem>
                     </ComboBox>
                 </WrapPanel>
                 <WrapPanel Margin="0,5,0,0" Grid.Row="14">
@@ -357,7 +360,7 @@
                 </WrapPanel>
                 <WrapPanel Margin="0,5,0,0" Grid.Row="18">
                     <Label Margin="8,0,0,0" Content="Color" Foreground="White" />
-                    <y:ColorPicker BorderThickness="0" Width="70" x:Name="BackgroundColor" DisplayColorAndName="False" Foreground="#50535c" Background="#1e2128" AllowDrop="False" />
+                    <y:ColorPicker BorderThickness="0" Width="70" x:Name="BackgroundColor" DisplayColorAndName="False" Foreground="#50535c" Background="#1e2128" AllowDrop="False" SelectedColorChanged="BackgroundColor_SelectedColorChanged"/>
                     <Label Content="Position" Width="51" Foreground="White" Margin="2,0,0,0" />
                     <ComboBox BorderThickness="0" Width="72" HorizontalContentAlignment="Center" x:Name="BackgroundPosition" Margin="7,0,0,0" Background="#1e2128" Foreground="#50535c">
                         <ComboBoxItem Name="LeftPosition" Content="Left" HorizontalAlignment="Center" AllowDrop="False" IsSelected="True" />

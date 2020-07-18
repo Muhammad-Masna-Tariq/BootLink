@@ -15,6 +15,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Xml;
+using System.Text.RegularExpressions;
+using CefSharp;
+using Microsoft.Win32;
 
 namespace Fyp
 {
@@ -23,10 +26,9 @@ namespace Fyp
         private static bool save = false; // used to check that the HTML file is already saved or not
         private static string savepath;
         private static string csssavepath;
-        private string htmlpathString;
-        private string csspathString;
+        public MainWindow mw { get; set; }
 
-        public void NewProject(winForms.RichTextBox htmlTextBox, winForms.RichTextBox csstextBox, MenuItem SaveProject)
+        public void NewProject(winForms.RichTextBox htmlTextBox, winForms.RichTextBox csstextBox, MenuItem SaveProject, MainWindow mw)
         {
             if (SaveProject.IsEnabled == true)
             {
@@ -53,7 +55,11 @@ namespace Fyp
                 }
 
             }
-            //Need to use System.Windows.Forms to get open folder dialog
+
+            //////////////////////////////////////////////////////
+            ///Not using this because we will show startup here///
+            //////////////////////////////////////////////////////
+            /*//Need to use System.Windows.Forms to get open folder dialog
             // Show the FolderBrowserDialog.
             winForms.FolderBrowserDialog folderDialog = new winForms.FolderBrowserDialog();
             folderDialog.SelectedPath = System.AppDomain.CurrentDomain.BaseDirectory;
@@ -63,7 +69,7 @@ namespace Fyp
             {
                 String folderPath = folderDialog.SelectedPath;
                 String htmlfilename = "index.html";
-                String cssfilename = "style.css";
+                String cssfilename = "main.css";
                 htmlpathString = System.IO.Path.Combine(folderPath, htmlfilename);
                 csspathString = System.IO.Path.Combine(folderPath, cssfilename);
                 if (!System.IO.File.Exists(htmlpathString))
@@ -79,7 +85,7 @@ namespace Fyp
                             writer.WriteLine("");
                             writer.WriteLine("    <!-- Bootstrap CSS -->");
                             writer.WriteLine("    <link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css\" integrity=\"sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T\" crossorigin=\"anonymous\">");
-                            writer.WriteLine("    <link rel=\"stylesheet\" href=\"style.css\">");
+                            writer.WriteLine("    <link rel=\"stylesheet\" href=\"main.css\">");
                             writer.WriteLine("");
                             writer.WriteLine("    <title>Hello, world!</title>");
                             writer.WriteLine("  </head>");
@@ -175,12 +181,15 @@ namespace Fyp
                 MainWindow.htmlfire = true;
                 MainWindow.fire = true;
 
-            }
+            }*/
 
+            startup su = new startup();
+            su.Show();
+            mw.Close();
             SaveProject.IsEnabled = false;
         }
 
-        public void OpenProject(winForms.RichTextBox htmlTextBox, winForms.RichTextBox csstextBox, MenuItem SaveProject)
+        public void OpenProject(winForms.RichTextBox htmlTextBox, winForms.RichTextBox csstextBox, MenuItem SaveProject, CefSharp.Wpf.ChromiumWebBrowser mwb)
         {
             if (SaveProject.IsEnabled == true)
             {
@@ -211,7 +220,7 @@ namespace Fyp
             Microsoft.Win32.OpenFileDialog ofd = new Microsoft.Win32.OpenFileDialog();
             ofd.DefaultExt = ".html";
             ofd.Filter = "HTML File (.html)|*.html|ALL Files (.)|*.*";
-            if (ofd.ShowDialog() == true)
+            if (ofd.ShowDialog() == true && ofd.CheckFileExists)
             {
                 StreamReader sr1 = new StreamReader(ofd.FileName, Encoding.Default);
                 htmlTextBox.Text = sr1.ReadToEnd();
@@ -222,7 +231,7 @@ namespace Fyp
             ofd.Title = "Open CSS file";
             ofd.DefaultExt = ".css";
             ofd.Filter = "CSS File (.css)|*.css|ALL Files (.)|*.*";
-            if (ofd.ShowDialog() == true)
+            if (ofd.ShowDialog() == true && ofd.CheckFileExists)
             {
                 StreamReader sr1 = new StreamReader(ofd.FileName, Encoding.Default);
                 csstextBox.Text = sr1.ReadToEnd();
@@ -249,6 +258,17 @@ namespace Fyp
                 htb.ValidateTags(htmlTextBox);
                 ctb.clipboardGrammerCheck(csstextBox);
 
+                this.mw.Dispatcher.Invoke(() =>
+                {
+                    Regex singlelinepattern = new Regex(@"\s*?(\r\n|\n|\r)\s*");
+                    String htmlH = htmlTextBox.Text;
+                    String singleLineString = singlelinepattern.Replace(htmlH, "");
+                    //winForms.MessageBox.Show(singleLineString);
+                    IFrame frame = mwb.GetMainFrame();
+                    frame.ExecuteJavaScriptAsync(String.Format("testFunc(`{0}`)", htmlH));
+                });
+                
+
             }
             finally
             {
@@ -264,9 +284,11 @@ namespace Fyp
 
         public void SaveProject(winForms.RichTextBox htmlTextBox, winForms.RichTextBox csstextBox)
         {
+
             if (save == false)
             {
                 Microsoft.Win32.SaveFileDialog sfd = new Microsoft.Win32.SaveFileDialog();
+
                 sfd.DefaultExt = ".html";
                 sfd.Filter = "HTML File (.html)|*.html";
                 if (sfd.ShowDialog() == true && sfd.FileName.Length > 0)
@@ -286,17 +308,54 @@ namespace Fyp
                     save = true;
                 }
 
+
                 /*string newpath = savepath.LastIndexOf("/");
                 Console.WriteLine(savepath + "\n" + newpath);
                 //copying media folder to dest file
                 //CloneDirectory(winForms.Application.StartupPath + @"\dnd\media\", sfd.Get);*/
+
+                //trying to find if there are images and moving them\
+                if (sfd.ShowDialog() == true && sfd.FileName.Length > 0)
+                {
+                    int temp = sfd.FileName.ToString().LastIndexOf("\\");
+                    String destDir = sfd.FileName.Substring(0, temp) + "\\media";
+                    /*if (!Directory.Exists(destDir))
+                    {
+                        Directory.CreateDirectory(destDir);
+                    }*/
+                    winForms.MessageBox.Show(destDir);
+
+                    string srcDir = winForms.Application.StartupPath + @"\dnd\media";
+
+                    DirectoryCopy(srcDir, destDir, true);
+
+                    //Deleting Eveything from the directory
+                    System.IO.DirectoryInfo di = new DirectoryInfo(srcDir + "\\images");
+
+                    foreach (FileInfo file in di.GetFiles())
+                    {
+                        file.Delete();
+                    }
+
+                    di = new DirectoryInfo(srcDir + "\\videos");
+
+                    foreach (FileInfo file in di.GetFiles())
+                    {
+                        file.Delete();
+                    }
+                }
+
             }
             else
             {
-                File.WriteAllText(savepath, htmlTextBox.Text);
-                File.WriteAllText(csssavepath, csstextBox.Text);
-
-                
+                if (savepath != "")
+                {
+                    File.WriteAllText(savepath, htmlTextBox.Text);
+                }
+                else if (csssavepath != "")
+                {
+                    File.WriteAllText(csssavepath, csstextBox.Text);
+                }
             }
 
             
@@ -386,9 +445,47 @@ namespace Fyp
 
         public void Manual()
         {
-            string path = winForms.Application.StartupPath + @"\\scope.pdf";
+            string path = winForms.Application.StartupPath + @"\\finalReport.pdf";
             Preview p = new Preview(path);
             p.Show();
+        }
+
+        private static void DirectoryCopy(string sourceDirName, string destDirName, bool copySubDirs)
+        {
+            // Get the subdirectories for the specified directory.
+            DirectoryInfo dir = new DirectoryInfo(sourceDirName);
+
+            if (!dir.Exists)
+            {
+                throw new DirectoryNotFoundException(
+                    "Source directory does not exist or could not be found: "
+                    + sourceDirName);
+            }
+
+            DirectoryInfo[] dirs = dir.GetDirectories();
+            // If the destination directory doesn't exist, create it.
+            if (!Directory.Exists(destDirName))
+            {
+                Directory.CreateDirectory(destDirName);
+            }
+
+            // Get the files in the directory and copy them to the new location.
+            FileInfo[] files = dir.GetFiles();
+            foreach (FileInfo file in files)
+            {
+                string temppath = System.IO.Path.Combine(destDirName, file.Name);
+                file.CopyTo(temppath, false);
+            }
+
+            // If copying subdirectories, copy them and their contents to new location.
+            if (copySubDirs)
+            {
+                foreach (DirectoryInfo subdir in dirs)
+                {
+                    string temppath = System.IO.Path.Combine(destDirName, subdir.Name);
+                    DirectoryCopy(subdir.FullName, temppath, copySubDirs);
+                }
+            }
         }
     }
 }

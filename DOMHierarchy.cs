@@ -26,17 +26,33 @@ namespace Fyp
 
         public void generateDOM(winForms.TreeView treeView, winForms.RichTextBox richTextBox)
         {
+            int check = 0;
+
             if (richTextBox.Text == "")
             {
                 File.WriteAllText(path, "<html></html>");
             }
             else
             {
-                File.WriteAllText(path, richTextBox.Text);
-                treeView.Nodes.Clear();
-                XmlDocument.Load(path);
-                LoadTreeViewFromXmlDoc(XmlDocument, treeView);
-                treeView.ExpandAll();
+                if (check == 0)
+                {
+                    try
+                    {
+                        File.WriteAllText(path, richTextBox.Text);
+                        treeView.Nodes.Clear();
+
+                        XmlDocument.Load(path);
+                        LoadTreeViewFromXmlDoc(XmlDocument, treeView);
+                        treeView.ExpandAll();
+                        check = 0;
+                    }
+                    catch (System.Xml.XmlException exp)
+                    {
+                        winForms.MessageBox.Show(exp.Message + "", "DOM Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        check = 1;
+                    }
+                }
+
             }
 
         }
@@ -78,6 +94,20 @@ namespace Fyp
                 htmlTextBox.SelectionBackColor = System.Drawing.Color.DarkOrange;
                 htmlTextBox.Focus();
                 index = htmlTextBox.Text.IndexOf(id, index) + 1;
+            }
+        }
+
+        public void generate(winForms.RichTextBox htmlTextbox, winForms.TreeView DomHierarchyTree)
+        {
+            htmltextBoxClass htb = new htmltextBoxClass();
+            int result = htb.TagsClosingCheck(htmlTextbox);
+            if (result == 0)
+            {
+                int res = htb.TagsCheck(htmlTextbox);
+                if (res == 0)
+                {
+                    generateDOM(DomHierarchyTree, htmlTextbox);
+                }
             }
         }
     }

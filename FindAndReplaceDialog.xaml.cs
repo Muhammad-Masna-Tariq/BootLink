@@ -67,7 +67,7 @@ namespace Fyp
 
             if (found == -1)
             {
-                MessageBox.Show("Word is not Found!. Try Again....");
+                MessageBox.Show("Word is not Found!. Try Again....", "Find Word", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             if (found != -1)
             {

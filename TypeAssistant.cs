@@ -9,6 +9,9 @@ namespace Fyp
 {
     public class TypeAssistant
     {
+        public string boxName { get; set;}
+        public string boxValue { get; set; }
+
         public event EventHandler Idled = delegate { };
         public int WaitingMilliSeconds { get; set; }
         System.Threading.Timer waitingTimer;
@@ -25,5 +28,6 @@ namespace Fyp
         {
             waitingTimer.Change(WaitingMilliSeconds, System.Threading.Timeout.Infinite);
         }
+
     }
 }

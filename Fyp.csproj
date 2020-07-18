@@ -149,6 +149,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="cssPropertyBox.cs" />
     <Compile Include="CustomWindow.xaml.cs">
       <DependentUpon>CustomWindow.xaml</DependentUpon>
     </Compile>
@@ -306,7 +307,11 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="image\demo.png" />
-    <Content Include="Video\demo.MP4" />
+    <Resource Include="image\dom.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="image\play.png" />
+    <Content Include="Video\demo.mp4" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

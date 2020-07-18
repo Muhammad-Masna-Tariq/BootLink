@@ -14,10 +14,26 @@ namespace Fyp
     class DragnDrop
     {
         public static String htmlHolder { get; set; }
+        public static String idHolder { get; set; }
         public MainWindow mw { get; set; }
         public bool setChange { get; set; }
 
         private static string path = winForms.Application.StartupPath + @"\dnd\media\";
+
+        public void getCSSClass(string idname)
+        {
+                //Read Note
+                idHolder = idname;
+                /*this.mw.Dispatcher.Invoke(() =>
+                {
+                    this.mw.idname = idname;
+
+                });*/
+        }
+        public void bindObject()
+        {
+            Console.WriteLine("Success");
+        }
         public void updateHTMLBox(string msg)
         {
             if(this.setChange == false)
@@ -42,7 +58,7 @@ namespace Fyp
 
                     //Overriding Paste Functionality
                     //Showing busy work with mouse
-                    Mouse.OverrideCursor = System.Windows.Input.Cursors.Wait;
+                    /*Mouse.OverrideCursor = System.Windows.Input.Cursors.Wait;
                     try
                     {
                         htb.ValidateTags(this.mw.htmlTextBox);
@@ -50,7 +66,7 @@ namespace Fyp
                     finally
                     {
                         Mouse.OverrideCursor = null;
-                    }
+                    }*/
                     MainWindow.htmlfire = true;
                     MainWindow.fire = true;
                 });
@@ -91,10 +107,10 @@ namespace Fyp
                     if (ofd.ShowDialog() == true)
                     {
                         string imageFN = ofd.FileName;
-                        string location = path + "images\\";
+                        string location = path + "images/";
                         string filename = Path.GetFileName(imageFN);
                         filename = filename.Replace(" ", "_");
-                        string fullPath = Path.Combine(@"media\images\", filename);
+                        string fullPath = Path.Combine(@"media/images/", filename);
                         System.IO.File.Copy(imageFN, Path.Combine(location, filename), true);
 
                             linkpath =  fullPath;
@@ -109,10 +125,10 @@ namespace Fyp
                     if (ofd.ShowDialog() == true)
                     {
                         string videoFN = ofd.FileName;
-                        string location = path + "videos\\";
+                        string location = path + "videos/";
                         string filename = Path.GetFileName(videoFN);
                         filename = filename.Replace(" ", "_");
-                        string fullPath = Path.Combine(@"media\videos\", filename);
+                        string fullPath = Path.Combine(@"media/videos/", filename);
                         System.IO.File.Copy(videoFN, Path.Combine(location, filename), true);
 
                         linkpath =  fullPath;

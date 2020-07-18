@@ -7,14 +7,15 @@
         mc:Ignorable="d"
         WindowStyle="None"
         ResizeMode="NoResize"
-        Title="BootLink" Height="600" Width="1000">
+        Title="BootLink" Height="600" Width="1000"
+        MouseDown="TitleBar_MoveWindow">
     <Grid Background="#1b1c20">
         <Grid.RowDefinitions>
-            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="40" ></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
 
-        <Button Content="X" Background="#1b1c20" FontSize="20" FontWeight="ExtraBold" Foreground="#ffffff" Grid.Row="0" HorizontalAlignment="Right" BorderThickness="0"  Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Close_Click" Width="32">
+        <Button Content="X" MouseDown="TitleBar_MoveWindow" Background="#1b1c20" FontSize="20" FontWeight="ExtraBold" Foreground="#ffffff" Grid.Row="0" HorizontalAlignment="Right" BorderThickness="0"  Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Close_Click" Width="32">
         </Button>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
@@ -31,7 +32,7 @@
                     <RowDefinition Height="40"></RowDefinition>
                 </Grid.RowDefinitions>
                 <Image Source="image/logo.png"  Grid.Row="1"/>
-                <Button Grid.Row="3" FontSize="20" VerticalAlignment="Top" Background="#1b1c20" Foreground="#ffffff" BorderThickness="0" HorizontalAlignment="Right" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Width="200">
+                <Button Grid.Row="3" FontSize="20" VerticalAlignment="Top" Background="#1b1c20" Foreground="#ffffff" BorderThickness="0" HorizontalAlignment="Right" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Width="200" Click="New_Click">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="100"></ColumnDefinition>
@@ -44,7 +45,7 @@
 
                     </Grid>
                 </Button>
-                <Button Grid.Row="3" FontSize="20" Margin="0,33,0,0" VerticalAlignment="Top" Background="#1b1c20" Foreground="#ffffff" BorderThickness="0" HorizontalAlignment="Right" Width="200" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}">
+                <Button Grid.Row="3" FontSize="20" Margin="0,33,0,0" VerticalAlignment="Top" Background="#1b1c20" Foreground="#ffffff" BorderThickness="0" HorizontalAlignment="Right" Width="200" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Open_Click">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="100"></ColumnDefinition>
@@ -93,25 +94,25 @@
                                 <ColumnDefinition></ColumnDefinition>
                             </Grid.ColumnDefinitions>
 
-                            <Button Grid.Column="0" FontSize="13" FontWeight="Light" VerticalAlignment="Top" Background="#1b1c20" Foreground="#ffffff" BorderThickness="0">
+                            <Button x:Name="Blank" Grid.Column="0" FontSize="13" FontWeight="Light" VerticalAlignment="Top" Background="#1b1c20" Foreground="#ffffff" BorderThickness="0" Click="Template_Click">
                                 <StackPanel>
                                     <Image Source="image/startupimages/item8.jpg" Stretch="Uniform" Height="142"/>
                                     <TextBlock HorizontalAlignment="Center">Blank Document</TextBlock>
                                 </StackPanel>
                             </Button>
-                            <Button Grid.Column="1" FontSize="13" FontWeight="Light" VerticalAlignment="Top" Background="#1b1c20" Foreground="#ffffff" BorderThickness="0">
+                            <Button x:Name="Album" Grid.Column="1" FontSize="13" FontWeight="Light" VerticalAlignment="Top" Background="#1b1c20" Foreground="#ffffff" BorderThickness="0" Click="Template_Click">
                                 <StackPanel>
                                     <Image Source="image/startupimages/item7.jpg" Stretch="Uniform" Height="144"/>
                                     <TextBlock HorizontalAlignment="Center">Album</TextBlock>
                                 </StackPanel>
                             </Button>
-                            <Button Grid.Column="2" FontSize="13" FontWeight="Light" VerticalAlignment="Top" Background="#1b1c20" Foreground="#ffffff" BorderThickness="0">
+                            <Button x:Name="Pricing" Grid.Column="2" FontSize="13" FontWeight="Light" VerticalAlignment="Top" Background="#1b1c20" Foreground="#ffffff" BorderThickness="0" Click="Template_Click">
                                 <StackPanel>
                                     <Image Source="image/startupimages/item6.jpg" Stretch="Uniform" Height="146"/>
                                     <TextBlock HorizontalAlignment="Center">Pricing</TextBlock>
                                 </StackPanel>
                             </Button>
-                            <Button Grid.Column="3" FontSize="13" FontWeight="Light" VerticalAlignment="Top" Background="#1b1c20" Foreground="#ffffff" BorderThickness="0">
+                            <Button x:Name="Shipping" Grid.Column="3" FontSize="13" FontWeight="Light" VerticalAlignment="Top" Background="#1b1c20" Foreground="#ffffff" BorderThickness="0" Click="Template_Click">
                                 <StackPanel>
                                     <Image Source="image/startupimages/item5.jpg" Stretch="Uniform" Height="146"/>
                                     <TextBlock HorizontalAlignment="Center">Shipping</TextBlock>
@@ -126,25 +127,25 @@
                                 <ColumnDefinition></ColumnDefinition>
                             </Grid.ColumnDefinitions>
 
-                            <Button Grid.Column="0" FontSize="13" FontWeight="Light" VerticalAlignment="Top" Background="#1b1c20" Foreground="#ffffff" BorderThickness="0">
+                            <Button x:Name="Product" Grid.Column="0" FontSize="13" FontWeight="Light" VerticalAlignment="Top" Background="#1b1c20" Foreground="#ffffff" BorderThickness="0" Click="Template_Click">
                                 <StackPanel>
                                     <Image Source="image/startupimages/item4.jpg" Stretch="Uniform" Height="149"/>
                                     <TextBlock HorizontalAlignment="Center">Product</TextBlock>
                                 </StackPanel>
                             </Button>
-                            <Button Grid.Column="1" FontSize="13" FontWeight="Light" VerticalAlignment="Top" Background="#1b1c20" Foreground="#ffffff" BorderThickness="0">
+                            <Button x:Name="Landing" Grid.Column="1" FontSize="13" FontWeight="Light" VerticalAlignment="Top" Background="#1b1c20" Foreground="#ffffff" BorderThickness="0" Click="Template_Click">
                                 <StackPanel>
                                     <Image Source="image/startupimages/item3.jpg" Stretch="Uniform" Height="150"/>
                                     <TextBlock HorizontalAlignment="Center">Landing</TextBlock>
                                 </StackPanel>
                             </Button>
-                            <Button Grid.Column="2" FontSize="13" FontWeight="Light" VerticalAlignment="Top" Background="#1b1c20" Foreground="#ffffff" BorderThickness="0">
+                            <Button x:Name="Carousel" Grid.Column="2" FontSize="13" FontWeight="Light" VerticalAlignment="Top" Background="#1b1c20" Foreground="#ffffff" BorderThickness="0" Click="Template_Click">
                                 <StackPanel>
                                     <Image Source="image/startupimages/item2.jpg" Stretch="Uniform" Height="150"/>
                                     <TextBlock HorizontalAlignment="Center">Carousel</TextBlock>
                                 </StackPanel>
                             </Button>
-                            <Button Grid.Column="3" FontSize="13" FontWeight="Light" VerticalAlignment="Top" Background="#1b1c20" Foreground="#ffffff" BorderThickness="0">
+                            <Button x:Name="Login" Grid.Column="3" FontSize="13" FontWeight="Light" VerticalAlignment="Top" Background="#1b1c20" Foreground="#ffffff" BorderThickness="0" Click="Template_Click">
                                 <StackPanel>
                                     <Image Source="image/startupimages/item1.jpg" Stretch="Uniform" Height="153"/>
                                     <TextBlock HorizontalAlignment="Center">Login</TextBlock>

@@ -18,6 +18,8 @@ using System.Windows.Forms;
 using System.Drawing;
 using System.Text.RegularExpressions;
 using System.Threading;
+using System.Collections;
+
 namespace Fyp
 {
     class htmltextBoxClass : TextboxPropertiesClass
@@ -398,6 +400,107 @@ namespace Fyp
                     }
                     break;
             }
+        }
+
+        public int TagsCheck(winForms.RichTextBox htmlTextbox)
+        {
+            int check = 0;
+            string findID = "id";
+            string pattern = @"<([a-z]+) *[^/]*?>|<script\b[^>]*>|<a[^>]*>|<([a-z]+)[^>]*([a-z]+)[^>]*\/>";
+            
+            string splitPattern = @"(?<=[>])";
+            string[] lines = Regex.Split(htmlTextbox.Text, splitPattern);
+            string st1 = "";
+
+            //var lines = htmlTextbox.Text.Split('>').ToList();
+
+            foreach (string line in lines)
+            {
+                check = 0;
+
+                //winForms.MessageBox.Show(line);
+                string st = line;
+
+                Regex regex = new Regex(pattern);
+                Match m = regex.Match(st);
+
+                if (m.Success)
+                {
+                    //winForms.MessageBox.Show(m.Value);
+                    st1 = m.Value;
+
+                    //int sP = st1.IndexOf("<") + "<".Length;
+                    //int eP = st1.IndexOf(">");
+                    //st1 = st1.Substring(sP, eP - sP);
+                    //string st2 = st1;
+
+                    //winForms.MessageBox.Show(st1);
+
+                    bool searchResult = st1.Contains(findID);
+                    if (searchResult == false)
+                    {
+                        winForms.MessageBox.Show("DOM can not be generated, there is a missing attribute id in :  " + st1, "DOM Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        check = 1;
+                        return check;
+
+                    }
+                    else
+                    {
+                        check = 0;
+                        // do nothing
+                        //winForms.MessageBox.Show("Match Found");
+                    }
+                }                
+            }
+            //ValidateTags(htmlTextbox);
+            return check;
+        }
+
+        public int TagsClosingCheck(winForms.RichTextBox htmlTextbox)
+        {
+            int check = 0;
+            ArrayList arrayList = new ArrayList();
+            string pattern = @"<link[^>]>|<img[^>]>|<hr[^>]>|<br[^>]>|<meta[^>]>|<input[^>]>";
+
+            string splitPattern = @"(?<=[>])";
+            string[] lines = Regex.Split(htmlTextbox.Text, splitPattern);
+
+            foreach (string line in lines)
+            {
+                //winForms.MessageBox.Show(line);
+                string st = line;
+
+                Regex regex = new Regex(pattern);
+                Match match = regex.Match(st);
+
+                if (match.Success)
+                {
+                    string st1 = match.Value;
+                    //winForms.MessageBox.Show(st1);
+                    arrayList.Add(st1);
+                }
+               
+            }
+
+            foreach (var list in arrayList)
+            {
+                //winForms.MessageBox.Show(list + "");
+
+                if (list.ToString().Contains("/>"))
+                {
+                    //winForms.MessageBox.Show("match found");
+                    check = 0;
+                }
+                else
+                {
+                    //winForms.MessageBox.Show("match not found");
+                    check = 1;
+                    winForms.MessageBox.Show("DOM can not be generated, tag must be closed like /> in :  " + list.ToString(), "DOM Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return check;
+                }
+            }
+            //ValidateTags(htmlTextbox);
+            return check;
         }
     }
 }

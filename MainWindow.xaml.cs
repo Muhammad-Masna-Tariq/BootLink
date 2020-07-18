@@ -34,9 +34,18 @@ namespace Fyp
     public partial class MainWindow 
     {
         public TypeAssistant assistant;
+        public TypeAssistant cssPropertyBoxTypeAssistant;
 
         public static bool fire = true;
         public static bool htmlfire = true;
+
+        public String idname = "";
+
+        public static String browserAddress = "";
+        
+        //for ctrl + v to execute only one time
+        private bool isPressed = false;
+
 
         //Creating csstextBox Object
         csstextBoxClass ctb = new csstextBoxClass();
@@ -45,26 +54,88 @@ namespace Fyp
         DOMHierarchy DOMHierarchy = new DOMHierarchy();
         DragnDrop dnd = new DragnDrop();
         EditProperties ep = new EditProperties();
+        cssPropertyBox cpb;
 
         public MainWindow()
         {
             InitializeComponent();
 
+
+            //giving fs the mainwindow instance so it can use it to load any files
+            fs.mw = this;
+            //Initializing a CSS Property Box Class
+            cpb = new cssPropertyBox(htmlTextBox, csstextBox, MainWindowBrowser);
+
+            //CSS Property Box Combo Box Sub
+            BorderType.SelectionChanged += new SelectionChangedEventHandler(cssPropertyBox_ComboBox_SelectionChanged);
+
+            FloatProperty.SelectionChanged += new SelectionChangedEventHandler(cssPropertyBox_ComboBox_SelectionChanged);
+            DisplayProperty.SelectionChanged += new SelectionChangedEventHandler(cssPropertyBox_ComboBox_SelectionChanged);
+
+            FontFamily.SelectionChanged += new SelectionChangedEventHandler(cssPropertyBox_FontFamily_SelectionChanged);
+
+            FontWeights.SelectionChanged += new SelectionChangedEventHandler(cssPropertyBox_ComboBox_SelectionChanged);
+
+            FontStyle.SelectionChanged += new SelectionChangedEventHandler(cssPropertyBox_FontStyle_SelectionChanged);
+
+
+            FontAlign.SelectionChanged += new SelectionChangedEventHandler(cssPropertyBox_ComboBox_SelectionChanged);
+            FontDecoration.SelectionChanged += new SelectionChangedEventHandler(cssPropertyBox_ComboBox_SelectionChanged);
+
+            BackgroundPosition.SelectionChanged += new SelectionChangedEventHandler(cssPropertyBox_ComboBox_SelectionChanged);
+            BackgroundRepeat.SelectionChanged += new SelectionChangedEventHandler(cssPropertyBox_ComboBox_SelectionChanged);
+
+
+
+            //CssPropertyBox
+            ColumnXS.TextChanged += new TextChangedEventHandler(cssPropertyBox_TextChanged);
+            ColumnSM.TextChanged += new TextChangedEventHandler(cssPropertyBox_TextChanged);
+            ColumnMD.TextChanged += new TextChangedEventHandler(cssPropertyBox_TextChanged);
+            ColumnLG.TextChanged += new TextChangedEventHandler(cssPropertyBox_TextChanged);
+
+            WidthProperty.TextChanged += new TextChangedEventHandler(cssPropertyBox_TextChanged);
+            HeightProperty.TextChanged += new TextChangedEventHandler(cssPropertyBox_TextChanged);
+
+            TopPadding.TextChanged += new TextChangedEventHandler(cssPropertyBox_TextChanged);
+            BottomPadding.TextChanged += new TextChangedEventHandler(cssPropertyBox_TextChanged);
+            LeftPadding.TextChanged += new TextChangedEventHandler(cssPropertyBox_TextChanged);
+            RightPadding.TextChanged += new TextChangedEventHandler(cssPropertyBox_TextChanged);
+
+            TopMargin.TextChanged += new TextChangedEventHandler(cssPropertyBox_TextChanged);
+            BottomMargin.TextChanged += new TextChangedEventHandler(cssPropertyBox_TextChanged);
+            LeftMargin.TextChanged += new TextChangedEventHandler(cssPropertyBox_TextChanged);
+            RightMargin.TextChanged += new TextChangedEventHandler(cssPropertyBox_TextChanged);
+
+
+            BorderSize.TextChanged += new TextChangedEventHandler(cssPropertyBox_TextChanged);
+            FontSize.TextChanged += new TextChangedEventHandler(cssPropertyBox_TextChanged);
+
+            BackgroundUrl.TextChanged += new TextChangedEventHandler(cssPropertyBox_TextChanged);
+
+
             //Typing Assistant
             assistant = new TypeAssistant();
             assistant.Idled += assistant_Idled;
+            cssPropertyBoxTypeAssistant = new TypeAssistant();
+            cssPropertyBoxTypeAssistant.Idled += cssPropertyBoxTypeAssistant_Idled;
 
             //Setting up Main Window Here
             //Using local drag and drop files (html css js) on a web browser
 
             //Getting the local js drag and drop files
-            string dndFiles = System.Windows.Forms.Application.StartupPath + @"\\dnd\dandd.html";
-            MainWindowBrowser.Address = dndFiles;
+            //string dndFiles = System.Windows.Forms.Application.StartupPath + @"\\dnd\album.html";
+            Console.WriteLine(MainWindowBrowser.Address.Trim());
+            if (MainWindowBrowser.Address.Trim().Equals("www.google.com"))
+            {
+                browserAddress = System.Windows.Forms.Application.StartupPath + @"\\dnd\dandd.html";
+            }
+
+            //MainWindowBrowser.Address = browserAddress;
 
             CefSharpSettings.ConcurrentTaskExecution = true;
-             
-            //For async object registration (equivalent to the old RegisterAsyncJsObject)
             
+            //For async object registration (equivalent to the old RegisterAsyncJsObject)
+
             dnd.mw = this;
             dnd.setChange = true;
             MainWindowBrowser.JavascriptObjectRepository.ResolveObject += (sender, e) =>
@@ -76,6 +147,13 @@ namespace Fyp
                     bindingOptions = BindingOptions.DefaultBinder; //Use the default binder to serialize values into complex objects, CamelCaseJavascriptNames = true is the default
                     repo.Register("getHTMLfromjs", dnd, isAsync: true, options: bindingOptions);
                 }
+                else if (e.ObjectName == "getClassfromjs")
+                {
+                    BindingOptions bindingOptions = null; //Binding options is an optional param, defaults to null
+                    bindingOptions = BindingOptions.DefaultBinder; //Use the default binder to serialize values into complex objects, CamelCaseJavascriptNames = true is the default
+                    repo.Register("getClassfromjs", dnd, isAsync: true, options: bindingOptions);
+                }
+
             };
             MainWindowBrowser.JavascriptObjectRepository.ObjectBoundInJavascript += (sender, e) =>
             {
@@ -83,6 +161,8 @@ namespace Fyp
 
                 Console.WriteLine($"Object {e.ObjectName} was bound successfully.");
             };
+
+            
 
             SaveProject.IsEnabled = false;
             csstextBoxLine.ReadOnly = true;
@@ -96,6 +176,7 @@ namespace Fyp
                     MainWindowBrowser.ShowDevTools();
                 }
             };*/
+
             ////setting csstextbox properties
             //System.Drawing.Color backtempcolor = System.Drawing.Color.FromArgb(0x2c2c2c); //Change hex color to rgb
             //csstextBoxLine.BackColor = System.Drawing.Color.FromArgb(backtempcolor.R, backtempcolor.G, backtempcolor.B);
@@ -109,7 +190,208 @@ namespace Fyp
 
 
         }
+
+        //Css Property Box Methods
+        /*private void cssPropertyBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            var a = sender as System.Windows.Controls.TextBox;
+            if (String.IsNullOrWhiteSpace(a.Text))
+            {
+                //wpf convert hex to brush color
+                var bc = new BrushConverter();
+                a.Foreground = (System.Windows.Media.Brush)bc.ConvertFrom("#3d4047");
+                a.Text = "Enter text here...";
+            }
+                
+        }
+
+        private void cssPropertyBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            var a = sender as System.Windows.Controls.TextBox;
+            a.Foreground = System.Windows.Media.Brushes.White;
+            a.Text = "";
+        }*/
+
+        public void cssPropertyBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            cssPropertyBoxTypeAssistant.boxName = ((System.Windows.Controls.TextBox)sender).Name;
+            cssPropertyBoxTypeAssistant.boxValue = ((System.Windows.Controls.TextBox)sender).Text;
+
+            cssPropertyBoxTypeAssistant.TextChanged();
+            /*String textBoxName = ((System.Windows.Controls.TextBox)sender).Name;
+            if (textBoxName.Equals("ColumnXS") || textBoxName.Equals("ColumnSM") || textBoxName.Equals("ColumnMD") || textBoxName.Equals("ColumnLG"))
+            {
+                winForms.MessageBox.Show("here");
+            }*/
+        }
+
         
+        //CSS PropertyBox Combo Selection
+        private void cssPropertyBox_ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            String propertyName = ((System.Windows.Controls.ComboBox)sender).Name;
+            System.Windows.Controls.ComboBox cmb = sender as System.Windows.Controls.ComboBox;
+            string propertyContent = ((ComboBoxItem)cmb.SelectedItem).Content as string;
+
+            IFrame cssPropertyBoxFrame = MainWindowBrowser.GetMainFrame();
+            cssPropertyBoxFrame.ExecuteJavaScriptAsync("getIDofSelectedElements()");
+
+            System.Threading.Thread.Sleep(10);
+
+            cpb.changeComboBox(propertyContent.ToLower(), propertyName, DragnDrop.idHolder);
+        }
+
+        private void cssPropertyBox_FontFamily_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            String propertyName = "FontFamily";
+            string propertyContent = FontFamily.SelectedItem.ToString();
+
+            IFrame cssPropertyBoxFrame = MainWindowBrowser.GetMainFrame();
+            cssPropertyBoxFrame.ExecuteJavaScriptAsync("getIDofSelectedElements()");
+
+            System.Threading.Thread.Sleep(10);
+
+            cpb.changeComboBox(propertyContent.ToLower(), propertyName, DragnDrop.idHolder);
+        }
+
+        /*private void cssPropertyBox_FontWeight_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            String propertyName = "FontWeight";
+            string propertyContent = FontWeights.SelectedItem.Content.ToString();
+            winForms.MessageBox.Show(propertyName + " has value " + propertyContent);
+
+            IFrame cssPropertyBoxFrame = MainWindowBrowser.GetMainFrame();
+            cssPropertyBoxFrame.ExecuteJavaScriptAsync("getIDofSelectedElements()");
+
+            System.Threading.Thread.Sleep(10);
+
+            cpb.changeComboBox(propertyContent.ToLower(), propertyName, DragnDrop.idHolder);
+        }*/
+
+        private void cssPropertyBox_FontStyle_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            String propertyName = "FontStyle";
+            string propertyContent = FontStyle.SelectedItem.ToString();
+
+            IFrame cssPropertyBoxFrame = MainWindowBrowser.GetMainFrame();
+            cssPropertyBoxFrame.ExecuteJavaScriptAsync("getIDofSelectedElements()");
+
+            System.Threading.Thread.Sleep(10);
+
+            cpb.changeComboBox(propertyContent.ToLower(), propertyName, DragnDrop.idHolder);
+        }
+
+        public void cssPropertyBoxTypeAssistant_Idled(object sender, EventArgs e)
+        {
+            Action action = delegate {
+                String textBoxName = cssPropertyBoxTypeAssistant.boxName;
+                String textBoxValue = cssPropertyBoxTypeAssistant.boxValue;
+                
+                IFrame cssPropertyBoxFrame = MainWindowBrowser.GetMainFrame();
+                cssPropertyBoxFrame.ExecuteJavaScriptAsync("getIDofSelectedElements()");
+
+                System.Threading.Thread.Sleep(10);
+                //Column Set;
+                if ((textBoxName.Equals("ColumnXS") || textBoxName.Equals("ColumnSM") || textBoxName.Equals("ColumnMD") || textBoxName.Equals("ColumnLG")) && !textBoxValue.Trim().Equals(""))
+                {
+                    var isNumeric = int.TryParse(textBoxValue, out int n);
+                    Console.WriteLine("is Numeric is " + isNumeric);
+
+                    if (isNumeric)
+                    {
+                        cpb.setColumns(Int32.Parse(textBoxValue), textBoxName, DragnDrop.idHolder);
+                    }
+                    else
+                    {
+                        winForms.MessageBox.Show("Please enter an integer");
+                    }
+                }
+                //Width and Height Set
+                else if ((textBoxName.Equals("WidthProperty") || textBoxName.Equals("HeightProperty")) && !textBoxValue.Trim().Equals(""))
+                {
+                    var isNumeric = int.TryParse(textBoxValue, out int n);
+                    Console.WriteLine("is Numeric is " + isNumeric);
+
+                    if (isNumeric)
+                    {
+                        cpb.changeSize(Int32.Parse(textBoxValue), textBoxName, DragnDrop.idHolder);
+                    }
+                    else
+                    {
+                        winForms.MessageBox.Show("Please enter an integer");
+                    }
+                }
+                //Border Size
+                else if ((textBoxName.Equals("BorderSize")) && !textBoxValue.Trim().Equals(""))
+                {
+                    var isNumeric = int.TryParse(textBoxValue, out int n);
+                    Console.WriteLine("is Numeric is " + isNumeric);
+
+                    if (isNumeric)
+                    {
+                        cpb.changeBorder(textBoxValue, textBoxName, DragnDrop.idHolder);
+                    }
+                    else
+                    {
+                        winForms.MessageBox.Show("Please enter an integer");
+                    }
+                }
+                else if ((textBoxName.Equals("FontSize")) && !textBoxValue.Trim().Equals(""))
+                {
+                    var isNumeric = int.TryParse(textBoxValue, out int n);
+                    Console.WriteLine("is Numeric is " + isNumeric);
+
+                    if (isNumeric)
+                    {
+                        cpb.changeFont(Int32.Parse(textBoxValue), textBoxName, DragnDrop.idHolder);
+                    }
+                    else
+                    {
+                        winForms.MessageBox.Show("Please enter an integer");
+                    }
+                }
+                //Padding Set
+                else if((textBoxName.Equals("TopPadding") || textBoxName.Equals("BottomPadding") || textBoxName.Equals("LeftPadding") || textBoxName.Equals("RightPadding")) && !textBoxValue.Trim().Equals(""))
+                {
+                    var isNumeric = int.TryParse(textBoxValue, out int n);
+                    Console.WriteLine("is Numeric is " + isNumeric);
+
+                    if (isNumeric)
+                    {
+                        cpb.changePadding(Int32.Parse(textBoxValue), textBoxName, DragnDrop.idHolder);
+                    }
+                    else
+                    {
+                        winForms.MessageBox.Show("Please enter an integer");
+                    }
+
+                }
+                //Margin Set
+                else if ((textBoxName.Equals("TopMargin") || textBoxName.Equals("BottomMargin") || textBoxName.Equals("LeftMargin") || textBoxName.Equals("RightMargin")) && !textBoxValue.Trim().Equals(""))
+                {
+                    var isNumeric = int.TryParse(textBoxValue, out int n);
+                    Console.WriteLine("is Numeric is " + isNumeric);
+
+                    if (isNumeric)
+                    {
+                        cpb.changeMargin(Int32.Parse(textBoxValue), textBoxName, DragnDrop.idHolder);
+                    }
+                    else
+                    {
+                        winForms.MessageBox.Show("Please enter an integer");
+                    }
+
+                }
+                else if(textBoxName.Equals("BackgroundUrl") && !textBoxValue.Trim().Equals(""))
+                {
+                    textBoxValue = "url(\""+textBoxValue+"\")";
+                    cpb.changeURL(textBoxValue, textBoxName, DragnDrop.idHolder);
+                }
+
+            };
+            this.Invoke(action);
+            
+        }
         /*private void OnBrowserJavascriptMessageReceived(object sender, JavascriptMessageReceivedEventArgs e)
         {
             //Complext objects are initially expresses as IDicionary
@@ -122,15 +404,15 @@ namespace Fyp
             //Call a javascript function with your response data
             callback.ExecuteAsync(type);
         }*/
-/*
-        public void Testing()
-        {
-            String htmlH = htmlTextBox.Text;
-            winForms.MessageBox.Show(htmlH);
-            //MainWindowBrowser.ExecuteScriptAsync(String.Format("testFunc('{0}');", htmlH));
-            IFrame frame = MainWindowBrowser.GetMainFrame();
-            frame.ExecuteJavaScriptAsync(String.Format("testFunc(`{0}`)", htmlH));
-        }*/
+        /*
+                public void Testing()
+                {
+                    String htmlH = htmlTextBox.Text;
+                    winForms.MessageBox.Show(htmlH);
+                    //MainWindowBrowser.ExecuteScriptAsync(String.Format("testFunc('{0}');", htmlH));
+                    IFrame frame = MainWindowBrowser.GetMainFrame();
+                    frame.ExecuteJavaScriptAsync(String.Format("testFunc(`{0}`)", htmlH));
+                }*/
         public void assistant_Idled(object sender, EventArgs e)
         {
             Action action = delegate {
@@ -154,48 +436,82 @@ namespace Fyp
             this.Invoke(action);
 
         }
+        private void WindowKeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (isPressed) {
+                isPressed = false;
+            }
+        }
         private void WindowKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
             if (e.Key == Key.S && Keyboard.Modifiers == ModifierKeys.Control)
             {
                 fs.SaveProject(htmlTextBox, csstextBox);
-                DOMHierarchy.generateDOM(DomHierarchyTree, htmlTextBox);
             }
             else if (e.Key == Key.O && Keyboard.Modifiers == ModifierKeys.Control)
             {
-                fs.OpenProject(htmlTextBox, csstextBox, SaveProject);
-                DOMHierarchy.generateDOM(DomHierarchyTree, htmlTextBox);
+                fs.OpenProject(htmlTextBox, csstextBox, SaveProject, MainWindowBrowser);
             }
             else if (e.Key == Key.N && Keyboard.Modifiers == ModifierKeys.Control)
             {
-                fs.NewProject(htmlTextBox, csstextBox, SaveProject);
+                fs.NewProject(htmlTextBox, csstextBox, SaveProject, this);
             }
             else if (e.Key == Key.F && Keyboard.Modifiers == ModifierKeys.Control)
             {
                 FindAndReplaceDialog dialog = new FindAndReplaceDialog(htmlTextBox, csstextBox);
                 dialog.ShowDialog();
             }
-            if (e.Key == Key.F4 && Keyboard.Modifiers == ModifierKeys.Alt)
+            else if (e.Key == Key.D && Keyboard.Modifiers == ModifierKeys.Control)
             {
-                fs.ExitApplication(htmlTextBox, csstextBox, SaveProject);
+                DOMHierarchy dOM = new DOMHierarchy();
+                dOM.generate(htmlTextBox, DomHierarchyTree);
+            }
+            else if (e.Key == Key.C && Keyboard.Modifiers == ModifierKeys.Control)
+            {
+                IFrame copyFrame = MainWindowBrowser.GetMainFrame();
+                copyFrame.ExecuteJavaScriptAsync("copyAllElements()");
+            }
+            else if (e.Key == Key.V && Keyboard.Modifiers == ModifierKeys.Control && !isPressed)
+            {
+                isPressed = true;
+                var clipboarddata = System.Windows.Clipboard.GetText();
+                IFrame frame = MainWindowBrowser.GetMainFrame();
+                frame.ExecuteJavaScriptAsync(String.Format("pasteAllElements(`{0}`)", clipboarddata));
+            }
+            else if (e.Key == Key.A && Keyboard.Modifiers == ModifierKeys.Control)
+            {
+                IFrame selectFrame = MainWindowBrowser.GetMainFrame();
+                selectFrame.ExecuteJavaScriptAsync("selectAllElements()");
+            }
+            else if (e.Key == Key.Delete)
+            {
+                IFrame deleteFrame = MainWindowBrowser.GetMainFrame();
+                deleteFrame.ExecuteJavaScriptAsync("deleteAllElements()");
             }
         }
-        //FileSystem
+            //FileSystem
         private void NewProject_Click(object sender, RoutedEventArgs e)
         {
-            fs.NewProject(htmlTextBox, csstextBox, SaveProject);
+            fs.NewProject(htmlTextBox, csstextBox, SaveProject, this);
         }
+
+        public void OpenProject_Startup()
+        {
+            fs.OpenProject(htmlTextBox, csstextBox, SaveProject, MainWindowBrowser);
+            //DOMHierarchy.generateDOM(DomHierarchyTree, htmlTextBox);
+        }
+
 
         private void OpenProject_Click(object sender, RoutedEventArgs e)
         {
-            fs.OpenProject(htmlTextBox, csstextBox, SaveProject);
-            DOMHierarchy.generateDOM(DomHierarchyTree, htmlTextBox);
+            fs.OpenProject(htmlTextBox, csstextBox, SaveProject, MainWindowBrowser);
+            //DOMHierarchy.generateDOM(DomHierarchyTree, htmlTextBox);
         }
 
         private void SaveProject_Click(object sender, RoutedEventArgs e)
         {
             fs.SaveProject(htmlTextBox, csstextBox);
-            DOMHierarchy.generateDOM(DomHierarchyTree, htmlTextBox);
+            //DOMHierarchy.generateDOM(DomHierarchyTree, htmlTextBox);
         }
 
         private void ExitApplication_Click(object sender, RoutedEventArgs e)
@@ -403,10 +719,10 @@ namespace Fyp
             htmllineslabel.Content = htb.totallines + " Lines";
 
             // for html tags validation
-            /*if (htmlfire)
+            if (htmlfire)
             {
                 htb.currentValidateTags(htmlTextBox);
-            }*/
+            }
         }
 
         private void htmlTextBox_KeyPress(object sender, System.Windows.Forms.KeyPressEventArgs e)
@@ -543,7 +859,6 @@ namespace Fyp
 
         private void manual_Click(object sender, RoutedEventArgs e)
         {
-            //winForms.MessageBox.Show("Manual has been clicked");
             fs.Manual();
         }
 
@@ -586,10 +901,65 @@ namespace Fyp
             htmlTextBox.SelectionBackColor = System.Drawing.Color.WhiteSmoke;
         }
 
+        private void BorderColor_SelectedColorChanged(object sender, RoutedPropertyChangedEventArgs<System.Windows.Media.Color> e)
+        {
+            String colorValue = e.NewValue.ToString();
+            String temp = colorValue.Substring(0, 1);
+            String temp2 = colorValue.Substring(3);
+            colorValue = temp + "" + temp2;
+
+            IFrame cssPropertyBoxFrame = MainWindowBrowser.GetMainFrame();
+            cssPropertyBoxFrame.ExecuteJavaScriptAsync("getIDofSelectedElements()");
+
+            System.Threading.Thread.Sleep(10);
+
+            cpb.changeColor(colorValue, "BorderColor", DragnDrop.idHolder);
+
+        }
+        private void FontColor_SelectedColorChanged(object sender, RoutedPropertyChangedEventArgs<System.Windows.Media.Color> e)
+        {
+            String colorValue = e.NewValue.ToString();
+            String temp = colorValue.Substring(0, 1);
+            String temp2 = colorValue.Substring(3);
+            colorValue = temp + "" + temp2;
+
+            IFrame cssPropertyBoxFrame = MainWindowBrowser.GetMainFrame();
+            cssPropertyBoxFrame.ExecuteJavaScriptAsync("getIDofSelectedElements()");
+
+            System.Threading.Thread.Sleep(10);
+
+            cpb.changeColor(colorValue, "FontColor", DragnDrop.idHolder);
+        }
+        private void BackgroundColor_SelectedColorChanged(object sender, RoutedPropertyChangedEventArgs<System.Windows.Media.Color> e)
+        {
+            String colorValue = e.NewValue.ToString();
+            String temp = colorValue.Substring(0, 1);
+            String temp2 = colorValue.Substring(3);
+            colorValue = temp + "" + temp2;
+
+            IFrame cssPropertyBoxFrame = MainWindowBrowser.GetMainFrame();
+            cssPropertyBoxFrame.ExecuteJavaScriptAsync("getIDofSelectedElements()");
+
+            System.Threading.Thread.Sleep(10);
+
+            cpb.changeColor(colorValue, "BackgroundColor", DragnDrop.idHolder);
+        }
         private void demo_Click(object sender, RoutedEventArgs e)
         {
             VideoDemo demo = new VideoDemo();
             demo.Show();
+        }
+
+        private void generateDOM_Click(object sender, RoutedEventArgs e)
+        {
+            DOMHierarchy dOM = new DOMHierarchy();
+            dOM.generate(htmlTextBox, DomHierarchyTree);
+        }
+        private void DomHierarchyTree_BeforeSelect(object sender, TreeViewCancelEventArgs e)
+        {
+            htmlTextBox.SelectionStart = 0;
+            htmlTextBox.SelectAll();
+            htmlTextBox.SelectionBackColor = System.Drawing.Color.WhiteSmoke;
         }
     }
 }
