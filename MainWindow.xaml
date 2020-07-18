@@ -16,6 +16,7 @@
         PreviewKeyUp="WindowKeyUp"
         WindowStartupLocation="CenterScreen"
         WindowState="Maximized"
+        Closed="Window_Closed"
         Title="BootLink" Height="723" Width="1280" Icon="image/bootlinklogo.ico" Loaded="Window_Loaded" TitleCaps="False">
     <Grid>
         <Grid.ColumnDefinitions>

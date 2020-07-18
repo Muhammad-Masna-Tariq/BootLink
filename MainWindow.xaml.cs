@@ -961,5 +961,11 @@ namespace Fyp
             htmlTextBox.SelectAll();
             htmlTextBox.SelectionBackColor = System.Drawing.Color.WhiteSmoke;
         }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            winForms.Application.ExitThread();
+            Environment.Exit(0);
+        }
     }
 }
