@@ -300,30 +300,21 @@ namespace Fyp
 
                 sfd.DefaultExt = ".css";
                 sfd.Filter = "CSS File (.css)|*.css";
+                sfd.FileName = "";
 
                 if (sfd.ShowDialog() == true && sfd.FileName.Length > 0)
                 {
                     File.WriteAllText(sfd.FileName, csstextBox.Text);
                     csssavepath = sfd.FileName.ToString();
                     save = true;
-                }
 
-
-                /*string newpath = savepath.LastIndexOf("/");
-                Console.WriteLine(savepath + "\n" + newpath);
-                //copying media folder to dest file
-                //CloneDirectory(winForms.Application.StartupPath + @"\dnd\media\", sfd.Get);*/
-
-                //trying to find if there are images and moving them\
-                if (sfd.ShowDialog() == true && sfd.FileName.Length > 0)
-                {
                     int temp = sfd.FileName.ToString().LastIndexOf("\\");
                     String destDir = sfd.FileName.Substring(0, temp) + "\\media";
                     /*if (!Directory.Exists(destDir))
                     {
                         Directory.CreateDirectory(destDir);
                     }*/
-                    winForms.MessageBox.Show(destDir);
+                    //winForms.MessageBox.Show(destDir);
 
                     string srcDir = winForms.Application.StartupPath + @"\dnd\media";
 
@@ -344,6 +335,15 @@ namespace Fyp
                         file.Delete();
                     }
                 }
+
+
+                /*string newpath = savepath.LastIndexOf("/");
+                Console.WriteLine(savepath + "\n" + newpath);
+                //copying media folder to dest file
+                //CloneDirectory(winForms.Application.StartupPath + @"\dnd\media\", sfd.Get);*/
+
+                //trying to find if there are images and moving them\
+         
 
             }
             else
@@ -445,7 +445,7 @@ namespace Fyp
 
         public void Manual()
         {
-            string path = winForms.Application.StartupPath + @"\\finalReport.pdf";
+            string path = winForms.Application.StartupPath + @"\\Report\finalReport.pdf";
             Preview p = new Preview(path);
             p.Show();
         }

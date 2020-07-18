@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using winForms = System.Windows.Forms;
 
 namespace Fyp
 {
@@ -25,6 +26,10 @@ namespace Fyp
         public VideoDemo()
         {
             InitializeComponent();
+
+            string path = winForms.Application.StartupPath + @"\\Video\demo.mp4";
+            Uri uri = new Uri(path, UriKind.Absolute);
+            demoPlayer.Source = uri;
 
             check = 1;
 

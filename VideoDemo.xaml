@@ -12,7 +12,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <MediaElement Source="E:\Study\Fyp\Fyp\Fyp\Video\demo.mp4" LoadedBehavior="Manual" Name="demoPlayer" Stretch="Fill"/>
+        <MediaElement LoadedBehavior="Manual" Name="demoPlayer" Stretch="Fill"/>
 
         <StackPanel Grid.Row="1">
             <Label Name="lblStatus" Content="Not Playing..." HorizontalContentAlignment="Center" Margin="5"/>
