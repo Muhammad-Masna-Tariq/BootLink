@@ -119,7 +119,9 @@ namespace Fyp
                 }
                 else if (type.Equals("video"))
                 {
-                    ofd.Filter = "Video Files|*.avi;*.flv;*.mkv;*.mov;*.mp4;*.webm;*.wmv";
+                        //ofd.Filter = "Video Files|*.avi;*.flv;*.mkv;*.mov;*.mp4;*.webm;*.wmv";
+
+                        ofd.Filter = "Video Files |*.mp4";
 
                     ofd.Title = "Select Video";
                     if (ofd.ShowDialog() == true)

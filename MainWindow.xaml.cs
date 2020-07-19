@@ -38,6 +38,8 @@ namespace Fyp
 
         public static bool fire = true;
         public static bool htmlfire = true;
+        public static bool newProjectcheck = false;
+
 
         public String idname = "";
 
@@ -59,6 +61,8 @@ namespace Fyp
         public MainWindow()
         {
             InitializeComponent();
+
+            newProjectcheck = false;
 
 
             //giving fs the mainwindow instance so it can use it to load any files
@@ -964,8 +968,12 @@ namespace Fyp
 
         private void Window_Closed(object sender, EventArgs e)
         {
-            winForms.Application.ExitThread();
-            Environment.Exit(0);
+            if (!newProjectcheck)
+            {
+                winForms.Application.ExitThread();
+                Environment.Exit(0);
+            }
+            
         }
     }
 }

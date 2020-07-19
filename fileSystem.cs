@@ -185,6 +185,7 @@ namespace Fyp
 
             startup su = new startup();
             su.Show();
+            MainWindow.newProjectcheck = true;
             mw.Close();
             SaveProject.IsEnabled = false;
         }
@@ -473,8 +474,16 @@ namespace Fyp
             FileInfo[] files = dir.GetFiles();
             foreach (FileInfo file in files)
             {
-                string temppath = System.IO.Path.Combine(destDirName, file.Name);
-                file.CopyTo(temppath, false);
+                try
+                {
+                    string temppath = System.IO.Path.Combine(destDirName, file.Name);
+                    file.CopyTo(temppath, false);
+                }
+                catch (Exception e)
+                {
+                    continue;
+                }
+                
             }
 
             // If copying subdirectories, copy them and their contents to new location.
