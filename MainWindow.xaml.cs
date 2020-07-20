@@ -61,7 +61,7 @@ namespace Fyp
         public MainWindow()
         {
             InitializeComponent();
-
+            fileSystem.save = false;
             newProjectcheck = false;
 
 

@@ -23,7 +23,7 @@ namespace Fyp
 {
     class fileSystem
     {
-        private static bool save = false; // used to check that the HTML file is already saved or not
+        public static bool save = false; // used to check that the HTML file is already saved or not
         private static string savepath;
         private static string csssavepath;
         public MainWindow mw { get; set; }
@@ -42,15 +42,72 @@ namespace Fyp
                     if (sfd.ShowDialog() == true && sfd.FileName.Length > 0)
                     {
                         File.WriteAllText(sfd.FileName, htmlTextBox.Text);
-                    }
+                        savepath = sfd.FileName.ToString();
+                        save = true;
 
-                    //For CSS
-                    Microsoft.Win32.SaveFileDialog csssfd = new Microsoft.Win32.SaveFileDialog();
-                    sfd.DefaultExt = ".css";
-                    sfd.Filter = "CSS File (.css)|*.css";
-                    if (csssfd.ShowDialog() == true && csssfd.FileName.Length > 0)
-                    {
-                        File.WriteAllText(csssfd.FileName, csstextBox.Text);
+
+
+                        //Saving auto main.css
+                        int temp = sfd.FileName.ToString().LastIndexOf("\\");
+                        String cssdestDir = sfd.FileName.Substring(0, temp) + "\\main.css";
+
+
+
+                        //creating main.css
+                        var cssFile = File.Create(cssdestDir);
+                        cssFile.Close();
+                        File.WriteAllText(cssdestDir, csstextBox.Text);
+                        csssavepath = cssdestDir;
+                        save = true;
+
+
+
+
+                        //moving images videos and bootstrap stuff
+                        String destDir = sfd.FileName.Substring(0, temp) + "\\media";
+                        /*if (!Directory.Exists(destDir))
+                            {
+                            Directory.CreateDirectory(destDir);
+                        }
+                        */
+
+
+
+                        string srcDir = winForms.Application.StartupPath + @"\dnd\media";
+
+
+
+                        DirectoryCopy(srcDir, destDir, true);
+
+
+
+                        //Deleting Eveything from the directory
+                        System.IO.DirectoryInfo di = new DirectoryInfo(srcDir + "\\images");
+
+
+
+                        foreach (FileInfo file in di.GetFiles())
+                        {
+                            file.Delete();
+                        }
+
+
+
+                        di = new DirectoryInfo(srcDir + "\\videos");
+
+
+
+                        foreach (FileInfo file in di.GetFiles())
+                        {
+                            file.Delete();
+                        }
+
+
+
+                        //moving bootstrap related files
+                        String bootstrapDest = sfd.FileName.Substring(0, temp) + "\\bootstrap";
+                        string bootstrapSrc = winForms.Application.StartupPath + @"\dnd\bootstrap";
+                        DirectoryCopy(bootstrapSrc, bootstrapDest, true);
                     }
                 }
 
