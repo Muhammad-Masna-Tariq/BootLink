@@ -283,8 +283,9 @@ namespace Fyp
             save = true;
         }
 
-        public void SaveProject(winForms.RichTextBox htmlTextBox, winForms.RichTextBox csstextBox)
+        public int SaveProject(winForms.RichTextBox htmlTextBox, winForms.RichTextBox csstextBox)
         {
+            int check = 0;
 
             if (save == false)
             {
@@ -297,70 +298,73 @@ namespace Fyp
                     File.WriteAllText(sfd.FileName, htmlTextBox.Text);
                     savepath = sfd.FileName.ToString();
                     save = true;
-                }
+                    check = 1;
 
-                //Saving auto main.css
-                int temp = sfd.FileName.ToString().LastIndexOf("\\");
-                String cssdestDir = sfd.FileName.Substring(0, temp) + "\\main.css";
-
-
-
-                //creating main.css
-                var cssFile = File.Create(cssdestDir);
-                cssFile.Close();
-                File.WriteAllText(cssdestDir, csstextBox.Text);
-                csssavepath = cssdestDir;
-                //winForms.MessageBox.Show(csssavepath);
-                save = true;
+                    //Saving auto main.css
+                    int temp = sfd.FileName.ToString().LastIndexOf("\\");
+                    String cssdestDir = sfd.FileName.Substring(0, temp) + "\\main.css";
 
 
 
+                    //creating main.css
+                    var cssFile = File.Create(cssdestDir);
+                    cssFile.Close();
+                    File.WriteAllText(cssdestDir, csstextBox.Text);
+                    csssavepath = cssdestDir;
+                    //winForms.MessageBox.Show(csssavepath);
+                    save = true;
 
-                //moving images videos and bootstrap stuff
-                String destDir = sfd.FileName.Substring(0, temp) + "\\media";
-                /*if (!Directory.Exists(destDir))
+
+
+
+                    //moving images videos and bootstrap stuff
+                    String destDir = sfd.FileName.Substring(0, temp) + "\\media";
+                    /*if (!Directory.Exists(destDir))
+                        {
+                        Directory.CreateDirectory(destDir);
+                    }
+                    */
+
+
+
+                    string srcDir = winForms.Application.StartupPath + @"\dnd\media";
+
+
+
+                    DirectoryCopy(srcDir, destDir, true);
+
+
+
+                    //Deleting Eveything from the directory
+                    System.IO.DirectoryInfo di = new DirectoryInfo(srcDir + "\\images");
+
+
+
+                    foreach (FileInfo file in di.GetFiles())
                     {
-                    Directory.CreateDirectory(destDir);
-                }
-                */
+                        file.Delete();
+                    }
 
 
 
-                string srcDir = winForms.Application.StartupPath + @"\dnd\media";
+                    di = new DirectoryInfo(srcDir + "\\videos");
 
 
 
-                DirectoryCopy(srcDir, destDir, true);
+                    foreach (FileInfo file in di.GetFiles())
+                    {
+                        file.Delete();
+                    }
 
 
 
-                //Deleting Eveything from the directory
-                System.IO.DirectoryInfo di = new DirectoryInfo(srcDir + "\\images");
-
-
-
-                foreach (FileInfo file in di.GetFiles())
-                {
-                    file.Delete();
+                    //moving bootstrap related files
+                    String bootstrapDest = sfd.FileName.Substring(0, temp) + "\\bootstrap";
+                    string bootstrapSrc = winForms.Application.StartupPath + @"\dnd\bootstrap";
+                    DirectoryCopy(bootstrapSrc, bootstrapDest, true);
                 }
 
 
-
-                di = new DirectoryInfo(srcDir + "\\videos");
-
-
-
-                foreach (FileInfo file in di.GetFiles())
-                {
-                    file.Delete();
-                }
-
-
-
-                //moving bootstrap related files
-                String bootstrapDest = sfd.FileName.Substring(0, temp) + "\\bootstrap";
-                string bootstrapSrc = winForms.Application.StartupPath + @"\dnd\bootstrap";
-                DirectoryCopy(bootstrapSrc, bootstrapDest, true);
 
                 //sfd.DefaultExt = ".css";
                 //sfd.Filter = "CSS File (.css)|*.css";
@@ -407,7 +411,7 @@ namespace Fyp
                 ////CloneDirectory(winForms.Application.StartupPath + @"\dnd\media\", sfd.Get);*/
 
                 ////trying to find if there are images and moving them\
-
+                ///
 
 
             }
@@ -416,14 +420,66 @@ namespace Fyp
                 if (savepath != "")
                 {
                     File.WriteAllText(savepath, htmlTextBox.Text);
+                    check = 2;
                 }
                 if (csssavepath != "")
                 {
                     File.WriteAllText(csssavepath, csstextBox.Text);
-                }
-            }
 
-            
+
+
+                    int temp = savepath.ToString().LastIndexOf("\\");
+
+
+
+                    //moving images videos and bootstrap stuff
+                    String destDir = savepath.Substring(0, temp) + "\\media";
+                    /*if (!Directory.Exists(destDir))
+                        {
+                        Directory.CreateDirectory(destDir);
+                    }
+                    */
+
+
+
+                    string srcDir = winForms.Application.StartupPath + @"\dnd\media";
+
+
+
+                    DirectoryCopy(srcDir, destDir, true);
+
+
+
+                    //Deleting Eveything from the directory
+                    System.IO.DirectoryInfo di = new DirectoryInfo(srcDir + "\\images");
+
+
+
+                    foreach (FileInfo file in di.GetFiles())
+                    {
+                        file.Delete();
+                    }
+
+
+
+                    di = new DirectoryInfo(srcDir + "\\videos");
+
+
+
+                    foreach (FileInfo file in di.GetFiles())
+                    {
+                        file.Delete();
+                    }
+
+
+
+                    //moving bootstrap related files
+                    String bootstrapDest = savepath.Substring(0, temp) + "\\bootstrap";
+                    string bootstrapSrc = winForms.Application.StartupPath + @"\dnd\bootstrap";
+                    DirectoryCopy(bootstrapSrc, bootstrapDest, true);
+                }
+
+            }
 
             //validation
             //stop single line grammercheck firing
@@ -449,6 +505,8 @@ namespace Fyp
             }
             MainWindow.htmlfire = true;
             MainWindow.fire = true;
+
+            return check;
         }
 
         public void ExitApplication(winForms.RichTextBox htmlTextBox, winForms.RichTextBox csstextBox, MenuItem SaveProject)

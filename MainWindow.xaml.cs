@@ -450,7 +450,11 @@ namespace Fyp
         {
             if (e.Key == Key.S && Keyboard.Modifiers == ModifierKeys.Control)
             {
-                fs.SaveProject(htmlTextBox, csstextBox);
+                int result = fs.SaveProject(htmlTextBox, csstextBox);
+                if (result == 1 || result == 2)
+                {
+                    SaveProject.IsEnabled = false;
+                }
             }
             else if (e.Key == Key.O && Keyboard.Modifiers == ModifierKeys.Control)
             {
@@ -522,7 +526,12 @@ namespace Fyp
 
         private void SaveProject_Click(object sender, RoutedEventArgs e)
         {
-            fs.SaveProject(htmlTextBox, csstextBox);
+            int result = fs.SaveProject(htmlTextBox, csstextBox);
+            if (result == 1 || result == 2)
+            {
+                SaveProject.IsEnabled = false;
+            }
+            //SaveProject.IsEnabled = false;
             //DOMHierarchy.generateDOM(DomHierarchyTree, htmlTextBox);
         }
 
