@@ -299,52 +299,116 @@ namespace Fyp
                     save = true;
                 }
 
-                sfd.DefaultExt = ".css";
-                sfd.Filter = "CSS File (.css)|*.css";
-                sfd.FileName = "";
+                //Saving auto main.css
+                int temp = sfd.FileName.ToString().LastIndexOf("\\");
+                String cssdestDir = sfd.FileName.Substring(0, temp) + "\\main.css";
 
-                if (sfd.ShowDialog() == true && sfd.FileName.Length > 0)
+
+
+                //creating main.css
+                var cssFile = File.Create(cssdestDir);
+                cssFile.Close();
+                File.WriteAllText(cssdestDir, csstextBox.Text);
+                csssavepath = cssdestDir;
+                //winForms.MessageBox.Show(csssavepath);
+                save = true;
+
+
+
+
+                //moving images videos and bootstrap stuff
+                String destDir = sfd.FileName.Substring(0, temp) + "\\media";
+                /*if (!Directory.Exists(destDir))
+                    {
+                    Directory.CreateDirectory(destDir);
+                }
+                */
+
+
+
+                string srcDir = winForms.Application.StartupPath + @"\dnd\media";
+
+
+
+                DirectoryCopy(srcDir, destDir, true);
+
+
+
+                //Deleting Eveything from the directory
+                System.IO.DirectoryInfo di = new DirectoryInfo(srcDir + "\\images");
+
+
+
+                foreach (FileInfo file in di.GetFiles())
                 {
-                    File.WriteAllText(sfd.FileName, csstextBox.Text);
-                    csssavepath = sfd.FileName.ToString();
-                    save = true;
-
-                    int temp = sfd.FileName.ToString().LastIndexOf("\\");
-                    String destDir = sfd.FileName.Substring(0, temp) + "\\media";
-                    /*if (!Directory.Exists(destDir))
-                    {
-                        Directory.CreateDirectory(destDir);
-                    }*/
-                    //winForms.MessageBox.Show(destDir);
-
-                    string srcDir = winForms.Application.StartupPath + @"\dnd\media";
-
-                    DirectoryCopy(srcDir, destDir, true);
-
-                    //Deleting Eveything from the directory
-                    System.IO.DirectoryInfo di = new DirectoryInfo(srcDir + "\\images");
-
-                    foreach (FileInfo file in di.GetFiles())
-                    {
-                        file.Delete();
-                    }
-
-                    di = new DirectoryInfo(srcDir + "\\videos");
-
-                    foreach (FileInfo file in di.GetFiles())
-                    {
-                        file.Delete();
-                    }
+                    file.Delete();
                 }
 
 
-                /*string newpath = savepath.LastIndexOf("/");
-                Console.WriteLine(savepath + "\n" + newpath);
-                //copying media folder to dest file
-                //CloneDirectory(winForms.Application.StartupPath + @"\dnd\media\", sfd.Get);*/
 
-                //trying to find if there are images and moving them\
-         
+                di = new DirectoryInfo(srcDir + "\\videos");
+
+
+
+                foreach (FileInfo file in di.GetFiles())
+                {
+                    file.Delete();
+                }
+
+
+
+                //moving bootstrap related files
+                String bootstrapDest = sfd.FileName.Substring(0, temp) + "\\bootstrap";
+                string bootstrapSrc = winForms.Application.StartupPath + @"\dnd\bootstrap";
+                DirectoryCopy(bootstrapSrc, bootstrapDest, true);
+
+                //sfd.DefaultExt = ".css";
+                //sfd.Filter = "CSS File (.css)|*.css";
+                //sfd.FileName = "";
+
+                //if (sfd.ShowDialog() == true && sfd.FileName.Length > 0)
+                //{
+                //    File.WriteAllText(sfd.FileName, csstextBox.Text);
+                //    csssavepath = sfd.FileName.ToString();
+                //    save = true;
+
+                //    int temp = sfd.FileName.ToString().LastIndexOf("\\");
+                //    String destDir = sfd.FileName.Substring(0, temp) + "\\media";
+                //    /*if (!Directory.Exists(destDir))
+                //    {
+                //        Directory.CreateDirectory(destDir);
+                //    }*/
+                //    //winForms.MessageBox.Show(destDir);
+
+                //    string srcDir = winForms.Application.StartupPath + @"\dnd\media";
+
+                //    DirectoryCopy(srcDir, destDir, true);
+
+                //    //Deleting Eveything from the directory
+                //    System.IO.DirectoryInfo di = new DirectoryInfo(srcDir + "\\images");
+
+                //    foreach (FileInfo file in di.GetFiles())
+                //    {
+                //        file.Delete();
+                //    }
+
+                //    di = new DirectoryInfo(srcDir + "\\videos");
+
+                //    foreach (FileInfo file in di.GetFiles())
+                //    {
+                //        file.Delete();
+                //    }
+                //}
+
+
+                ///*string newpath = savepath.LastIndexOf("/");
+                //Console.WriteLine(savepath + "\n" + newpath);
+                ////copying media folder to dest file
+                ////CloneDirectory(winForms.Application.StartupPath + @"\dnd\media\", sfd.Get);*/
+
+                ////trying to find if there are images and moving them\
+
+
 
             }
             else
@@ -353,7 +417,7 @@ namespace Fyp
                 {
                     File.WriteAllText(savepath, htmlTextBox.Text);
                 }
-                else if (csssavepath != "")
+                if (csssavepath != "")
                 {
                     File.WriteAllText(csssavepath, csstextBox.Text);
                 }
@@ -477,7 +541,7 @@ namespace Fyp
                 try
                 {
                     string temppath = System.IO.Path.Combine(destDirName, file.Name);
-                    file.CopyTo(temppath, false);
+                    file.CopyTo(temppath, true);
                 }
                 catch (Exception e)
                 {

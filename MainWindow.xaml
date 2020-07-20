@@ -348,8 +348,7 @@
                     <Label Margin="3,0,0,0" Content="Decoration" Foreground="White" />
                     <ComboBox BorderThickness="0" Width="110" HorizontalContentAlignment="Center" x:Name="FontDecoration" Margin="10,0,0,0" Background="#1e2128" Foreground="#50535c">
                         <ComboBoxItem Name="UnderlineDecoration" Content="Underline" HorizontalAlignment="Center" AllowDrop="False" IsSelected="True" />
-                        <ComboBoxItem Content="Baseline" Name="BaselineDecoration" HorizontalAlignment="Center" AllowDrop="False" />
-                        <ComboBoxItem Content="StrikeThrough" Name="StrikeThroughDecoration" HorizontalAlignment="Center" AllowDrop="False" />
+                        <ComboBoxItem Content="Line-Through" Name="StrikeThroughDecoration" HorizontalAlignment="Center" AllowDrop="False" />
                         <ComboBoxItem Content="Overline" Name="Overline" HorizontalAlignment="Center" AllowDrop="False" />
                     </ComboBox>
                 </WrapPanel>

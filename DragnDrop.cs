@@ -145,6 +145,21 @@ namespace Fyp
             });
             return linkpath;
         }
+
+        public void copyresult(string copyresult)
+        {
+            if (copyresult == "true")
+            {
+                EditProperties.copycheck = true;
+            }
+            else
+            {
+                EditProperties.copycheck = false;
+            }
+
+
+
+        }
     }
     
 }

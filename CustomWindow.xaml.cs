@@ -49,7 +49,7 @@ namespace Fyp
             }
             else
             {
-                MessageBox.Show("Width cannot be empty");
+                MessageBox.Show("Width cannot be empty", "Window Size Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

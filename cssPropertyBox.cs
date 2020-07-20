@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using winForms = System.Windows.Forms;
 using CefSharp;
+using System.Windows.Forms;
 
 namespace Fyp
 {
@@ -46,13 +47,13 @@ namespace Fyp
                 }
                 else
                 {
-                    winForms.MessageBox.Show("There was an error in changing the column!");
+                    winForms.MessageBox.Show("There was an error in changing the column!","Set Column Error", MessageBoxButtons.OK, winForms.MessageBoxIcon.Error);
 
                 }
             }
             else
             {
-                winForms.MessageBox.Show("Please enter a value between 1 and 12");
+                winForms.MessageBox.Show("Please enter a value between 1 and 12", "Set Column Value", MessageBoxButtons.OK, winForms.MessageBoxIcon.Information);
             }
 
         }
@@ -75,7 +76,7 @@ namespace Fyp
             }
             else
             {
-                MessageBox.Show("There was an error changing the color");
+                winForms.MessageBox.Show("There was an error changing the color", "Color Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         public void changeComboBox(String comboValue, String comboType, String idname)
@@ -123,11 +124,11 @@ namespace Fyp
             }
             else if (comboType.Equals("FontDecoration"))
             {
-                updateCSSstring(cssTextBox, idname, "font-decoration", comboValue);
+                updateCSSstring(cssTextBox, idname, "text-decoration", comboValue);
             }
             else
             {
-                MessageBox.Show("There was an error changing the size");
+                winForms.MessageBox.Show("There was an error in Selection", "Selection Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -156,7 +157,7 @@ namespace Fyp
             }
             else
             {
-                MessageBox.Show("There was an error changing the size");
+                winForms.MessageBox.Show("There was an error changing the size", "Size Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -170,7 +171,7 @@ namespace Fyp
             }
             else
             {
-                MessageBox.Show("There was an error changing the size");
+                winForms.MessageBox.Show("There was an error changing the size", "Size Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -185,7 +186,7 @@ namespace Fyp
             }
             else
             {
-                MessageBox.Show("There was an error changing the border");
+                winForms.MessageBox.Show("There was an error changing the border", "Border Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         //paddingtype 1=top, 2=bottom, 3=left, 4=right
@@ -210,7 +211,7 @@ namespace Fyp
             }
             else
             {
-                MessageBox.Show("There was an error changing the padding");
+                winForms.MessageBox.Show("There was an error changing the padding","Padding Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -236,7 +237,7 @@ namespace Fyp
             }
             else
             {
-                MessageBox.Show("There was an error changing the margin");
+                winForms.MessageBox.Show("There was an error changing the margin", "Margin Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -245,7 +246,7 @@ namespace Fyp
             //check if element selected
             if (DragnDrop.idHolder.Equals("noidsfound"))
             {
-                MessageBox.Show("Please select an element to change css!");
+                winForms.MessageBox.Show("Please select an element to change css!","HTML class update error", MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
             else
             {
@@ -260,7 +261,7 @@ namespace Fyp
 
                 if (found == -1)
                 {
-                    winForms.MessageBox.Show("Cannot find element in HTML!");
+                    winForms.MessageBox.Show("Cannot find element in HTML!","Element Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 if (found != -1)
                 {
@@ -340,7 +341,7 @@ namespace Fyp
             //check if element selected
             if (DragnDrop.idHolder.Equals("noidsfound"))
             {
-                MessageBox.Show("Please select an element to change css!");
+                winForms.MessageBox.Show("Please select an element to change css!", "Element Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
@@ -419,7 +420,7 @@ namespace Fyp
             //check if element selected
             if (DragnDrop.idHolder.Equals("noidsfound"))
             {
-                MessageBox.Show("Please select an element to change css!");
+                winForms.MessageBox.Show("Please select an element to change css!","Element Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {

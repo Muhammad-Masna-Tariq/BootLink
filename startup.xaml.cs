@@ -106,7 +106,7 @@ namespace Fyp
             }
             else
             {
-                MessageBox.Show("There was some kind of error!");
+                MessageBox.Show("There was some kind of error!","Screen Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
            
             mw.Show();

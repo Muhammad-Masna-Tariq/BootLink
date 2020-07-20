@@ -307,7 +307,7 @@ namespace Fyp
                     }
                     else
                     {
-                        winForms.MessageBox.Show("Please enter an integer");
+                        winForms.MessageBox.Show("Please enter an integer","Integer Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 //Width and Height Set
@@ -322,7 +322,7 @@ namespace Fyp
                     }
                     else
                     {
-                        winForms.MessageBox.Show("Please enter an integer");
+                        winForms.MessageBox.Show("Please enter an integer", "Integer Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 //Border Size
@@ -337,7 +337,7 @@ namespace Fyp
                     }
                     else
                     {
-                        winForms.MessageBox.Show("Please enter an integer");
+                        winForms.MessageBox.Show("Please enter an integer", "Integer Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 else if ((textBoxName.Equals("FontSize")) && !textBoxValue.Trim().Equals(""))
@@ -351,7 +351,7 @@ namespace Fyp
                     }
                     else
                     {
-                        winForms.MessageBox.Show("Please enter an integer");
+                        winForms.MessageBox.Show("Please enter an integer", "Integer Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 //Padding Set
@@ -366,7 +366,7 @@ namespace Fyp
                     }
                     else
                     {
-                        winForms.MessageBox.Show("Please enter an integer");
+                        winForms.MessageBox.Show("Please enter an integer", "Integer Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
 
                 }
@@ -382,7 +382,7 @@ namespace Fyp
                     }
                     else
                     {
-                        winForms.MessageBox.Show("Please enter an integer");
+                        winForms.MessageBox.Show("Please enter an integer", "Integer Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
 
                 }
@@ -478,9 +478,17 @@ namespace Fyp
             else if (e.Key == Key.V && Keyboard.Modifiers == ModifierKeys.Control && !isPressed)
             {
                 isPressed = true;
-                var clipboarddata = System.Windows.Clipboard.GetText();
-                IFrame frame = MainWindowBrowser.GetMainFrame();
-                frame.ExecuteJavaScriptAsync(String.Format("pasteAllElements(`{0}`)", clipboarddata));
+                if (EditProperties.copycheck)
+                {
+                    var clipboarddata = System.Windows.Clipboard.GetText();
+                    IFrame frame = MainWindowBrowser.GetMainFrame();
+                    frame.ExecuteJavaScriptAsync(String.Format("pasteAllElements(`{0}`)", clipboarddata));
+                    EditProperties.copycheck = false;
+                }
+                else
+                {
+                    winForms.MessageBox.Show("Please select an element to paste", "Element Selection Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             else if (e.Key == Key.A && Keyboard.Modifiers == ModifierKeys.Control)
             {
