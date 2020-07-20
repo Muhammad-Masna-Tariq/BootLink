@@ -51,55 +51,6 @@ function copyAllElements() {
       $(tempElement).addClass("clickedItem");
     });
 
-  //removing all styling
-  /*$("#right-copy")
-  .find(".clickedItem")
-  .each(function () {
-    var tempElement = $(this);
-    $(tempElement).css("border", "");
-    $(tempElement).removeClass("clickedItem");
-    $(tempElement)
-      .find(".editable")
-      .each(function () {
-        $(this).removeClass("editable");
-        $(this).removeClass("medium-editor-element");
-
-        //Remove attributes
-        $(this).removeAttr("contenteditable");
-        $(this).removeAttr("spellcheck");
-        $(this).removeAttr("data-medium-editor-element");
-        $(this).removeAttr("role");
-        $(this).removeAttr("aria-multiline");
-        $(this).removeAttr("data-medium-editor-editor-index");
-        $(this).removeAttr("medium-editor-index");
-        $(this).removeAttr("data-placeholder");
-        $(this).removeAttr("data-medium-focused");
-      });
-    var lengths = this.id.length;
-    if (lengths > 0) {
-      var idcheck = $(this)
-        .attr("id")
-        .match(/((single-([A-z]+))(-?)(\d)*)|([A-z0-9]){6}/);
-      if (!idcheck) {
-        var randnum = "single-item" + idnum;
-        $(this).attr("id", randnum);
-      }
-    } else {
-      var randnum = "single-item" + idnum;
-      $(this).attr("id", randnum);
-    }
-
-    //Remove class is class="" <--- empty
-    if (!$(this).attr("class")) {
-      $(this).removeAttr("class");
-    }
-    //Remove class is style="" <--- empty
-    if (!$(this).attr("style")) {
-      $(this).removeAttr("style");
-    }
-
-    copyitem = copyitem + "\n" + $(tempElement).prop("outerHTML");
-  });*/
   //using tidy.js for html5 formatting
   options = {
     indent: "auto",
@@ -122,7 +73,57 @@ function copyAllElements() {
   console.log("COPY RESULT IS");
   console.log(result);
   console.log("==============================");
-  copyToClipboard(result);
+
+  if (result.trim() == "") {
+    (async function () {
+      await CefSharp.BindObjectAsync("getHTMLfromjs");
+
+      //The default is to camel case method names (the first letter of the method name is changed to lowercase)
+      getHTMLfromjs.copyresult("false");
+    })();
+  } else {
+    $("#pastehtml").html(copyitem);
+    $("#pastehtml")
+      .find("*")
+      .each(function () {
+        var idname = "single-item-" + idnum;
+        idnum++;
+        $(this).attr("id", idname)
+      });
+
+    copyitem = $("#pastehtml").html();
+    $("#pastehtml").html("");
+
+    options = {
+      indent: "auto",
+      "indent-spaces": 2,
+      wrap: 80,
+      markup: true,
+      "output-xml": false,
+      "numeric-entities": true,
+      "quote-marks": true,
+      "quote-nbsp": false,
+      "show-body-only": true,
+      "quote-ampersand": false,
+      "break-before-br": true,
+      "uppercase-tags": false,
+      "uppercase-attributes": false,
+      "drop-font-tags": true,
+      "tidy-mark": false,
+    };
+    var result = tidy_html5(copyitem, options);
+    console.log("COPY RESULT IS");
+    console.log(result);
+    console.log("==============================");
+
+    copyToClipboard(result);
+    (async function () {
+      await CefSharp.BindObjectAsync("getHTMLfromjs");
+
+      //The default is to camel case method names (the first letter of the method name is changed to lowercase)
+      getHTMLfromjs.copyresult("true");
+    })();
+  }
 }
 
 function pasteAllElements(clipboardHTML) {

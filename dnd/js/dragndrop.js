@@ -53,14 +53,14 @@ var drake = dragula([], {
       var textitem =
         `<p id="single-item-` +
         idnum +
-        `" class="editable">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi facilisis nibh lacinia pulvinar ornare. Vivamus quis convallis turpis, in faucibus risus. Sed odio nisi, porta ut imperdiet quis, consectetur ac sapien. Aliquam pulvinar nunc id risus commodo cursus. Quisque consectetur in augue quis condimentum.</p>`;
+        `" class="editable highlight">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi facilisis nibh lacinia pulvinar ornare. Vivamus quis convallis turpis, in faucibus risus. Sed odio nisi, porta ut imperdiet quis, consectetur ac sapien. Aliquam pulvinar nunc id risus commodo cursus. Quisque consectetur in augue quis condimentum.</p>`;
       idnum++;
       el.innerHTML = textitem;
     } else if (droppedid == "heading-item") {
       $(el).attr("id", "single-item-" + idnum);
       idnum++;
       var textitem =
-        `<h2 id="single-item-` + idnum + `" class="editable">Lorem Ipsum</h2>`;
+        `<h2 id="single-item-` + idnum + `" class="editable highlight">Lorem Ipsum</h2>`;
       idnum++;
 
       el.innerHTML = textitem;
@@ -481,7 +481,7 @@ var drake = dragula([], {
       idnum++;
       var buttonidA = "single-item-" + idnum;
       idnum++;
-      var buttonitem = `<button id="` + buttonidA + `" type="button" class="btn btn-primary editable">Primary</button>`;
+      var buttonitem = `<button id="` + buttonidA + `" type="button" class="btn btn-primary editable highlight">Primary</button>`;
       el.innerHTML = buttonitem;
     } else if (droppedid == "card-item") {
       $(el).attr("id", "single-item-" + idnum);
@@ -990,6 +990,25 @@ $.fn.getCleanCode = function () {
       $(this).addClass(" ");
     });
 
+
+  $(".myhtml")
+    .find("*")
+    .each(function () {
+      //Remove attributes
+      $(this).removeAttr("contenteditable");
+      $(this).removeAttr("spellcheck");
+      $(this).removeAttr("data-medium-editor-element");
+      $(this).removeAttr("role");
+      $(this).removeAttr("aria-multiline");
+      $(this).removeAttr("data-medium-editor-editor-index");
+      $(this).removeAttr("medium-editor-index");
+      $(this).removeAttr("data-placeholder");
+      $(this).removeAttr("data-medium-focused");
+      $(this).removeAttr("style");
+      $(this).addClass(" ");
+    });
+
+
   /*$(".myhtml").each(function () {
     if (
       $(this).attr("contenteditable") ||
@@ -1037,16 +1056,16 @@ $.fn.getCleanCode = function () {
     `<html id="single-item-html">
   <head id="single-item-head">
   <title id="single-item-title">My Website</title>
-  <link id="single-item-link1" rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+  <link id="single-item-link1" rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
   <link id="single-item-link2" rel="stylesheet" href="main.css" />
   </head>
   <body id="single-item-body">` +
     html +
     `
     
-</body><script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous" id="single-item-script1"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous" id="single-item-script2"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous" id="single-item-script3"></script></html>`;
+</body><script src="bootstrap/js/jquery-3.4.1.slim.min.js" id="single-item-script1"></script>
+<script src="bootstrap/js/popper.min.js" id="single-item-script2"></script>
+<script src="bootstrap/js/bootstrap.min.js" id="single-item-script3"></script></html>`;
 
   var result = tidy_html5(html, options);
   //console.log("==================== aft TIDY HTML5 =======================");
