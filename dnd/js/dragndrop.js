@@ -1208,6 +1208,17 @@ function testFunc(myvar) {
       getHTMLfromjs.updateHTMLBox(result);
     })();
   });
+
+  var result = $.fn.getCleanCode();
+  (async function () {
+    await CefSharp.BindObjectAsync("getHTMLfromjs");
+ 
+    //The default is to camel case method names (the first letter of the method name is changed to lowercase)
+    getHTMLfromjs.updateChange("false");
+ 
+    getHTMLfromjs.updateHTMLBox(result);
+  })();
+
   //updating the div
   /*var result = $.fn.getCleanCode();
 
